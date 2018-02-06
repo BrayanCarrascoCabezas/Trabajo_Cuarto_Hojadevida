@@ -4,28 +4,29 @@ package trabajo_hoja_de_vida.rnegocio.entidades;
 
 public class Publicacion {
     
-    private int Codigo_publicacion;
+    private int Cod_publicacion;
     private Docente docente;
     private String titulo;
     private String editorial;
     private String año; 
+
     public Publicacion() {
     }
 
-    public Publicacion(int Codigo_publicacion, Docente docente, String titulo, String editorial, String año) {
-        this.Codigo_publicacion = Codigo_publicacion;
+    public Publicacion(int Cod_publicacion, Docente docente, String titulo, String editorial, String año) {
+        this.Cod_publicacion = Cod_publicacion;
         this.docente = docente;
         this.titulo = titulo;
         this.editorial = editorial;
         this.año = año;
     }
 
-    public int getCodigo_publicacion() {
-        return Codigo_publicacion;
+    public int getCod_publicacion() {
+        return Cod_publicacion;
     }
 
-    public void setCodigo_publicacion(int Codigo_publicacion) {
-        this.Codigo_publicacion = Codigo_publicacion;
+    public void setCod_publicacion(int Cod_publicacion) {
+        this.Cod_publicacion = Cod_publicacion;
     }
 
     public Docente getDocente() {
@@ -59,5 +60,4 @@ public class Publicacion {
     public void setAño(String año) {
         this.año = año;
     }
-    
 }
