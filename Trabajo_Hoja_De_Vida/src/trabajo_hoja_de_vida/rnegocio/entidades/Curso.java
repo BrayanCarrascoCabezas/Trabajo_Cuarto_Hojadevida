@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package trabajo_hoja_de_vida.rnegocio.entidades;
+
 /**
  *
  * @author WILMAC
  */
+
 public class Curso {
     private int codigo;
     private String descripcion;
