@@ -8,4 +8,5 @@ public interface IExp_Profecional {
     public int eliminar(Exp_Profecional exp_profecional) throws Exception;
     public Exp_Profecional  obtener(int CodigoExp) throws Exception;
     public List<Exp_Profecional> obtener() throws Exception; 
+    
 }
