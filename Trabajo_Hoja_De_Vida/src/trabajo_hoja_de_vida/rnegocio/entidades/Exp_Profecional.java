@@ -68,7 +68,5 @@ private Date fecha_final;
     public void setFecha_final(Date fecha_final) {
         this.fecha_final = fecha_final;
     }
-
-    
     
 }
