@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import trabajo_hoja_de_vida.accesodatos.Conexion;
 import trabajo_hoja_de_vida.accesodatos.Parametro;
+import trabajo_hoja_de_vida.rnegocio.dao.IDocente;
 import trabajo_hoja_de_vida.rnegocio.dao.IPublicacion;
+import trabajo_hoja_de_vida.rnegocio.entidades.Docente;
 import trabajo_hoja_de_vida.rnegocio.entidades.Publicacion;
 
 /**
@@ -26,10 +28,11 @@ public class PublicacionImpl implements IPublicacion{
                 +"(?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, publicacion.getCod_publicacion()));
-         lstPar.add(new Parametro(2, publicacion.getDocente().getCod_docente()));
-        lstPar.add(new Parametro(3, publicacion.getTitulo()));
-        lstPar.add(new Parametro(4, publicacion.getEditorial()));
+        lstPar.add(new Parametro(2, publicacion.getDocente().getCod_docente()));
+        lstPar.add(new Parametro(3, publicacion.getEditorial()));
+        lstPar.add(new Parametro(4, publicacion.getTitulo()));
         lstPar.add(new Parametro(5, publicacion.getAño()));
+       
         
         Conexion con = null;
         try {
@@ -50,13 +53,13 @@ public class PublicacionImpl implements IPublicacion{
     public int modificar(Publicacion publicacion) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "UPDATE publicacion"
-                + "   SET =?, nombre=?, cantidad=?, estado=?, observacio=?, "
-                + " where Codigo_publicacion=?";
+                + "   SET =?, Cod_publicacion=?, cod_docente=?, titulo=?,editorial=?, "
+                +"año=?, where Codigo_publicacion=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, publicacion.getCod_publicacion()));
         lstPar.add(new Parametro(2, publicacion.getDocente().getCod_docente()));
-        lstPar.add(new Parametro(3, publicacion.getTitulo()));
-        lstPar.add(new Parametro(4, publicacion.getEditorial()));
+        lstPar.add(new Parametro(3, publicacion.getEditorial()));
+        lstPar.add(new Parametro(4, publicacion.getTitulo()));
         lstPar.add(new Parametro(5, publicacion.getAño()));
         Conexion con = null;
         try {
@@ -97,7 +100,7 @@ public class PublicacionImpl implements IPublicacion{
     @Override
     public Publicacion obtener(int codigo) throws Exception {
         Publicacion publicacion = null;
-        String sql = "SELECT Codigo_publicacion, Editorial, titulo, año, "
+        String sql = "SELECT Codigo_publicacion,cod_docente, Editorial, titulo, año, "
                 + " FROM publicacion where Codigo_publicacion=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, codigo));
@@ -109,9 +112,12 @@ public class PublicacionImpl implements IPublicacion{
             while (rst.next()) {
                 publicacion = new Publicacion();
                 publicacion.setCod_publicacion(rst.getInt(1));
-                publicacion.setEditorial(rst.getString(2));
-                publicacion.setTitulo(rst.getString(3));
-                publicacion.setAño(rst.getString(4));
+                IDocente docenteDao = new DocenteImpl();
+                Docente docente = docenteDao.obtener(rst.getInt(2));
+                publicacion.setDocente(docente);
+                publicacion.setEditorial(rst.getString(3));
+                publicacion.setTitulo(rst.getString(4));
+                publicacion.setAño(rst.getString(5));
             }
         } catch (Exception e) {
             throw e;
@@ -125,7 +131,7 @@ public class PublicacionImpl implements IPublicacion{
     @Override
     public List<Publicacion> obtener() throws Exception {
         List<Publicacion> lista = new ArrayList<>();
-         String sql = "SELECT Codigo_publicacion, editorial, titulo, año, "
+         String sql = "SELECT Codigo_publicacion,cod_docente, editorial, titulo, año, "
                 + "   FROM publicacion ";        
         Conexion con = null;
         try {
@@ -136,9 +142,12 @@ public class PublicacionImpl implements IPublicacion{
             while (rst.next()) {
                 publicacion = new Publicacion();
                 publicacion.setCod_publicacion(rst.getInt(1));
-                publicacion.setEditorial(rst.getString(2));
-                publicacion.setTitulo(rst.getString(3));
-                publicacion.setAño(rst.getString(4));
+                IDocente docenteDao = new DocenteImpl();
+                Docente docente = docenteDao.obtener(rst.getInt(2));
+                publicacion.setDocente(docente);
+                publicacion.setEditorial(rst.getString(3));
+                publicacion.setTitulo(rst.getString(4));
+                publicacion.setAño(rst.getString(5));
                 lista.add(publicacion);
             }
         } catch (Exception e) {

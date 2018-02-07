@@ -28,6 +28,14 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaTitulo_Pregado;
     JMenuItem mniBuscaTitulo_Pregado;
     JMenuItem mniListaTitulo_Pregado;
+    //PUBLICACIONES
+    JMenu mnPublicacion;
+    JMenuItem mniNuevoPublicacion;
+    JMenuItem mniModificaPublicacion;
+    JMenuItem mniEliminaPublicacion;
+    JMenuItem mniBuscaPublicacion;
+    JMenuItem mniListaPublicacion;
+    
 
     JDesktopPane dkpEscritorio;
 
@@ -79,7 +87,7 @@ public class FrmMenuPrincipal extends JFrame {
         mniNuevoTitulo_Pregado.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mniNuevoTitulo_PregadoActionPerformed(e);
+               mniNuevoTitulo_PregadoActionPerformed(e);
             }
         });
         mniModificaTitulo_Pregado= new JMenuItem("Modifica");
@@ -106,10 +114,40 @@ public class FrmMenuPrincipal extends JFrame {
         mnTitulo_Pregado.add(mniBuscaTitulo_Pregado);
         mnTitulo_Pregado.add(mniListaTitulo_Pregado);
         
-               
+         //publicacion
+         
+        mnPublicacion= new JMenu("PUBLICACION");
+        mniNuevoPublicacion= new JMenuItem("Nuevo");
+        mniNuevoPublicacion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoPublicacionActionPerformed(e);
+
+            }
+        });
+        
+        mniModificaPublicacion= new JMenuItem("Modifica");
+        mniEliminaPublicacion= new JMenuItem("Elimina");
+        mniBuscaPublicacion= new JMenuItem("Busca");
+        mniListaPublicacion= new JMenuItem("Lista");
+        mniListaPublicacion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaDocenteActionPerformed(e);
+            }
+        });
+        
+        mnPublicacion.add(mniNuevoPublicacion);
+        mnPublicacion.add(mniModificaPublicacion);
+        mnPublicacion.add(mniEliminaPublicacion);
+        mnPublicacion.addSeparator();
+        mnPublicacion.add(mniBuscaPublicacion);
+        mnPublicacion.add(mniListaPublicacion);
+           
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnDocente);
         mnbPrincipal.add(mnTitulo_Pregado);
+        mnbPrincipal.add(mnPublicacion);
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
         this.setLayout(new BorderLayout());
@@ -136,7 +174,6 @@ public class FrmMenuPrincipal extends JFrame {
     frm.setVisible(true);
     }
     
-    
         public void mniNuevoDocenteActionPerformed(ActionEvent e){
         FrmNuevoDocente frm = new FrmNuevoDocente();
         dkpEscritorio.add(frm);
@@ -149,16 +186,29 @@ public class FrmMenuPrincipal extends JFrame {
     frm.setVisible(true);
     }
     
+ 
+    //PUBLICACION
+    public void  mniNuevoPublicacionActionPerformed(ActionEvent e){
+        FrmNuevoPublicacion frm = new FrmNuevoPublicacion();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaPublicacionActionPerformed(ActionEvent e)
+    {
+    FrmListaPublicacion frm= new FrmListaPublicacion();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
     
     public void mniSalirActionPerformed(ActionEvent e){
         System.exit(0);
     }
-    
-  
     public static void main(String[] args) {
         JFrame.setDefaultLookAndFeelDecorated(true); //que nos permite dejar a Substance la decoracion ( por asi decirlo) 
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.watermark. SubstanceCopperplateEngravingWatermark"); // Setencia que aplica el skin Creme de Substance
         FrmMenuPrincipal frm = new FrmMenuPrincipal();
         frm.setVisible(true);
+        
     }
+     
 }
