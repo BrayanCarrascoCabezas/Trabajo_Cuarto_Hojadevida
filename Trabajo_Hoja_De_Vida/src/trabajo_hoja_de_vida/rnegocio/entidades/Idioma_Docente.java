@@ -12,7 +12,7 @@ package trabajo_hoja_de_vida.rnegocio.entidades;
 public class Idioma_Docente {
     
     private Docente docente;
-    //private Idioma idioma;
+    private Idioma idioma;
     private String hablado;
     private String escrito;
     private String comprension;
@@ -20,8 +20,9 @@ public class Idioma_Docente {
     public Idioma_Docente() {
     }
 
-    public Idioma_Docente(Docente docente, String hablado, String escrito, String comprension) {
+    public Idioma_Docente(Docente docente, Idioma idioma, String hablado, String escrito, String comprension) {
         this.docente = docente;
+        this.idioma = idioma;
         this.hablado = hablado;
         this.escrito = escrito;
         this.comprension = comprension;
@@ -33,6 +34,14 @@ public class Idioma_Docente {
 
     public void setDocente(Docente docente) {
         this.docente = docente;
+    }
+
+    public Idioma getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Idioma idioma) {
+        this.idioma = idioma;
     }
 
     public String getHablado() {
@@ -58,6 +67,9 @@ public class Idioma_Docente {
     public void setComprension(String comprension) {
         this.comprension = comprension;
     }
+
+    
+    
     
     
     
