@@ -39,7 +39,7 @@ public class Curso_SeminarioImpl implements ICusro_Seminario {
     @Override
     public int modificar(Curso_Seminario curso_seminario) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "UPDATE Curso_Seminario SET cod_Docente=? cod_CursoSeminario=? nombreCS=? horas=? ubicacion=? descripcion=? WHERE cod_CursoSeminario=?";
+        String sql = "UPDATE Curso_Seminario SET cod_Docente=?, cod_CursoSeminario=?, nombreCS=?, horas=?, ubicacion=?, descripcion=? WHERE cod_CursoSeminario=?";
         ArrayList<Parametro> listParametro = new ArrayList<>();
         listParametro.add(new Parametro(1, curso_seminario.getDocente().getCod_docente()));
         listParametro.add(new Parametro(2, curso_seminario.getCod_CursoSeminario()));
@@ -47,12 +47,14 @@ public class Curso_SeminarioImpl implements ICusro_Seminario {
         listParametro.add(new Parametro(4, curso_seminario.getHoras()));
         listParametro.add(new Parametro(5, curso_seminario.getUbicacion()));
         listParametro.add(new Parametro(6, curso_seminario.getDescripcion()));
+        listParametro.add(new Parametro(7, curso_seminario.getCod_CursoSeminario()));
         Conexion conec = null;
         try {
             conec = new Conexion();
             conec.conectar();
             numFilasAfectadas = conec.ejecutaComando(sql, listParametro);
         } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
         } finally {
             if (conec != null) {
                 conec.desconectar();
@@ -73,7 +75,7 @@ public class Curso_SeminarioImpl implements ICusro_Seminario {
             conec.conectar();
             numFilasAfectadas = conec.ejecutaComando(sql, listParametro);
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error: "+e.getMessage());
         } finally {
             if (conec != null) {
                 conec.desconectar();
@@ -134,11 +136,11 @@ public class Curso_SeminarioImpl implements ICusro_Seminario {
                 nDoc = new Docente();
                 nDoc = donDao.obtener(resultado.getInt(1));
                 cursosec.setDocente(nDoc);
-                cursosec.setCod_CursoSeminario(resultado.getInt(6));
-                cursosec.setNombreCS(resultado.getString(2));
-                cursosec.setHoras(resultado.getInt(3));
-                cursosec.setUbicacion(resultado.getString(4));
-                cursosec.setDescripcion(resultado.getString(5));
+                cursosec.setCod_CursoSeminario(resultado.getInt(2));
+                cursosec.setNombreCS(resultado.getString(3));
+                cursosec.setHoras(resultado.getInt(4));
+                cursosec.setUbicacion(resultado.getString(5));
+                cursosec.setDescripcion(resultado.getString(6));
                 
                 lista.add(cursosec);
             }
