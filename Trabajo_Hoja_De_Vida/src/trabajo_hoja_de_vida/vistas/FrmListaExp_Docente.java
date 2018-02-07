@@ -24,7 +24,7 @@ public class FrmListaExp_Docente extends JInternalFrame{
         this.setSize(800,600);
     this.setLayout(new BorderLayout());
     this.setClosable(true);
-    lblTitulo =new JLabel("Listado Ex Cacitador ");
+    lblTitulo =new JLabel("Listado Experiencia Docente ");
     tabla = new JTable();
     jscTabla= new JScrollPane(tabla); 
     this.add(lblTitulo, BorderLayout.NORTH);
@@ -36,7 +36,7 @@ public class FrmListaExp_Docente extends JInternalFrame{
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo: ");
         modelo.addColumn("Experiencia: ");
-//        modelo.addColumn("Cursos_Seminarios");
+//        modelo.addColumn("Curso Materias: ");
         modelo.addColumn("Institucion: ");
         modelo.addColumn("Fecha de Inicio: ");
          modelo.addColumn("Fecha Fin: ");
@@ -50,7 +50,7 @@ public class FrmListaExp_Docente extends JInternalFrame{
                     JOptionPane.ERROR_MESSAGE);
         }
         for(Exp_Docente ec : lista){
-            modelo.addRow(new Object[]{ ec.getCodigo_Ex_D(),ec.getExperiencia().getCodigoE(),ec.getInstitucion()
+            modelo.addRow(new Object[]{ ec.getCodigo_Ex_D(),ec.getExperiencia().getCodigoE(),/*ec.getCurso_Materia().getCurso_Materia,*/ec.getInstitucion()
                     ,ec.getFechainicio(),ec.getFechafinal().toString()});
         }
         tabla.setModel(modelo);
