@@ -26,7 +26,7 @@ public class PublicacionImpl implements IPublicacion{
                 +"(?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, publicacion.getCod_publicacion()));
-         lstPar.add(new Parametro(2, publicacion.getDocente().getCodigo()));
+         lstPar.add(new Parametro(2, publicacion.getDocente().getCod_docente()));
         lstPar.add(new Parametro(3, publicacion.getTitulo()));
         lstPar.add(new Parametro(4, publicacion.getEditorial()));
         lstPar.add(new Parametro(5, publicacion.getAño()));
@@ -54,7 +54,7 @@ public class PublicacionImpl implements IPublicacion{
                 + " where Codigo_publicacion=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, publicacion.getCod_publicacion()));
-        lstPar.add(new Parametro(2, publicacion.getDocente().getCodigo()));
+        lstPar.add(new Parametro(2, publicacion.getDocente().getCod_docente()));
         lstPar.add(new Parametro(3, publicacion.getTitulo()));
         lstPar.add(new Parametro(4, publicacion.getEditorial()));
         lstPar.add(new Parametro(5, publicacion.getAño()));
