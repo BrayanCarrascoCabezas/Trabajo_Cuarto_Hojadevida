@@ -7,7 +7,7 @@ package trabajo_hoja_de_vida.rnegocio.entidades;
 
 import java.util.*;
 public class Docente {
-    private int codigo;
+    private int cod_docente;
     private String cedula;
     private String nombres;
     private String apellidos;
@@ -20,8 +20,8 @@ public class Docente {
     public Docente() {
     }
 
-    public Docente(int codigo, String cedula, String nombres, String apellidos, String direccion, Date fecha_nac, String sexo, String email, String telefono) {
-        this.codigo = codigo;
+    public Docente(int cod_docente, String cedula, String nombres, String apellidos, String direccion, Date fecha_nac, String sexo, String email, String telefono) {
+        this.cod_docente = cod_docente;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -32,12 +32,12 @@ public class Docente {
         this.telefono = telefono;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getCod_docente() {
+        return cod_docente;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCod_docente(int cod_docente) {
+        this.cod_docente = cod_docente;
     }
 
     public String getCedula() {
@@ -104,5 +104,11 @@ public class Docente {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        return "Docente{" + "cod_docente=" + cod_docente + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", fecha_nac=" + fecha_nac + ", sexo=" + sexo + ", email=" + email + ", telefono=" + telefono + '}';
+    }
     
+    
+
 }

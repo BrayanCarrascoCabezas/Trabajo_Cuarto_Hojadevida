@@ -10,7 +10,7 @@ public class Conexion {
     public void conectar() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://172.30.3.212:1433;databaseName=persona1","usr_persona", "1234");
+            con = DriverManager.getConnection("jdbc:sqlserver://172.30.3.108:1433;databaseName=Trabajo_Hoja_De_Vida","usr_hvida", "123456");
         } catch (ClassNotFoundException e) {
             System.out.println("Error al cargar el driver: "
                     + e.getMessage());

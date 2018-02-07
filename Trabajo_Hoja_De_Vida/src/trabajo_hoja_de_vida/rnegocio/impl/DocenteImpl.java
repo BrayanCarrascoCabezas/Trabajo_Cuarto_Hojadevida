@@ -27,14 +27,14 @@ public class DocenteImpl implements IDocente {
         String sql = "insert into docente  values "
                 + "(?,?,?,?,?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, docente.getCodigo()));
+        lstPar.add(new Parametro(1, docente.getCod_docente()));
         lstPar.add(new Parametro(2, docente.getCedula()));
         lstPar.add(new Parametro(3, docente.getNombres()));
         lstPar.add(new Parametro(4, docente.getApellidos()));
         lstPar.add(new Parametro(5, docente.getDireccion()));
         lstPar.add(new Parametro(6, docente.getFecha_nac()));
-        lstPar.add(new Parametro(7, docente.getSexo()));
-        lstPar.add(new Parametro(8, docente.getEmail()));
+        lstPar.add(new Parametro(7, docente.getEmail()));
+        lstPar.add(new Parametro(8, docente.getSexo()));
         lstPar.add(new Parametro(9, docente.getTelefono()));
         Conexion con = null;
         try {
@@ -59,7 +59,7 @@ public class DocenteImpl implements IDocente {
                 + "fecha_ing=?, telefono=?, sexo=?, direccion=?, cod_curso=?"
                 + " where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, docente.getCodigo()));
+        lstPar.add(new Parametro(1, docente.getCod_docente()));
         lstPar.add(new Parametro(2, docente.getCedula()));
         lstPar.add(new Parametro(3, docente.getNombres()));
         lstPar.add(new Parametro(4, docente.getApellidos()));
@@ -88,7 +88,7 @@ public class DocenteImpl implements IDocente {
         int numFilasAfectadas = 0;
          String sql = "DELETE FROM docente  where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, docente.getCodigo()));       
+        lstPar.add(new Parametro(1, docente.getCod_docente()));       
         Conexion con = null;
         try {
             con = new Conexion();
@@ -117,14 +117,14 @@ public class DocenteImpl implements IDocente {
             ResultSet rst = con.ejecutaQuery(sql, lstPar);
             while (rst.next()) {
                 docente = new Docente();
-                docente.setCodigo(rst.getInt(1));
+                docente.setCod_docente(rst.getInt(1));
                 docente.setCedula(rst.getString(2));
                 docente.setNombres(rst.getString(3));
                 docente.setApellidos(rst.getString(4));
                 docente.setDireccion(rst.getString(5));
                 docente.setFecha_nac(rst.getDate(6));
-                docente.setSexo(rst.getString(7));
-                docente.setEmail(rst.getString(8));
+                docente.setSexo(rst.getString(8));
+                docente.setEmail(rst.getString(7));
                 docente.setTelefono(rst.getString(9));
                    
             }
@@ -149,7 +149,7 @@ public class DocenteImpl implements IDocente {
             Docente docente=null;
             while (rst.next()) {
                 docente = new Docente();
-                docente.setCodigo(rst.getInt(1));
+                docente.setCod_docente(rst.getInt(1));
                 docente.setCedula(rst.getString(2));
                 docente.setNombres(rst.getString(3));
                 docente.setApellidos(rst.getString(4));
