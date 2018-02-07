@@ -122,7 +122,7 @@ public class DocenteImpl implements IDocente {
                 docente.setNombres(rst.getString(3));
                 docente.setApellidos(rst.getString(4));
                 docente.setDireccion(rst.getString(5));
-                docente.setFecha_nac(rst.getString(6));
+//                docente.setFecha_nac(rst.getString(6));
                 docente.setSexo(rst.getString(8));
                 docente.setEmail(rst.getString(7));
                 docente.setTelefono(rst.getString(9));
@@ -154,7 +154,7 @@ public class DocenteImpl implements IDocente {
                 docente.setNombres(rst.getString(3));
                 docente.setApellidos(rst.getString(4));
                 docente.setDireccion(rst.getString(5));
-                docente.setFecha_nac(rst.getString(6));
+//                docente.setFecha_nac(rst.getString(6));
                 docente.setSexo(rst.getString(7));
                 docente.setEmail(rst.getString(8));
                 docente.setTelefono(rst.getString(9));
