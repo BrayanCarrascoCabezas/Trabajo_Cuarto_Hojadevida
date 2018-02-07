@@ -71,5 +71,8 @@ public class Curso_Seminario {
         this.descripcion = descripcion;
     }
     
-    
+    @Override
+    public String toString() {
+        return String.valueOf(cod_CursoSeminario);
+    }
 }
