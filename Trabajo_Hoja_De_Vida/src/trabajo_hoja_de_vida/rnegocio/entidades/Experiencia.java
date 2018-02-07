@@ -63,5 +63,9 @@ public class Experiencia {
         this.lugar = lugar;
     }
     
+    @Override
+    public String toString() {
+        return descripcion; 
+    }
 }
 
