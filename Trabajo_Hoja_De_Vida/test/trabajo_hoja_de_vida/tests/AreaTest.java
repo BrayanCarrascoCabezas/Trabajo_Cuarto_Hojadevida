@@ -20,6 +20,8 @@ public class AreaTest {
         IAreaGeneral iareaDao=new AreaImpl();
         
        AreaGeneral area =new AreaGeneral(1, "primera descripcion");
+       
+       
         try {
             filas=iareaDao.insertar(area);
            System.out.println("Ingreso de " + filas + " Filas Correctas");
@@ -36,6 +38,7 @@ public class AreaTest {
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            
         }
         assertTrue(lista.size()>0);
     } 
