@@ -36,10 +36,10 @@ public class Idioma {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
     @Override
     public String toString() {
-        return "Idioma{" + "codigo=" + codigo + '}';
+        return "Idioma{" + "descripcion=" + descripcion + '}';
     }
-        
+    
 }
