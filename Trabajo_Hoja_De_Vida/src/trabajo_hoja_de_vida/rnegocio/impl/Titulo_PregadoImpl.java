@@ -44,50 +44,52 @@ public class Titulo_PregadoImpl implements ITitulo_Pregado{
 
     @Override
     public int modificar(Titulo_Pregado titulo_pregado) throws Exception {
-         int numFilasAfectadas = 0;
-        String sql = "UPDATE Titulo_Pregado"
-                + "   SET Cod_Pregrado=?,cod_docente=?,pais=?,Titulo_Pregrado=?,universidad=? where codigo=?";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, titulo_pregado.getCodTituloPre()));
-        lstPar.add(new Parametro(2, titulo_pregado.getDocente().getCod_docente()));
-        lstPar.add(new Parametro(3, titulo_pregado.getPais()));
-        lstPar.add(new Parametro(4, titulo_pregado.getTitulo_pregado()));
-        lstPar.add(new Parametro(5, titulo_pregado.getUniversidad()));
-      
-        Conexion con = null;
+        int numFilasAfectadas = 0;
+        String sql = "UPDATE Titulo_Pregado SET cod_docente=?,pais=?,Titulo_Pregrado=?,universidad=? WHERE Cod_Pregrado=?";
+        ArrayList<Parametro> listParametro = new ArrayList<>();
+        
+        listParametro.add(new Parametro(1, titulo_pregado.getDocente().getCod_docente()));
+        
+        listParametro.add(new Parametro(2, titulo_pregado.getPais()));
+        listParametro.add(new Parametro(3, titulo_pregado.getTitulo_pregado()));
+        listParametro.add(new Parametro(4, titulo_pregado.getUniversidad()));
+        listParametro.add(new Parametro(5, titulo_pregado.getCodTituloPre()));
+        Conexion conec = null;
         try {
-            con = new Conexion();
-            con.conectar();
-            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
+            conec = new Conexion();
+            conec.conectar();
+            numFilasAfectadas = conec.ejecutaComando(sql, listParametro);
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error: "+e.getMessage());
         } finally {
-            if (con != null) {
-                con.desconectar();
+            if (conec != null) {
+                conec.desconectar();
             }
         }
         return numFilasAfectadas;
     }
+
     @Override
     public int eliminar(Titulo_Pregado titulo_pregado) throws Exception {
-       int numFilasAfectadas = 0;
-         String sql = "DELETE FROM Titulo_Pregado  where codigo=?";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, titulo_pregado.getCodTituloPre()));      
-        Conexion con = null;
+        int numFilasAfectadas = 0;
+        String sql = "DELETE FROM Titulo_Pregado WHERE Cod_Pregrado=?";
+        ArrayList<Parametro> listParametro = new ArrayList<>();
+        listParametro.add(new Parametro(1, titulo_pregado.getCodTituloPre()));
+        Conexion conec = null;
         try {
-            con = new Conexion();
-            con.conectar();
-            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
+            conec = new Conexion();
+            conec.conectar();
+            numFilasAfectadas = conec.ejecutaComando(sql, listParametro);
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error: "+e.getMessage());
         } finally {
-            if (con != null) {
-                con.desconectar();
+            if (conec != null) {
+                conec.desconectar();
             }
         }
         return numFilasAfectadas;
     }
+
 
     @Override
     public Titulo_Pregado obtener(int codTituloPre) throws Exception {

@@ -42,7 +42,7 @@ public class FrmMenuPrincipal extends JFrame {
     public FrmMenuPrincipal() {
         dkpEscritorio= new JDesktopPane();
         dkpEscritorio.setBackground(new Color(240, 240, 240));
-        
+        setTitle("HOJA DE VIDA....");
         mnbPrincipal = new JMenuBar();
         mnInicio = new JMenu("Inicio");
         mniLogin = new JMenuItem("Iniciar Sesión");
@@ -92,6 +92,12 @@ public class FrmMenuPrincipal extends JFrame {
         });
         mniModificaTitulo_Pregado= new JMenuItem("Modifica");
         mniEliminaTitulo_Pregado= new JMenuItem("Elimina");
+        mniEliminaTitulo_Pregado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniEliminaTitulo_PregadoActionPerformed(e);
+            }
+        });
         mniBuscaTitulo_Pregado= new JMenuItem("Busca");
         mniListaTitulo_Pregado= new JMenuItem("Lista");
         mniListaTitulo_Pregado.addActionListener(new ActionListener() {
@@ -151,6 +157,11 @@ public class FrmMenuPrincipal extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //Para terminar el programa
     }
     
+    public void mniEliminaTitulo_PregadoActionPerformed(ActionEvent e){
+        FrmEliminaTitulo_Pregado frm = new FrmEliminaTitulo_Pregado();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
     public void mniNuevoTitulo_PregadoActionPerformed(ActionEvent e){
         FrmNuevoTitulo_Pregado frm = new FrmNuevoTitulo_Pregado();
         dkpEscritorio.add(frm);

@@ -68,5 +68,8 @@ public class Titulo_Pregado {
     public void setUniversidad(String universidad) {
         this.universidad = universidad;
     }
-    
+    @Override
+    public String toString(){
+        return String.valueOf(codTituloPre);
+    }
 }
