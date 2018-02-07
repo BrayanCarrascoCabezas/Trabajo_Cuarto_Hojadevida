@@ -21,6 +21,13 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaDocente;
     JMenuItem mniBuscaDocente;
     JMenuItem mniListaDocente;
+        /*CURSO*/
+    JMenu mnCurso;
+    JMenuItem mniNuevoCurso;
+    JMenuItem mniModificaCurso;
+    JMenuItem mniEliminaCurso;
+    JMenuItem mniBuscaCurso;
+    JMenuItem mniListaCurso;
     
     JMenu mnTitulo_Pregado;
     JMenuItem mniNuevoTitulo_Pregado;
@@ -80,6 +87,38 @@ public class FrmMenuPrincipal extends JFrame {
         mnDocente.addSeparator();
         mnDocente.add(mniBuscaDocente);
         mnDocente.add(mniListaDocente);
+            
+        /*CURSO*/        
+        mnCurso= new JMenu("Curso");
+        mniNuevoCurso= new JMenuItem("Nuevo");
+        mniNuevoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoCursoActionPerformed(e);
+            }
+        });
+        mniModificaCurso= new JMenuItem("Modifica");
+        mniEliminaCurso= new JMenuItem("Elimina");
+        mniBuscaCurso= new JMenuItem("Busca");
+        mniListaCurso= new JMenuItem("Lista");
+
+        mniListaCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaCursoActionPerformed(e);
+            }
+        });
+        
+        mnCurso.add(mniNuevoCurso);
+        mnCurso.addSeparator();
+        mnCurso.add(mniModificaCurso);
+        mnCurso.addSeparator();
+        mnCurso.add(mniEliminaCurso);
+        mnCurso.addSeparator();
+        mnCurso.add(mniBuscaCurso);
+        mnCurso.addSeparator();
+        mnCurso.add(mniListaCurso);
+
         
         //
         mnTitulo_Pregado= new JMenu("Titulo_Pregrado");
@@ -185,7 +224,18 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
-    
+    	/*CURSO*/
+        public void mniNuevoCursoActionPerformed(ActionEvent e){
+        FrmCursoNuevo frm = new FrmCursoNuevo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaCursoActionPerformed(ActionEvent e)
+    {
+    FrmCursoLista frm= new FrmCursoLista();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
  
     //PUBLICACION
     public void  mniNuevoPublicacionActionPerformed(ActionEvent e){
