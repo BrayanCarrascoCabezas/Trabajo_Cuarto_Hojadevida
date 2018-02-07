@@ -12,16 +12,15 @@ public class Exp_Docente {
     public Exp_Docente() {
     }
 
-    public Exp_Docente(int Codigo_Ex_D, Experiencia experiencia, String institucion, Date fechainicio, Date fechafinal) {
+    public Exp_Docente(int Codigo_Ex_D, Experiencia experiencia, /*Curso_Materia cursomateria,*/ String institucion, Date fechainicio, Date fechafinal) {
         this.Codigo_Ex_D = Codigo_Ex_D;
         this.experiencia = experiencia;
+//        this.cursomateria = cursomateria;
         this.institucion = institucion;
         this.fechainicio = fechainicio;
         this.fechafinal = fechafinal;
     }
 
-    
-    
     public int getCodigo_Ex_D() {
         return Codigo_Ex_D;
     }
@@ -37,6 +36,14 @@ public class Exp_Docente {
     public void setExperiencia(Experiencia experiencia) {
         this.experiencia = experiencia;
     }
+
+//    public Curso_Materia getCursomateria() {
+//        return cursomateria;
+//    }
+
+//    public void setCursomateria(Curso_Materia cursomateria) {
+//        this.cursomateria = cursomateria;
+//    }
 
     public String getInstitucion() {
         return institucion;
@@ -61,6 +68,8 @@ public class Exp_Docente {
     public void setFechafinal(Date fechafinal) {
         this.fechafinal = fechafinal;
     }
+
+    
     
     
 }
