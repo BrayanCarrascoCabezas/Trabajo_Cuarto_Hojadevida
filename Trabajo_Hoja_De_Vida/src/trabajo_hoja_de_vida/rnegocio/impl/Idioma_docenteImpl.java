@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import trabajo_hoja_de_vida.accesodatos.Conexion;
 import trabajo_hoja_de_vida.accesodatos.Parametro;
-import trabajo_hoja_de_vida.rnegocio.dao.Iidioma_Docente;
-import trabajo_hoja_de_vida.rnegocio.entidades.Exp_Profecional;
-import trabajo_hoja_de_vida.rnegocio.entidades.Idioma_Docente;
+import trabajo_hoja_de_vida.rnegocio.dao.*;
+import trabajo_hoja_de_vida.rnegocio.entidades.*;
 
 /**
  *
@@ -106,23 +105,37 @@ public class Idioma_docenteImpl implements Iidioma_Docente {
     public Idioma_Docente obtener(int codigo) throws Exception {
         
         Idioma_Docente idioma_docente = null;
+        Docente nDoc = null;
+        IDocente donDao = new DocenteImpl();
+        Idioma nIdio = null;
+        IIdioma donIdi = new IdiomaImpl();
+        
         String sql = "SELECT * FROM exp_profecional where codigoExp=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, codigo));
         Conexion con = null;
+        
+        
         try {
             con = new Conexion();
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, lstPar);
-
+            Idioma_Docente id_doc = null;
+            
             while (rst.next()) {
                
-                idioma_docente = new Idioma_Docente();
-                idioma_docente.setDocente(rst.getString(1));
-                idioma_docente.setIdioma(rst.getString(2));
-                idioma_docente.setHablado(rst.getString(3));
-                idioma_docente.setEscrito(rst.getString(4));
-                idioma_docente.setComprension(rst.getString(5));
+                id_doc = new Idioma_Docente();
+                nDoc = new Docente();
+                nDoc = donDao.obtener(rst.getInt(1));
+                
+                nIdio = new Idioma();
+                nIdio = donIdi.obtener(rst.getInt(1));
+
+                id_doc.setDocente(nDoc);
+                id_doc.setIdioma(nIdio);
+                id_doc.setHablado(rst.getString(3));
+                id_doc.setEscrito(rst.getString(4));
+                id_doc.setComprension(rst.getString(5));
                 
             }
         } catch (Exception e) {
@@ -140,6 +153,10 @@ public class Idioma_docenteImpl implements Iidioma_Docente {
     public List<Idioma_Docente> obtener() throws Exception {
        
         List<Idioma_Docente> lista = new ArrayList<>();;
+        Docente nDoc = null;
+        IDocente donDao = new DocenteImpl();
+        Idioma nIdio = null;
+        IIdioma donIdio = new IdiomaImpl();
         String sql = "SELECT * FROM exp_profecional ";
         Conexion con = null;
         try {
@@ -147,10 +164,17 @@ public class Idioma_docenteImpl implements Iidioma_Docente {
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, null);
             Idioma_Docente idioma_docente = null;
+            
             while (rst.next()) {
+     
                 idioma_docente = new Idioma_Docente();
-                idioma_docente.setDocente(rst.getString(1));
-                idioma_docente.setIdioma(rst.getString(2));
+                nDoc = new Docente();
+                nDoc = donDao.obtener(rst.getInt(1));
+                nIdio = new Idioma();
+                nIdio = donIdio.obtener(rst.getInt(2));
+                
+                idioma_docente.setDocente(nDoc);
+                idioma_docente.setIdioma(nIdio);
                 idioma_docente.setHablado(rst.getString(3));
                 idioma_docente.setEscrito(rst.getString(4));
                 idioma_docente.setComprension(rst.getString(3));
