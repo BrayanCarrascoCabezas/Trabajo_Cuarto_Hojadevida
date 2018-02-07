@@ -136,7 +136,7 @@ public class Exp_CapacitadorImpl implements IExp_Capacitador{
     }
 
     @Override
-    public List<Exp_Capacitador> obtener() throws Exception {
+    public ArrayList<Exp_Capacitador> obtener() throws Exception {
         Exp_Capacitador expCapacitador = null;
         ArrayList<Exp_Capacitador> listaExpCap=new ArrayList<>();
         IExperiencia expDao=new ExperienciaImpl();

@@ -16,6 +16,6 @@ public interface IExp_Capacitador {
 
     public Exp_Capacitador obtener(int codigo) throws Exception;
 
-    public List<Exp_Capacitador> obtener() throws Exception;
+    public ArrayList<Exp_Capacitador> obtener() throws Exception;
     
 }
