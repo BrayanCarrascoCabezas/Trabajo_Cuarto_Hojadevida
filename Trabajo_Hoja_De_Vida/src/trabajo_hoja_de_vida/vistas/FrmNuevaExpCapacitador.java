@@ -84,7 +84,16 @@ public class FrmNuevaExpCapacitador extends JFrame{
         btnLimpiar=new JButton("Limpiar");
         pnlPie.add(btnAceptar);
         pnlPie.add(btnLimpiar);
-        
+           btnAceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    btnAceptarActionListener(e);
+                } catch (Exception ex) {
+                    System.out.print("error " + ex.getMessage());
+                }
+            }
+        });
         this.add(pnlSup,BorderLayout.NORTH);
         this.add(pnlCental,BorderLayout.CENTER);
         this.add(pnlPie, BorderLayout.SOUTH);
@@ -114,5 +123,23 @@ public class FrmNuevaExpCapacitador extends JFrame{
             JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+    public void btnAceptarActionListener(ActionEvent e) {
+        try {
+            Exp_Capacitador nCapacitador = new Exp_Capacitador();
+            nCapacitador.setCodigo_EC(Integer.parseInt(txtcodE.getText()));
+//            nCapacitador.setExperiencia(cmbExp.getSelectedIndex());
+//            nCapacitador.setCursoSeminario(codigoCurSem.);
+            nCapacitador.setEntidades(txtentidades.getText());
+            DateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                nCapacitador.setFecha_inicio(formatoFecha.parse(txtfecha_Inicio.getText()));
+                nCapacitador.setFecha_final(formatoFecha.parse(txtfecha_Final.getText()));
+            } catch (Exception er) {
+                JOptionPane.showMessageDialog(this, "ERROR DE FECHA!!"+er.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "PROCESO FALLIDO!!"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 }
