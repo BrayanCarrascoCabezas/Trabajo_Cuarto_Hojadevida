@@ -42,6 +42,13 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaPublicacion;
     JMenuItem mniBuscaPublicacion;
     JMenuItem mniListaPublicacion;
+    //EXPERIENCIA_DOCENTE
+    JMenu mnExp_Docente;
+    JMenuItem mniNuevoExp_Docente;
+    JMenuItem mniModificaExp_Docente;
+    JMenuItem mniEliminaExp_Docente;
+    JMenuItem mniBuscaExp_Docente;
+    JMenuItem mniListaExp_Docente;
     
 
     JDesktopPane dkpEscritorio;
@@ -182,11 +189,40 @@ public class FrmMenuPrincipal extends JFrame {
         mnPublicacion.addSeparator();
         mnPublicacion.add(mniBuscaPublicacion);
         mnPublicacion.add(mniListaPublicacion);
+        
+        /*EXPERIENCIA_DOCENTE*/        
+        mnExp_Docente= new JMenu("Exp_Docente");
+        mniNuevoExp_Docente= new JMenuItem("Nuevo");
+        mniNuevoExp_Docente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoExp_DocenteActionPerformed(e);
+            }
+        });
+        mniModificaExp_Docente= new JMenuItem("Modifica");
+        mniEliminaExp_Docente= new JMenuItem("Elimina");
+        mniBuscaExp_Docente= new JMenuItem("Busca");
+        mniListaExp_Docente= new JMenuItem("Lista");
+
+        mniListaExp_Docente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaExp_DocenteActionPerformed(e);
+            }
+        });
+        
+        mnCurso.add(mniNuevoExp_Docente);
+        mnCurso.add(mniModificaExp_Docente);
+        mnCurso.add(mniEliminaExp_Docente);
+        mnCurso.addSeparator();
+        mnCurso.add(mniBuscaExp_Docente);
+        mnCurso.add(mniListaExp_Docente);
            
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnDocente);
         mnbPrincipal.add(mnTitulo_Pregado);
         mnbPrincipal.add(mnPublicacion);
+        mnbPrincipal.add(mnExp_Docente);
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
         this.setLayout(new BorderLayout());
@@ -246,6 +282,18 @@ public class FrmMenuPrincipal extends JFrame {
     public void mniListaPublicacionActionPerformed(ActionEvent e)
     {
     FrmListaPublicacion frm= new FrmListaPublicacion();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    //Experiencia_Docente
+    public void mniNuevoExp_DocenteActionPerformed(ActionEvent e){
+        FrmNuevoExp_Docente frm = new FrmNuevoExp_Docente();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaExp_DocenteActionPerformed(ActionEvent e)
+    {
+    FrmListaExp_Docente frm= new FrmListaExp_Docente();
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
