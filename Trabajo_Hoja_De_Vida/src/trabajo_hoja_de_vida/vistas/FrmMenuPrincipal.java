@@ -21,6 +21,13 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaDocente;
     JMenuItem mniBuscaDocente;
     JMenuItem mniListaDocente;
+    
+    JMenu mnTitulo_Pregado;
+    JMenuItem mniNuevoTitulo_Pregado;
+    JMenuItem mniModificaTitulo_Pregado;
+    JMenuItem mniEliminaTitulo_Pregado;
+    JMenuItem mniBuscaTitulo_Pregado;
+    JMenuItem mniListaTitulo_Pregado;
 
     JDesktopPane dkpEscritorio;
 
@@ -66,9 +73,37 @@ public class FrmMenuPrincipal extends JFrame {
         mnDocente.add(mniBuscaDocente);
         mnDocente.add(mniListaDocente);
         
+        //
+        mnTitulo_Pregado= new JMenu("Titulo_Pregrado");
+        mniNuevoTitulo_Pregado= new JMenuItem("Nuevo");
+        mniNuevoTitulo_Pregado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoTitulo_PregadoActionPerformed(e);
+            }
+        });
+        mniModificaTitulo_Pregado= new JMenuItem("Modifica");
+        mniEliminaTitulo_Pregado= new JMenuItem("Elimina");
+        mniBuscaTitulo_Pregado= new JMenuItem("Busca");
+        mniListaTitulo_Pregado= new JMenuItem("Lista");
+        mniListaTitulo_Pregado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaTitulo_PregadoActionPerformed(e);
+            }
+        });
+        
+        mnTitulo_Pregado.add(mniNuevoTitulo_Pregado);
+        mnTitulo_Pregado.add(mniModificaTitulo_Pregado);
+        mnTitulo_Pregado.add(mniEliminaTitulo_Pregado);
+        mnTitulo_Pregado.addSeparator();
+        mnTitulo_Pregado.add(mniBuscaTitulo_Pregado);
+        mnTitulo_Pregado.add(mniListaTitulo_Pregado);
+        
                
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnDocente);
+        mnbPrincipal.add(mnTitulo_Pregado);
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
         this.setLayout(new BorderLayout());
@@ -78,27 +113,40 @@ public class FrmMenuPrincipal extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //Para terminar el programa
     }
     
-    public void mniNuevoDocenteActionPerformed(ActionEvent e){
-        FrmNuevoDocente frm = new FrmNuevoDocente();
+    public void mniNuevoTitulo_PregadoActionPerformed(ActionEvent e){
+        FrmNuevoTitulo_Pregado frm = new FrmNuevoTitulo_Pregado();
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }
     
-    public void mniSalirActionPerformed(ActionEvent e){
-        System.exit(0);
+    public void mniListaTitulo_PregadoActionPerformed(ActionEvent e){
+    FrmListaTitulo_Pregado frm= new FrmListaTitulo_Pregado();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
     }
     
     
-     public void mniListaDocenteActionPerformed(ActionEvent e)
+        public void mniNuevoDocenteActionPerformed(ActionEvent e){
+        FrmNuevoDocente frm = new FrmNuevoDocente();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaDocenteActionPerformed(ActionEvent e)
     {
     FrmListaDocente frm= new FrmListaDocente();
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
     
+    
+    public void mniSalirActionPerformed(ActionEvent e){
+        System.exit(0);
+    }
+    
+  
     public static void main(String[] args) {
         JFrame.setDefaultLookAndFeelDecorated(true); //que nos permite dejar a Substance la decoracion ( por asi decirlo) 
-        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.GreenMagicSkin"); // Setencia que aplica el skin Creme de Substance
+        SubstanceLookAndFeel.setSkin("org.jvnet.substance.watermark. SubstanceCopperplateEngravingWatermark"); // Setencia que aplica el skin Creme de Substance
         FrmMenuPrincipal frm = new FrmMenuPrincipal();
         frm.setVisible(true);
     }
