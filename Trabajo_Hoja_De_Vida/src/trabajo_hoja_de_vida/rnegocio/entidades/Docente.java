@@ -12,15 +12,12 @@ public class Docente {
     private String nombres;
     private String apellidos;
     private String direccion;
-    private Date fecha_nac;
+    private String fecha_nac;
     private String sexo;
     private String email;
     private String telefono;
 
-    public Docente() {
-    }
-
-    public Docente(int cod_docente, String cedula, String nombres, String apellidos, String direccion, Date fecha_nac, String sexo, String email, String telefono) {
+    public Docente(int cod_docente, String cedula, String nombres, String apellidos, String direccion, String fecha_nac, String sexo, String email, String telefono) {
         this.cod_docente = cod_docente;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -30,6 +27,13 @@ public class Docente {
         this.sexo = sexo;
         this.email = email;
         this.telefono = telefono;
+    }
+
+    public Docente() {
+    }
+
+    public Docente(int i, String string, String david, String campps, String unach, String string0, String jcgmailcom, String m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getCod_docente() {
@@ -72,11 +76,11 @@ public class Docente {
         this.direccion = direccion;
     }
 
-    public Date getFecha_nac() {
+    public String getFecha_nac() {
         return fecha_nac;
     }
 
-    public void setFecha_nac(Date fecha_nac) {
+    public void setFecha_nac(String fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
 
@@ -103,12 +107,10 @@ public class Docente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
     @Override
+
     public String toString() {
-        return "Docente{" + "cod_docente=" + cod_docente + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", fecha_nac=" + fecha_nac + ", sexo=" + sexo + ", email=" + email + ", telefono=" + telefono + '}';
+        return nombres;
     }
-    
-    
 
 }
