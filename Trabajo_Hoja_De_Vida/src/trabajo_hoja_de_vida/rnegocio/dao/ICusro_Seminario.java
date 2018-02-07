@@ -13,6 +13,6 @@ public interface ICusro_Seminario {
 
     public Curso_Seminario obtener(int codigo) throws Exception;
 
-    public List<Curso_Seminario> obtener() throws Exception;
+    public ArrayList<Curso_Seminario> obtener() throws Exception;
 
 }
