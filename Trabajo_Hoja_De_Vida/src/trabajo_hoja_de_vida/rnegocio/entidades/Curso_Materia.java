@@ -11,13 +11,13 @@ package trabajo_hoja_de_vida.rnegocio.entidades;
  */
 public class Curso_Materia {
     private int Curso_Materia;
-    private int CodigoC;
-    private int CodigoM;
+    private Curso CodigoC;
+    private Materia CodigoM;
 
     public Curso_Materia() {
     }
 
-    public Curso_Materia(int Curso_Materia, int CodigoC, int CodigoM) {
+    public Curso_Materia(int Curso_Materia, Curso CodigoC, Materia CodigoM) {
         this.Curso_Materia = Curso_Materia;
         this.CodigoC = CodigoC;
         this.CodigoM = CodigoM;
@@ -31,22 +31,20 @@ public class Curso_Materia {
         this.Curso_Materia = Curso_Materia;
     }
 
-    public int getCodigoC() {
+    public Curso getCodigoC() {
         return CodigoC;
     }
 
-    public void setCodigoC(int CodigoC) {
+    public void setCodigoC(Curso CodigoC) {
         this.CodigoC = CodigoC;
     }
 
-    public int getCodigoM() {
+    public Materia getCodigoM() {
         return CodigoM;
     }
 
-    public void setCodigoM(int CodigoM) {
+    public void setCodigoM(Materia CodigoM) {
         this.CodigoM = CodigoM;
     }
-    
-    
-    
+
 }
