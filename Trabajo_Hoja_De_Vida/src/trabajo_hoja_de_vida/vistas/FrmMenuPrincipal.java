@@ -21,6 +21,16 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaDocente;
     JMenuItem mniBuscaDocente;
     JMenuItem mniListaDocente;
+     /*AREA*/
+    
+    JMenu mnArea;
+    JMenuItem mniNuevoArea;
+    JMenuItem mniModificarArea;
+    JMenuItem mniEliminaArea;
+    JMenuItem mniBuscaArea;
+    JMenuItem mniListaArea;
+    
+    
         /*CURSO*/
     JMenu mnCurso;
     JMenuItem mniNuevoCurso;
@@ -49,6 +59,15 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaExp_Docente;
     JMenuItem mniBuscaExp_Docente;
     JMenuItem mniListaExp_Docente;
+    
+    
+        //EXPERIENCIA_DIRECTIVA
+    JMenu mnExp_Directiva;
+    JMenuItem mniNuevoExp_Directiva;
+    JMenuItem mniModificaExp_Directiva;
+    JMenuItem mniEliminaExp_Directiva;
+    JMenuItem mniBuscaExp_Directiva;
+    JMenuItem mniListaExp_Directiva;
     
 
     JDesktopPane dkpEscritorio;
@@ -94,7 +113,36 @@ public class FrmMenuPrincipal extends JFrame {
         mnDocente.addSeparator();
         mnDocente.add(mniBuscaDocente);
         mnDocente.add(mniListaDocente);
-            
+         
+        //
+               
+        mnArea= new JMenu("Area");
+        mniNuevoArea= new JMenuItem("Nuevo");
+        mniNuevoArea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoAreaActionPerformed(e);
+            }
+        });
+        mniModificarArea= new JMenuItem("Modifica");
+        mniEliminaArea= new JMenuItem("Elimina");
+        mniBuscaArea= new JMenuItem("Busca");
+        mniListaArea= new JMenuItem("Lista");
+
+        mniListaArea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaAreaActionPerformed(e);
+            }
+        });
+        
+        mnArea.add(mniNuevoArea);
+        mnArea.add(mniModificarArea);
+        mnArea.add(mniEliminaArea);
+        mnArea.addSeparator();
+        mnArea.add(mniBuscaArea);
+        mnArea.add(mniListaArea);
+        
         /*CURSO*/        
         mnCurso= new JMenu("Curso");
         mniNuevoCurso= new JMenuItem("Nuevo");
@@ -220,9 +268,48 @@ public class FrmMenuPrincipal extends JFrame {
            
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnDocente);
+        mnbPrincipal.add(mnArea);
         mnbPrincipal.add(mnTitulo_Pregado);
         mnbPrincipal.add(mnPublicacion);
         mnbPrincipal.add(mnExp_Docente);
+        
+        
+        //EXP_DIRECTIVA
+        mnExp_Directiva= new JMenu("EXPERIENCIA_DIRECTIVA");
+        mniNuevoExp_Directiva= new JMenuItem("Nuevo");
+        mniNuevoExp_Directiva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoExp_DirectivaActionPerformed(e);
+
+            }
+
+            private void mniNuevoExp_DirectivaActionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        });
+        
+        mniModificaExp_Directiva= new JMenuItem("Modifica");
+        mniEliminaExp_Directiva= new JMenuItem("Elimina");
+        mniBuscaExp_Directiva= new JMenuItem("Busca");
+        mniListaExp_Directiva= new JMenuItem("Lista");
+        mniListaExp_Directiva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaExp_DirectivaActionPerformed(e);
+            }
+
+            private void mniListaExp_DirectivaActionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
+        mnExp_Directiva.add(mniNuevoExp_Directiva);
+        mnExp_Directiva.add(mniModificaExp_Directiva);
+        mnExp_Directiva.add(mniEliminaExp_Directiva);
+        mnExp_Directiva.addSeparator();
+        mnExp_Directiva.add(mniBuscaExp_Directiva);
+        mnExp_Directiva.add(mniListaExp_Directiva);
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
         this.setLayout(new BorderLayout());
@@ -260,6 +347,20 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
+    //
+    
+    public void mniNuevoAreaActionPerformed(ActionEvent e){
+        FrmNuevoArea frm = new FrmNuevoArea();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaAreaActionPerformed(ActionEvent e)
+    {
+    FrmListaArea frm= new FrmListaArea();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    
     	/*CURSO*/
         public void mniNuevoCursoActionPerformed(ActionEvent e){
         FrmCursoNuevo frm = new FrmCursoNuevo();
@@ -298,6 +399,19 @@ public class FrmMenuPrincipal extends JFrame {
     frm.setVisible(true);
     }
     
+    
+    /// Exp_Directiva
+        public void mniNuevoExp_DirectivaActionPerformed(ActionEvent e){
+        FrmNuevoExp_Directiva frm = new FrmNuevoExp_Directiva();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    
+    public void mniListaExp_DirectivaActionPerformed(ActionEvent e){
+    FrmListaExp_Directiva frm= new FrmListaExp_Directiva();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
     public void mniSalirActionPerformed(ActionEvent e){
         System.exit(0);
     }
