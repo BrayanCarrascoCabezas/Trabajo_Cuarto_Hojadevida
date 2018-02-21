@@ -17,7 +17,7 @@ import javax.swing.*;
  * @author JOSEPH
  */
 
-public class FrmMateria extends JInternalFrame{
+public class FrmNuevaMateria extends JInternalFrame{
        JLabel lblTitulo1,lblTitulo2;
     JLabel lblGenero;
     JLabel lblTitulo0;
@@ -29,7 +29,7 @@ public class FrmMateria extends JInternalFrame{
     
     JPanel pnlCentral;
     JPanel pnlPie;
-    public FrmMateria() {
+    public FrmNuevaMateria() {
         
         this.setSize(250,160);
         this.setLayout(new BorderLayout());
@@ -80,7 +80,7 @@ public class FrmMateria extends JInternalFrame{
         
     }
     public static void main(String[] args) {
-        FrmMateria frmMenu= new FrmMateria();
+        FrmNuevaMateria frmMenu= new FrmNuevaMateria();
         frmMenu.setVisible(true);
     } 
     
