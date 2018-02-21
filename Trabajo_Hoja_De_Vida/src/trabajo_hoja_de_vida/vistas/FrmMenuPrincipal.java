@@ -21,6 +21,16 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaDocente;
     JMenuItem mniBuscaDocente;
     JMenuItem mniListaDocente;
+     /*AREA*/
+    
+    JMenu mnArea;
+    JMenuItem mniNuevoArea;
+    JMenuItem mniModificarArea;
+    JMenuItem mniEliminaArea;
+    JMenuItem mniBuscaArea;
+    JMenuItem mniListaArea;
+    
+    
         /*CURSO*/
     JMenu mnCurso;
     JMenuItem mniNuevoCurso;
@@ -94,7 +104,36 @@ public class FrmMenuPrincipal extends JFrame {
         mnDocente.addSeparator();
         mnDocente.add(mniBuscaDocente);
         mnDocente.add(mniListaDocente);
-            
+         
+        //
+               
+        mnArea= new JMenu("Area");
+        mniNuevoArea= new JMenuItem("Nuevo");
+        mniNuevoArea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoAreaActionPerformed(e);
+            }
+        });
+        mniModificarArea= new JMenuItem("Modifica");
+        mniEliminaArea= new JMenuItem("Elimina");
+        mniBuscaArea= new JMenuItem("Busca");
+        mniListaArea= new JMenuItem("Lista");
+
+        mniListaArea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaAreaActionPerformed(e);
+            }
+        });
+        
+        mnArea.add(mniNuevoArea);
+        mnArea.add(mniModificarArea);
+        mnArea.add(mniEliminaArea);
+        mnArea.addSeparator();
+        mnArea.add(mniBuscaArea);
+        mnArea.add(mniListaArea);
+        
         /*CURSO*/        
         mnCurso= new JMenu("Curso");
         mniNuevoCurso= new JMenuItem("Nuevo");
@@ -220,6 +259,7 @@ public class FrmMenuPrincipal extends JFrame {
            
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnDocente);
+        mnbPrincipal.add(mnArea);
         mnbPrincipal.add(mnTitulo_Pregado);
         mnbPrincipal.add(mnPublicacion);
         mnbPrincipal.add(mnExp_Docente);
@@ -260,6 +300,20 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
+    //
+    
+    public void mniNuevoAreaActionPerformed(ActionEvent e){
+        FrmNuevoArea frm = new FrmNuevoArea();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaAreaActionPerformed(ActionEvent e)
+    {
+    FrmListaArea frm= new FrmListaArea();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    
     	/*CURSO*/
         public void mniNuevoCursoActionPerformed(ActionEvent e){
         FrmCursoNuevo frm = new FrmCursoNuevo();
