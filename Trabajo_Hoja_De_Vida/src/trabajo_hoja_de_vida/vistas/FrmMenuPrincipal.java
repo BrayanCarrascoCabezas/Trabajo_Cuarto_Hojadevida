@@ -77,6 +77,14 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniBuscaExp_Directiva;
     JMenuItem mniListaExp_Directiva;
     
+    //EXPERIENCIA_DIRECTIVA
+    JMenu mnExp_Profecional;
+    JMenuItem mniNuevoExp_Profecional;
+    JMenuItem mniModificaExp_Profecional;
+    JMenuItem mniEliminaExp_Profecional;
+    JMenuItem mniBuscaExp_Profecional;
+    JMenuItem mniListaExp_Profecional;
+    
 
     JDesktopPane dkpEscritorio;
 
@@ -94,7 +102,37 @@ public class FrmMenuPrincipal extends JFrame {
                 mniSalirActionPerformed(e);
             }
         });
-                
+         
+        //Exp_Profecional
+        mnExp_Profecional = new JMenu("ExpProfecional");
+        mniNuevoExp_Profecional = new JMenuItem("Nuevo");
+        mniNuevoExp_Profecional.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoExp_ProfecionalActionPerformed(e);
+            }
+        });
+        mniModificaExp_Profecional = new JMenuItem("Modifica");
+        mniEliminaExp_Profecional = new JMenuItem("Elimina");
+        mniBuscaExp_Profecional = new JMenuItem("Busca");
+        mniListaExp_Profecional = new JMenuItem("Lista");
+
+        mniListaExp_Profecional.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaExp_ProfecionalActionPerformed(e);
+            }
+        });
+        
+        mnExp_Profecional.add(mniNuevoExp_Profecional);
+        mnExp_Profecional.add(mniModificaExp_Profecional);
+        mnExp_Profecional.add(mniEliminaExp_Profecional);
+        mnExp_Profecional.addSeparator();
+        mnExp_Profecional.add(mniBuscaExp_Profecional);
+        mnExp_Profecional.add(mniListaExp_Profecional);
+        
+        
+        
         mnDocente= new JMenu("Docente");
         mniNuevoDocente= new JMenuItem("Nuevo");
         mniNuevoDocente.addActionListener(new ActionListener() {
@@ -151,7 +189,7 @@ public class FrmMenuPrincipal extends JFrame {
         mnArea.add(mniBuscaArea);
         mnArea.add(mniListaArea);
         
-        //Area_docente
+       // Area_docente
         mnAreadocente= new JMenu("Area_Docente");
         mniNuevoAreadocente= new JMenuItem("Nuevo");
         mniNuevoAreadocente.addActionListener(new ActionListener() {
@@ -179,7 +217,7 @@ public class FrmMenuPrincipal extends JFrame {
         mnAreadocente.add(mniBuscaAreadcente);
         mnAreadocente.add(mniListaAreadocente);  
         
-        //
+        
         
         
         /*CURSO*/        
@@ -311,6 +349,7 @@ public class FrmMenuPrincipal extends JFrame {
         mnbPrincipal.add(mnTitulo_Pregado);
         mnbPrincipal.add(mnPublicacion);
         mnbPrincipal.add(mnExp_Docente);
+       mnbPrincipal.add(mnExp_Profecional);
         mnbPrincipal.add(mnAreadocente);
         
         
@@ -358,6 +397,19 @@ public class FrmMenuPrincipal extends JFrame {
         this.add(dkpEscritorio, BorderLayout.CENTER);
         this.setExtendedState(MAXIMIZED_BOTH); //Para maximizar
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //Para terminar el programa
+    }
+    
+    //ExpProfecional
+    public void mniNuevoExp_ProfecionalActionPerformed(ActionEvent e){
+        FrmNuevoExp_Profecional frm = new FrmNuevoExp_Profecional();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaExp_ProfecionalActionPerformed(ActionEvent e)
+    {
+    FrmListaExp_Profecional frm= new FrmListaExp_Profecional();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
     }
     
     public void mniEliminaTitulo_PregadoActionPerformed(ActionEvent e){
