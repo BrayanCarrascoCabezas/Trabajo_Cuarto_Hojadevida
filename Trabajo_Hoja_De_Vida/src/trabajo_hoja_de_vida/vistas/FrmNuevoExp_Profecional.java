@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,16 +17,17 @@ import trabajo_hoja_de_vida.rnegocio.dao.*;
 import trabajo_hoja_de_vida.rnegocio.impl.*;
 import javax.swing.*;
 public class FrmNuevoExp_Profecional extends JInternalFrame {
+     List<Experiencia> lstExperiencia;
+    JComboBox<Experiencia> cmbExperiencia;
     JLabel lblTitulo0;
     JLabel lblCodigoExp;
-    JLabel lblCodigoE;
+    JLabel lblExperiencia;
     JLabel lblEmpresa_Institucion;
     JLabel lblPosicion;
     JLabel lblFecha_Inicio;
     JLabel lblFecha_Final;
     
     JTextField txtCodigoExp;
-    JTextField txtCodigoE;
     JTextField txtEmpresa_Institucion;
     JTextField txtPosicion;
     JTextField txtFecha_Inicio;
@@ -49,7 +51,7 @@ public class FrmNuevoExp_Profecional extends JInternalFrame {
         lblTitulo0 = new JLabel("Datos Exp_Profecional");
         
         lblCodigoExp= new JLabel("CódigoExp_Profecional:");
-        lblCodigoE = new JLabel("CodigoExperiencia");
+        lblExperiencia = new JLabel("Experiencia");
         lblEmpresa_Institucion= new JLabel("Empresa_Institucion:");
         lblPosicion = new JLabel("Posicion:");
         lblFecha_Inicio = new JLabel("Fecha Inicio:");
@@ -57,7 +59,8 @@ public class FrmNuevoExp_Profecional extends JInternalFrame {
         
         
         txtCodigoExp = new JTextField(2);
-        txtCodigoE = new JTextField(2);
+        cargarExperiencias();
+        cmbExperiencia = new JComboBox(lstExperiencia.toArray());
         txtEmpresa_Institucion = new JTextField(2);
         txtPosicion = new JTextField(2);
         txtFecha_Inicio = new JTextField(2); 
@@ -68,8 +71,8 @@ public class FrmNuevoExp_Profecional extends JInternalFrame {
         
         pnlCentral.add(lblCodigoExp);
         pnlCentral.add(txtCodigoExp);
-        pnlCentral.add(lblCodigoE);
-        pnlCentral.add(txtCodigoE);
+        pnlCentral.add(lblExperiencia);
+        pnlCentral.add(cmbExperiencia);
         pnlCentral.add(lblEmpresa_Institucion);
         pnlCentral.add(txtEmpresa_Institucion);
         pnlCentral.add(lblPosicion);
@@ -101,12 +104,21 @@ public class FrmNuevoExp_Profecional extends JInternalFrame {
         FrmNuevoExp_Profecional frmMenu= new FrmNuevoExp_Profecional();
         frmMenu.setVisible(true);
     } 
+    public void cargarExperiencias(){
+        IExperiencia experienciaDao = new ExperienciaImpl();
+        try {
+            lstExperiencia = experienciaDao.obtener();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error al cargar la Experiencia!!",
+                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }       
+    }
     public void btnAceptarActionListener(ActionEvent e){
         Exp_Profecional exp_profecional = new Exp_Profecional();
             IExp_Profecional exp_profecionalDao = new Exp_ProfecionalImpl();
             exp_profecional.setCodigoExp(Integer.parseInt(txtCodigoExp.getText()));
-            exp_profecional.setCodigoE(Integer.parseInt(txtCodigoE.getText()));
-            exp_profecional.setEmpresa_institucion(txtEmpresa_Institucion.getText());
+           exp_profecional.setExperiencia((Experiencia) cmbExperiencia.getSelectedItem());
+            exp_profecional.setEmpresa_nstitucion(txtEmpresa_Institucion.getText());
             exp_profecional.setPosicion(txtPosicion.getText());
             DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             try {
