@@ -36,7 +36,7 @@ public class FrmListaExp_Docente extends JInternalFrame{
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo: ");
         modelo.addColumn("Experiencia: ");
-//        modelo.addColumn("Curso Materias: ");
+        modelo.addColumn("Curso Materias: ");
         modelo.addColumn("Institucion: ");
         modelo.addColumn("Fecha de Inicio: ");
          modelo.addColumn("Fecha Fin: ");
@@ -50,7 +50,7 @@ public class FrmListaExp_Docente extends JInternalFrame{
                     JOptionPane.ERROR_MESSAGE);
         }
         for(Exp_Docente ec : lista){
-            modelo.addRow(new Object[]{ ec.getCodigo_Ex_D(),ec.getExperiencia().getCodigoE(),/*ec.getCurso_Materia().getCurso_Materia,*/ec.getInstitucion()
+            modelo.addRow(new Object[]{ ec.getCodigo_Ex_D(),ec.getExperiencia().getCodigoE(),ec.getCursomateria().getCurso_Materia(),ec.getInstitucion()
                     ,ec.getFechainicio(),ec.getFechafinal().toString()});
         }
         tabla.setModel(modelo);
