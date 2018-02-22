@@ -4,7 +4,7 @@ import java.util.*;
 public class Exp_Docente {
     private int Codigo_Ex_D;
     private Experiencia experiencia;
-//    private Curso_Materia cursomateria;
+    private Curso_Materia cursomateria;
     private String institucion;
     private Date fechainicio;
     private Date fechafinal;
@@ -12,10 +12,10 @@ public class Exp_Docente {
     public Exp_Docente() {
     }
 
-    public Exp_Docente(int Codigo_Ex_D, Experiencia experiencia, /*Curso_Materia cursomateria,*/ String institucion, Date fechainicio, Date fechafinal) {
+    public Exp_Docente(int Codigo_Ex_D, Experiencia experiencia, Curso_Materia cursomateria, String institucion, Date fechainicio, Date fechafinal) {
         this.Codigo_Ex_D = Codigo_Ex_D;
         this.experiencia = experiencia;
-//        this.cursomateria = cursomateria;
+        this.cursomateria = cursomateria;
         this.institucion = institucion;
         this.fechainicio = fechainicio;
         this.fechafinal = fechafinal;
@@ -37,13 +37,13 @@ public class Exp_Docente {
         this.experiencia = experiencia;
     }
 
-//    public Curso_Materia getCursomateria() {
-//        return cursomateria;
-//    }
+    public Curso_Materia getCursomateria() {
+        return cursomateria;
+    }
 
-//    public void setCursomateria(Curso_Materia cursomateria) {
-//        this.cursomateria = cursomateria;
-//    }
+    public void setCursomateria(Curso_Materia cursomateria) {
+        this.cursomateria = cursomateria;
+    }
 
     public String getInstitucion() {
         return institucion;
