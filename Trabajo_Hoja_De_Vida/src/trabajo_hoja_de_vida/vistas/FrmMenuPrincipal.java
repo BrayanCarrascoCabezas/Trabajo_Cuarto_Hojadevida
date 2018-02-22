@@ -86,7 +86,7 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniBuscaExp_Directiva;
     JMenuItem mniListaExp_Directiva;
     
-    //EXPERIENCIA_DIRECTIVA
+    //EXPERIENCIA_Profecional
     JMenu mnExp_Profecional;
     JMenuItem mniNuevoExp_Profecional;
     JMenuItem mniModificaExp_Profecional;
