@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import trabajo_hoja_de_vida.accesodatos.Conexion;
 import trabajo_hoja_de_vida.accesodatos.Parametro;
-import trabajo_hoja_de_vida.rnegocio.dao.IArea;
 import trabajo_hoja_de_vida.rnegocio.dao.IAreaGeneral;
 import trabajo_hoja_de_vida.rnegocio.dao.IArea_docente;
 import trabajo_hoja_de_vida.rnegocio.dao.IDocente;
