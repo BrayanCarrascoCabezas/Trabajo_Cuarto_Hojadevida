@@ -22,13 +22,13 @@ public class Exp_DocenteTest {
         int filas = 0;
         Docente doc = new Docente(1, "060343704-7", "Andres", "Orozco", "LA PRIMAVERA", "1880-10-08",  "m" , "ao@gamil.com", "0983140672");
         Experiencia exp=new Experiencia(1, doc, 2, "Riobamba", "Docente");
-//        Curso cur=new Curso(1, "Paralelo A");
-//        Materia mat=new Materia(1, "Matematicas");
+        Curso cur=new Curso(1, "Paralelo A");
+        Materia mat=new Materia(1, "Matematicas");
 //        Curso_Materia curma=new Curso_Materia(1, 1, 1);
 //        Curso_Seminario curs = new Curso_Seminario(doc, 1, "Actualizacion materia", 5, "RIOBAMBA", "actualizacion de saberes");
-        Exp_Docente expDoc=new Exp_Docente(1, exp/*, curma*/ , "UNACH", new Date(), new Date());
+//        Exp_Docente expDoc=new Exp_Docente(1, exp/*, curma*/ , "UNACH", new Date(), new Date());
         try {
-            filas = ECDao.insertar(expDoc);
+//            filas = ECDao.insertar(expDoc);
             System.out.println("Ingreso de " + filas + " Filas Correctas");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
