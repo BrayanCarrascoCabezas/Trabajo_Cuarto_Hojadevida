@@ -38,6 +38,15 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniBuscaAreadcente;
     JMenuItem mniListaAreadocente;
     
+   /*_________ADICIONAL__________*/
+     JMenu mnAdicional;
+    JMenuItem mniNuevoAdicional;
+    JMenuItem mniModificaAdicional;
+    JMenuItem mniEliminaAdicional;
+    JMenuItem mniBuscaAdicional;
+    JMenuItem mniListaAdicional;
+    /******************************/
+    
     
         /*CURSO*/
     JMenu mnCurso;
@@ -160,6 +169,42 @@ public class FrmMenuPrincipal extends JFrame {
         mnDocente.add(mniBuscaDocente);
         mnDocente.add(mniListaDocente);
          
+        
+        
+       /*************ADICIONAL***********************/
+        
+         mnAdicional= new JMenu("Docente");
+        mniNuevoAdicional= new JMenuItem("Nuevo");
+        mniNuevoAdicional.addActionListener(new ActionListener() {
+            
+            @Override
+            
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoAdicionalActionPerformed(e);
+            }
+        });
+        mniModificaAdicional= new JMenuItem("Modifica");
+        mniEliminaAdicional= new JMenuItem("Elimina");
+        mniBuscaAdicional= new JMenuItem("Busca");
+        mniListaAdicional= new JMenuItem("Lista");
+
+        mniListaAdicional.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaAdicionalActionPerformed(e);
+            }
+        });
+        
+        mnAdicional.add(mniNuevoAdicional);
+        mnAdicional.add(mniModificaAdicional);
+        mnAdicional.add(mniEliminaAdicional);
+        mnAdicional.addSeparator();
+        mnAdicional.add(mniBuscaAdicional);
+        mnAdicional.add(mniListaAdicional);
+        
+ 
+/***********************************************************************/
+
         //
                
         mnArea= new JMenu("Area");
@@ -345,6 +390,7 @@ public class FrmMenuPrincipal extends JFrame {
            
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnDocente);
+        mnbPrincipal.add(mnAdicional);
         mnbPrincipal.add(mnArea);
         mnbPrincipal.add(mnTitulo_Pregado);
         mnbPrincipal.add(mnPublicacion);
@@ -519,6 +565,23 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
+    
+    /*_____________________ADICIONAL_________________________________*/
+    public void mniNuevoAdicionalActionPerformed(ActionEvent e){
+        FrmAdicionalNuevo frm = new FrmAdicionalNuevo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+        
+    public void mniListaAdicionalActionPerformed(ActionEvent e)
+    {
+    FrmListaAdicional frm= new FrmListaAdicional();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    /********************************************************************/
+    
+    
     public void mniSalirActionPerformed(ActionEvent e){
         System.exit(0);
     }
