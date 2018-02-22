@@ -8,18 +8,24 @@ package trabajo_hoja_de_vida.vistas;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import trabajo_hoja_de_vida.rnegocio.dao.ICurso;
 import trabajo_hoja_de_vida.rnegocio.dao.ICursoMateria;
+import trabajo_hoja_de_vida.rnegocio.dao.IMateria;
 import trabajo_hoja_de_vida.rnegocio.entidades.Curso;
 import trabajo_hoja_de_vida.rnegocio.entidades.Curso_Materia;
 import trabajo_hoja_de_vida.rnegocio.entidades.Materia;
+import trabajo_hoja_de_vida.rnegocio.impl.CursoImpl;
 import trabajo_hoja_de_vida.rnegocio.impl.Curso_MateriaImpl;
+import trabajo_hoja_de_vida.rnegocio.impl.MateriaImpl;
 
 /**
  *
@@ -121,13 +127,13 @@ public class FrmNuevoCurso_Materia extends JFrame{
         try {
 
             Curso_Materia cm = new Curso_Materia();
-            cm.setCurso((Curso) cmbCurso.getSelectedItem());    
-            cm.setMateria ((Materia) cmbMateria.getSelectedItem());  
-            cm.setCurso_Materia(Integer.parseInt(txtCurso_Materia.getInt()));
-            cm.setCodigoC((Curso) cmbCodigoC.getSelectedItem());           
-            cm.setCodigoM((Materia) cmbCodigoM.getSelectedItem());  
+            cm.setCodigoC((Curso) cmbCurso.getSelectedItem());    
+            cm.setCodigoM((Materia) cmbMateria.getSelectedItem());  
+            cm.setCurso_Materia(Integer.parseInt(txtCurso_Materia.getText()));
+//            cm.setCodigoC((Curso) cmbCodigoC.getSelectedItem());           
+//            cm.setCodigoM((Materia) cmbCodigoM.getSelectedItem());  
                    
-            if (estDao.insertar(est) > 0) {
+            if (cursomateriaDao.insertar(cm) > 0) {
                 JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
@@ -149,12 +155,12 @@ public class FrmNuevoCurso_Materia extends JFrame{
         }
 
 }
-}
+
 
     private void CargarMateria() {
-IMateria materiaDao = new MateriaImpl();
+     IMateria materiaDao = new MateriaImpl();
         try {
-            lstDocentes = curDao.obtener();
+            lstMateria = materiaDao.obtener();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
