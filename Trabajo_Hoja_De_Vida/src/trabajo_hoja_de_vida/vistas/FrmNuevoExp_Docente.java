@@ -23,8 +23,8 @@ public class FrmNuevoExp_Docente extends JInternalFrame{
     ArrayList<Experiencia> lstExp;
     JComboBox<Experiencia> cmbExp;
     
-//    ArrayList<Curso_Materia> lstCur;
-//    JComboBox<Curso_Materia> cmbCur;
+    ArrayList<Curso_Materia> lstCur;
+    JComboBox<Curso_Materia> cmbCur;
     
     JLabel Titulo;
     JLabel Cod_Exp_D;
@@ -61,10 +61,10 @@ public class FrmNuevoExp_Docente extends JInternalFrame{
         lstExp=new ArrayList<Experiencia>();
         cargarExperiencias();
         cmbExp=new JComboBox(lstExp.toArray());
-//        codigoCursoM=new JLabel("Cursos/Materias: ");
-//        lstCur=new ArrayList<Curso_Materia>();
-//        cargarCursosMaterias();
-//        cmbCur=new JComboBox(lstCur.toArray());
+        codigoCursoM=new JLabel("Cursos/Materias: ");
+        lstCur=new ArrayList<Curso_Materia>();
+        cargarCursosMaterias();
+        cmbCur=new JComboBox(lstCur.toArray());
         institucion=new JLabel("Nombre Institucion: ");
         txtInstitucion=new JTextField("");
         fechainicio=new JLabel("Fecha de Inicio: ");
@@ -75,8 +75,8 @@ public class FrmNuevoExp_Docente extends JInternalFrame{
         pnlCental.add(txtCod_Exp_D);
         pnlCental.add(codigoE);
         pnlCental.add(cmbExp);
-//        pnlCental.add(codigoCursoM);
-//        pnlCental.add(cmbCur);
+        pnlCental.add(codigoCursoM);
+        pnlCental.add(cmbCur);
         pnlCental.add(institucion);
         pnlCental.add(txtInstitucion);
         pnlCental.add(fechainicio);
@@ -122,14 +122,14 @@ public class FrmNuevoExp_Docente extends JInternalFrame{
         }
     }
     
-//    private void cargarCursosMaterias() {
-//        ICurso_Materia curDao = new Curso_MateriaImpl();
-//        try {
-//            lstCur = (ArrayList<Curso_Materia>) curDao.obtener();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
-//        }
-//    }
+    private void cargarCursosMaterias() {
+        ICursoMateria curDao = new Curso_MateriaImpl();
+        try {
+            lstCur = (ArrayList<Curso_Materia>) curDao.obtener();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     
     public void btnAceptarActionListener(ActionEvent e) {
         IExp_Docente expDoc = new Exp_DocenteImpl();
@@ -143,13 +143,13 @@ public class FrmNuevoExp_Docente extends JInternalFrame{
                 } else {
                     JOptionPane.showMessageDialog(this, "ERROR", "ERROR", JOptionPane.INFORMATION_MESSAGE);
                 }
-//            nDocente.setCurso_Materia((Curso_Materia) cmbCur.getSelectedItem());
-//                if (expDoc.insertar(nDocente) > 0) {
-//                    JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "ERROR", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-//                }
+            nDocente.setCursomateria((Curso_Materia) cmbCur.getSelectedItem());
+                if (expDoc.insertar(nDocente) > 0) {
+                    JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "ERROR", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                }
             nDocente.setInstitucion(txtInstitucion.getText());
             DateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
             try {
