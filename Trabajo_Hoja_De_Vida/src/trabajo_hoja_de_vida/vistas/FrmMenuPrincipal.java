@@ -30,6 +30,14 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniBuscaArea;
     JMenuItem mniListaArea;
     
+    //Area_docnte
+    JMenu mnAreadocente;
+    JMenuItem mniNuevoAreadocente;
+    JMenuItem mniModificarAreadocente;
+    JMenuItem mniEliminaAreadcente;
+    JMenuItem mniBuscaAreadcente;
+    JMenuItem mniListaAreadocente;
+    
     
         /*CURSO*/
     JMenu mnCurso;
@@ -142,6 +150,37 @@ public class FrmMenuPrincipal extends JFrame {
         mnArea.addSeparator();
         mnArea.add(mniBuscaArea);
         mnArea.add(mniListaArea);
+        
+        //Area_docente
+        mnAreadocente= new JMenu("Area_Docente");
+        mniNuevoAreadocente= new JMenuItem("Nuevo");
+        mniNuevoAreadocente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoExp_DocenteActionPerformed(e);
+            }
+        });
+        mniModificarAreadocente= new JMenuItem("Modifica");
+        mniEliminaAreadcente= new JMenuItem("Elimina");
+        mniBuscaAreadcente= new JMenuItem("Busca");
+        mniListaAreadocente= new JMenuItem("Lista");
+
+        mniListaAreadocente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaExp_DocenteActionPerformed(e);
+            }
+        });
+        
+        mnAreadocente.add(mniBuscaAreadcente);
+        mnAreadocente.add(mniModificarAreadocente);
+        mnAreadocente.add(mniEliminaAreadcente);
+        mnCurso.addSeparator();
+        mnAreadocente.add(mniBuscaAreadcente);
+        mnAreadocente.add(mniListaAreadocente);  
+        
+        //
+        
         
         /*CURSO*/        
         mnCurso= new JMenu("Curso");
@@ -272,6 +311,8 @@ public class FrmMenuPrincipal extends JFrame {
         mnbPrincipal.add(mnTitulo_Pregado);
         mnbPrincipal.add(mnPublicacion);
         mnbPrincipal.add(mnExp_Docente);
+        mnbPrincipal.add(mnAreadocente);
+        
         
         
         //EXP_DIRECTIVA
@@ -360,6 +401,20 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
+    //Areadocente
+      public void mniNuevoArea_DocentePerformed(ActionEvent e){
+        FrmNuevoArea_Docente frm = new FrmNuevoArea_Docente();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaAreaDocenteActionPerformed(ActionEvent e)
+    {
+    FrmListaAreaDocente frm= new FrmListaAreaDocente();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
+    
+    //
     
     	/*CURSO*/
         public void mniNuevoCursoActionPerformed(ActionEvent e){
