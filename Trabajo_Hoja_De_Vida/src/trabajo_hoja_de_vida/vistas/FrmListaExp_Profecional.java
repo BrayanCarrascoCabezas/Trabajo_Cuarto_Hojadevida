@@ -1,7 +1,6 @@
 
 package trabajo_hoja_de_vida.vistas;
 
-;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -19,6 +18,7 @@ public class FrmListaExp_Profecional extends JInternalFrame{
      JLabel lblTitulo;
     JTable tabla;
     DefaultTableModel modelo;
+    
     public FrmListaExp_Profecional(){
     this.setSize(800,600);
     this.setLayout(new BorderLayout());
@@ -32,14 +32,11 @@ public class FrmListaExp_Profecional extends JInternalFrame{
     public void cargarTabla(){
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
-        modelo.addColumn("Cedula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Direccion");
-        modelo.addColumn("Fecha nacimiento");
-        modelo.addColumn("Email");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Telefono");
+        modelo.addColumn("Empresa");
+        modelo.addColumn("Posicion");
+       modelo.addColumn("Fecha Inicio");
+        modelo.addColumn("Fecha Final");
+       
         
         List<Exp_Profecional> lista = new ArrayList<>();
         try {
@@ -50,7 +47,7 @@ public class FrmListaExp_Profecional extends JInternalFrame{
         }
         
         for(Exp_Profecional est:lista){
-            modelo.addRow(new Object[]{est.getCodigoExp(),est.getCodigoE(),est.getEmpresa_institucion(),est.getPosicion(),est.getFecha_inicio(),est.getFecha_final()});
+            modelo.addRow(new Object[]{est.getCodigoExp(),est.getEmpresa_nstitucion(),est.getPosicion(),est.getFecha_inicio(),est.getFecha_final()});
         }
         tabla.setModel(modelo);
     }

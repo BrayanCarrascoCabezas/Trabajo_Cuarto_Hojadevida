@@ -1,21 +1,24 @@
 
 package trabajo_hoja_de_vida.rnegocio.entidades;
-import java.util.*;
+
+import java.util.Date;
+
 public class Exp_Profecional {
-private int CodigoExp;
-private int CodigoE;
-private String empresa_institucion;
-private String posicion;
-private Date fecha_inicio;
-private Date fecha_final;
+    
+   private int CodigoExp;
+   private Experiencia experiencia;
+   private String empresa_nstitucion;
+   private String posicion;
+   private Date fecha_inicio;
+   private Date fecha_final;
 
     public Exp_Profecional() {
     }
 
-    public Exp_Profecional(int CodigoExp, int CodigoE, String empresa_institucion, String posicion, Date fecha_inicio, Date fecha_final) {
+    public Exp_Profecional(int CodigoExp, Experiencia experiencia, String empresa_nstitucion, String posicion, Date fecha_inicio, Date fecha_final) {
         this.CodigoExp = CodigoExp;
-        this.CodigoE = CodigoE;
-        this.empresa_institucion = empresa_institucion;
+        this.experiencia = experiencia;
+        this.empresa_nstitucion = empresa_nstitucion;
         this.posicion = posicion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
@@ -29,20 +32,20 @@ private Date fecha_final;
         this.CodigoExp = CodigoExp;
     }
 
-    public int getCodigoE() {
-        return CodigoE;
+    public Experiencia getExperiencia() {
+        return experiencia;
     }
 
-    public void setCodigoE(int CodigoE) {
-        this.CodigoE = CodigoE;
+    public void setExperiencia(Experiencia experiencia) {
+        this.experiencia = experiencia;
     }
 
-    public String getEmpresa_institucion() {
-        return empresa_institucion;
+    public String getEmpresa_nstitucion() {
+        return empresa_nstitucion;
     }
 
-    public void setEmpresa_institucion(String empresa_institucion) {
-        this.empresa_institucion = empresa_institucion;
+    public void setEmpresa_nstitucion(String empresa_nstitucion) {
+        this.empresa_nstitucion = empresa_nstitucion;
     }
 
     public String getPosicion() {
@@ -68,5 +71,11 @@ private Date fecha_final;
     public void setFecha_final(Date fecha_final) {
         this.fecha_final = fecha_final;
     }
-    
+   
+   @Override
+   public String toString(){
+       return empresa_nstitucion;
+   }
+   
+
 }
