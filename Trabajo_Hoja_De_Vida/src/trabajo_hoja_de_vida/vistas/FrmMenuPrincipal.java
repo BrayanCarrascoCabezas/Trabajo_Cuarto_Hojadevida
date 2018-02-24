@@ -94,6 +94,14 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniBuscaExp_Profecional;
     JMenuItem mniListaExp_Profecional;
     
+    
+    //CURSO_SEMINARIO
+    JMenu mnCursoSeminario;
+    JMenuItem mniNuevoCursoSeminario;
+    JMenuItem mniModificaCursoSeminario;
+    JMenuItem mniEliminaCursoSeminario;
+    JMenuItem mniBuscarCursoSeminario;
+    JMenuItem mniListaCursoSeminario;
 
     JDesktopPane dkpEscritorio;
 
@@ -144,23 +152,23 @@ public class FrmMenuPrincipal extends JFrame {
         
         mnDocente= new JMenu("Docente");
         mniNuevoDocente= new JMenuItem("Nuevo");
-        mniNuevoDocente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mniNuevoDocenteActionPerformed(e);
-            }
-        });
+       // mniNuevoDocente.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                mniNuevoDocenteActionPerformed(e);
+//            }
+//        });
         mniModificaDocente= new JMenuItem("Modifica");
         mniEliminaDocente= new JMenuItem("Elimina");
         mniBuscaDocente= new JMenuItem("Busca");
         mniListaDocente= new JMenuItem("Lista");
 
-        mniListaDocente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mniListaDocenteActionPerformed(e);
-            }
-        });
+//        mniListaDocente.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                mniListaDocenteActionPerformed(e);
+//            }
+//        });
         
         mnDocente.add(mniNuevoDocente);
         mnDocente.add(mniModificaDocente);
@@ -248,17 +256,17 @@ public class FrmMenuPrincipal extends JFrame {
         mniBuscaAreadcente= new JMenuItem("Busca");
         mniListaAreadocente= new JMenuItem("Lista");
 
-        mniListaAreadocente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mniListaExp_DocenteActionPerformed(e);
-            }
-        });
-        
+//        mniListaAreadocente.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                mniListaExp_DocenteActionPerformed(e);
+//            }
+//        });
+//        
         mnAreadocente.add(mniBuscaAreadcente);
         mnAreadocente.add(mniModificarAreadocente);
         mnAreadocente.add(mniEliminaAreadcente);
-        mnCurso.addSeparator();
+        mnAreadocente.addSeparator();
         mnAreadocente.add(mniBuscaAreadcente);
         mnAreadocente.add(mniListaAreadocente);  
         
@@ -388,15 +396,6 @@ public class FrmMenuPrincipal extends JFrame {
         mnCurso.add(mniBuscaExp_Docente);
         mnCurso.add(mniListaExp_Docente);
            
-        mnbPrincipal.add(mnInicio);
-        mnbPrincipal.add(mnDocente);
-        mnbPrincipal.add(mnAdicional);
-        mnbPrincipal.add(mnArea);
-        mnbPrincipal.add(mnTitulo_Pregado);
-        mnbPrincipal.add(mnPublicacion);
-        mnbPrincipal.add(mnExp_Docente);
-       mnbPrincipal.add(mnExp_Profecional);
-        mnbPrincipal.add(mnAreadocente);
         
         
         
@@ -436,8 +435,50 @@ public class FrmMenuPrincipal extends JFrame {
         mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniBuscaExp_Directiva);
         mnExp_Directiva.add(mniListaExp_Directiva);
+        
+        ///Curso_Seminario
+        mnCursoSeminario= new JMenu("CURSO SEMINARIO");
+        mniNuevoCursoSeminario= new JMenuItem("Nuevo");
+        mniNuevoCursoSeminario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoCursoSeminarioActionPerformed(e);
+
+            }
+        });
+        
+        mniModificaCursoSeminario= new JMenuItem("Modifica");
+        mniEliminaCursoSeminario= new JMenuItem("Elimina");
+        mniBuscarCursoSeminario= new JMenuItem("Busca");
+        mniListaCursoSeminario= new JMenuItem("Lista");
+        mniListaCursoSeminario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaExp_DirectivaActionPerformed(e);
+            }
+        });
+        
+        mnCursoSeminario.add(mniNuevoCursoSeminario);
+        mnCursoSeminario.add(mniModificaCursoSeminario);
+        mnCursoSeminario.add(mniEliminaCursoSeminario);
+        mnCursoSeminario.addSeparator();
+        mnCursoSeminario.add(mniBuscarCursoSeminario);
+        mnCursoSeminario.add(mniListaCursoSeminario);
+        
+        
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
+        
+        mnbPrincipal.add(mnInicio);
+        mnbPrincipal.add(mnDocente);
+        mnbPrincipal.add(mnAdicional);
+        mnbPrincipal.add(mnArea);
+        mnbPrincipal.add(mnTitulo_Pregado);
+        mnbPrincipal.add(mnPublicacion);
+        mnbPrincipal.add(mnExp_Docente);
+        mnbPrincipal.add(mnExp_Profecional);
+        mnbPrincipal.add(mnAreadocente);
+        mnbPrincipal.add(mnCursoSeminario);
         this.setLayout(new BorderLayout());
         this.add(mnbPrincipal, BorderLayout.NORTH);
         this.add(dkpEscritorio, BorderLayout.CENTER);
@@ -580,8 +621,21 @@ public class FrmMenuPrincipal extends JFrame {
     frm.setVisible(true);
     }
     /********************************************************************/
+    ///////////////////curso seminario
+    public void mniNuevoCursoSeminarioActionPerformed(ActionEvent e){
+        FrmNuevoCursoSeminario frm = new FrmNuevoCursoSeminario();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
     
     
+    
+    
+    
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////
     public void mniSalirActionPerformed(ActionEvent e){
         System.exit(0);
     }

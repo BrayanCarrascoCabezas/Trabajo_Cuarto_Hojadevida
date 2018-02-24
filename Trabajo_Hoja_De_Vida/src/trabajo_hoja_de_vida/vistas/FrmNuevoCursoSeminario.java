@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-public class FrmNuevoCursoSeminario extends JFrame {
+public class FrmNuevoCursoSeminario extends JInternalFrame {
 
     List<Docente> lstDocentes;
     JComboBox<Docente> cmbDocente;
@@ -49,7 +49,7 @@ public class FrmNuevoCursoSeminario extends JFrame {
         this.setLayout(new BorderLayout());
         pnlcentral = new JPanel();
         pnlpie = new JPanel();
-
+        this.setClosable(true);
         pnlcentral.setLayout(new GridLayout(10, 2, 5, 5));
         pnlpie.setLayout(new GridLayout(1, 2, 5, 5));
         titulo0 = new JLabel("DATOS CURSO SEMINARIOS");

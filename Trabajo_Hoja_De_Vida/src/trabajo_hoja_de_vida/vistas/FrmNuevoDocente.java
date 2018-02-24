@@ -132,7 +132,7 @@ public class FrmNuevoDocente extends JInternalFrame{
             docente.setDireccion(txtDireccion.getText());
             DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                docente.setFecha_nac(formatoFecha.parse(txtFechaNac.getText()));
+                docente.setFecha_nac((txtFechaNac.getText()));
                 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this,"Error en la fecha!!",
