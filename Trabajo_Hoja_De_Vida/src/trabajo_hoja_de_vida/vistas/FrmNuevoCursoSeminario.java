@@ -54,7 +54,7 @@ public class FrmNuevoCursoSeminario extends JInternalFrame {
         pnlpie.setLayout(new GridLayout(1, 2, 5, 5));
         titulo0 = new JLabel("DATOS CURSO SEMINARIOS");
 
-        cod_Docente = new JLabel("CODIGO ESTUDIANTE");
+        cod_Docente = new JLabel("CODIGO DOCENTE");
 
         cod_CursoSeminario = new JLabel("NUMERO CEDULA");
 

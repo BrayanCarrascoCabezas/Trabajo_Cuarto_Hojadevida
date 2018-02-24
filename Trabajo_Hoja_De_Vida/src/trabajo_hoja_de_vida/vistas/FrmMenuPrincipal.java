@@ -454,7 +454,7 @@ public class FrmMenuPrincipal extends JFrame {
         mniListaCursoSeminario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mniListaExp_DirectivaActionPerformed(e);
+                mniListaCursoSeminarioActionPerformed(e);
             }
         });
         
@@ -628,7 +628,12 @@ public class FrmMenuPrincipal extends JFrame {
         frm.setVisible(true);
     }
     
-    
+    public void mniListaCursoSeminarioActionPerformed(ActionEvent e)
+    {
+    FrmListaCursoSeminario frm= new FrmListaCursoSeminario();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
+    }
     
     
     

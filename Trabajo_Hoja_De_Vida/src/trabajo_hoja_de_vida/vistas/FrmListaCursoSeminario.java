@@ -18,7 +18,7 @@ public class FrmListaCursoSeminario extends JInternalFrame {
 
         this.setSize(800, 600);
         this.setLayout(new BorderLayout());
-        //this.setClosable(true);
+        this.setClosable(true);
         titulo = new JLabel("LISTADO DE ESTUDIANTES");
         tabla = new JTable();
         this.add(titulo, BorderLayout.NORTH);
