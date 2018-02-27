@@ -113,6 +113,16 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniListaCursoM;
     
     
+
+    //Declaracion
+    JMenu mnDeclaracion;
+    JMenuItem mniNuevoDeclaracion;
+    JMenuItem mniModificarDeclaracion;
+    JMenuItem mniEliminaDeclaracion;
+    JMenuItem mniBuscaDeclaracion;
+    JMenuItem mniListaDeclaracion;
+    
+    
     
     
     JDesktopPane dkpEscritorio;
@@ -477,6 +487,39 @@ public class FrmMenuPrincipal extends JFrame {
         mnExp_Directiva.add(mniBuscaExp_Directiva);
         mnExp_Directiva.add(mniListaExp_Directiva);
         
+        
+         //declaracion
+         
+        mnDeclaracion= new JMenu("DECLARACION");
+        mniNuevoDeclaracion= new JMenuItem("Nuevo");
+        mniNuevoDeclaracion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoPublicacionActionPerformed(e);
+
+            }
+        });
+        
+        mniModificarDeclaracion= new JMenuItem("Modifica");
+        mniEliminaDeclaracion= new JMenuItem("Elimina");
+        mniBuscaDeclaracion= new JMenuItem("Busca");
+        mniListaDeclaracion= new JMenuItem("Lista");
+        mniListaDeclaracion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaDocenteActionPerformed(e);
+            }
+        });
+        
+        mnDeclaracion.add(mniNuevoDeclaracion);
+        mnDeclaracion.add(mniModificarDeclaracion);
+        mnDeclaracion.add(mniEliminaDeclaracion);
+        mnDeclaracion.addSeparator();
+        mnDeclaracion.add(mniBuscaDeclaracion);
+        mnDeclaracion.add(mniListaDeclaracion);
+        
+        
+        
         ///Curso_Seminario
         mnCursoSeminario= new JMenu("CURSO SEMINARIO");
         mniNuevoCursoSeminario= new JMenuItem("Nuevo");
@@ -521,6 +564,7 @@ public class FrmMenuPrincipal extends JFrame {
         mnbPrincipal.add(mnAreadocente);
         mnbPrincipal.add(mnCursoSeminario);
         mnbPrincipal.add(mnExp_Directiva);
+        mnbPrincipal.add(mnDeclaracion);
         this.setLayout(new BorderLayout());
         this.add(mnbPrincipal, BorderLayout.NORTH);
         this.add(dkpEscritorio, BorderLayout.CENTER);
@@ -701,10 +745,26 @@ public class FrmMenuPrincipal extends JFrame {
     FrmListaCurso_Materia frm= new FrmListaCurso_Materia();
     dkpEscritorio.add(frm);
     frm.setVisible(true);
+    }
+        
+    
+        //Declaracion
+        public void mniNuevoDeclaracionMActionPerformed(ActionEvent e){
+            FrmDeclaracion frm = new FrmDeclaracion();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaDeclaracionMActionPerformed(ActionEvent e)
+    {
+    FrmListaDeclaracion frm= new FrmListaDeclaracion();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
     
     
     
     }
+
+    
     
     /////////////////////////////////////////////////////////////////////
     public void mniSalirActionPerformed(ActionEvent e){
