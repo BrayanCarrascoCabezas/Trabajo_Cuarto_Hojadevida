@@ -9,14 +9,16 @@ public class AreaGeneral {
     private int codigo;
     private String descripcion;
 
+    public AreaGeneral() {
+    }
+    
+    
+
     public AreaGeneral(int codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }
 
-    public AreaGeneral() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
    public int getCodigo() {
         return codigo;
     }
@@ -37,9 +39,6 @@ public class AreaGeneral {
         return descripcion ;
     }
 
-    public void setDescripcion(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
      
  
 }
