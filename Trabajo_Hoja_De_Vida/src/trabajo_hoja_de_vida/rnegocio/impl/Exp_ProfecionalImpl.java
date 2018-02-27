@@ -115,7 +115,6 @@ public class Exp_ProfecionalImpl implements IExp_Profecional {
                 exp_profecional.setFecha_inicio(rst.getDate(5));
                 exp_profecional.setFecha_final(rst.getDate(6));
                 exp_profecional.setExperiencia(experiencia);
-                exp_profecional.setExperiencia(experiencia);
             }
         } catch (Exception e) {
             throw e;
@@ -148,6 +147,7 @@ public class Exp_ProfecionalImpl implements IExp_Profecional {
                 exp_profecional.setPosicion(rst.getString(4));
                 exp_profecional.setFecha_inicio(rst.getDate(5));
                 exp_profecional.setFecha_final(rst.getDate(6));
+                
                 lista.add(exp_profecional);
             }
         } catch (Exception e) {
