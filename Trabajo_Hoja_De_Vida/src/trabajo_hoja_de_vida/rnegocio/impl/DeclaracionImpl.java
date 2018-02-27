@@ -21,7 +21,7 @@ public class DeclaracionImpl implements IDeclaracion {
         String sql = "insert into Declaracion  values "
                 + "(?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, declaracion.getDocente()));
+        lstPar.add(new Parametro(1, declaracion.getDocente().getCod_docente()));
         lstPar.add(new Parametro(2, declaracion.getDescripcion()));
 
         Conexion con = null;
@@ -45,10 +45,10 @@ public class DeclaracionImpl implements IDeclaracion {
       
         int numFilasAfectadas = 0;
         String sql = "UPDATE declaracion"
-                + "   SET Codigo_docente=?, descripcion=? "
-                + " where Codigo_docente=?";
+                + "   SET Cod_docente=?, descripcion=? "
+                + " where Cod_docente=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, declaracion.getDocente()));
+        lstPar.add(new Parametro(1, declaracion.getDocente().getCod_docente()));
         lstPar.add(new Parametro(2, declaracion.getDescripcion()));
      
         Conexion con = null;
@@ -71,9 +71,9 @@ public class DeclaracionImpl implements IDeclaracion {
     public int eliminar(Declaracion declaracion) throws Exception {
         
         int numFilasAfectadas = 0;
-         String sql = "DELETE FROM declaracion  where Codigo_docente=?";
+         String sql = "DELETE FROM declaracion  where Cod_docente=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, declaracion.getDocente()));       
+        lstPar.add(new Parametro(1, declaracion.getDocente().getCod_docente()));       
         Conexion con = null;
         try {
             con = new Conexion();
@@ -90,12 +90,12 @@ public class DeclaracionImpl implements IDeclaracion {
     }
 
     @Override
-    public Declaracion obtener(int Codigo_docente) throws Exception {
+    public Declaracion obtener(int Cod_docente) throws Exception {
         
         Declaracion declaracion = null;
-        String sql = "SELECT * FROM declaracion where Codigo_docente=?;";
+        String sql = "SELECT * FROM declaracion where Cod_docente=?;";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, Codigo_docente));
+        lstPar.add(new Parametro(1, Cod_docente));
         Conexion con = null;
         try {
             con = new Conexion();
