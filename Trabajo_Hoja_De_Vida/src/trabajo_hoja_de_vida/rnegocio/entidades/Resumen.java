@@ -30,5 +30,8 @@ public class Resumen {
         this.descripcion = descripcion;
     }
     
-    
+    @Override
+    public String toString() {
+        return descripcion; 
+    }
 }
