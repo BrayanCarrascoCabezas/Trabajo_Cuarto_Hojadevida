@@ -115,7 +115,7 @@ public class FrmNuevoExp_Directiva extends JInternalFrame {
         private void cargarExp_Directiva() {
         IExp_Directiva expDao = new Exp_DirectivaImpl();
         try {
-            lstExp = (ArrayList<Exp_Directiva>) expDao.obtener();
+            lstexp = (ArrayList<Exp_Directiva>) expDao.obtener();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR AL CARGAR Exp_Directiva", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
