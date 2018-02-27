@@ -25,130 +25,127 @@ import trabajo_hoja_de_vida.rnegocio.impl.PublicacionImpl;
  * @author Francisco
  */
 public class FrmNuevoPublicacion extends JInternalFrame{
-    List<Docente> lstDocentes;
+    List<Docente> lstDocente;
     JComboBox<Docente> cmbDocente;
-    JLabel titulo0;
-    JLabel cod_Docente;
-    JLabel cod_publicacion;
-    JLabel tiulo;
-    JLabel editorial;
-    JLabel año;
-    JTextField txtcod_Docente;
-    JTextField txtcod_publicacion;
+    
+    JLabel lblTitulo0;
+    JLabel lblCodigo;
+    JLabel lbltitulo;
+    JLabel lbleditorial;
+    JLabel lblaño;
+    JLabel lblDocente;
+
+    JTextField txtCodigo;
     JTextField txttitulo;
     JTextField txteditorial;
     JTextField txtaño;
-    JComboBox cmbDocentes;
-
+    
     JButton btnLimpiar;
     JButton btnAceptar;
-    JPanel pnlcentral;
-    JPanel pnlpie;
-    public FrmNuevoPublicacion(){
-    this.setSize(640, 400);
+    
+    JPanel pnlCentral;
+    JPanel pnlPie;
+    public FrmNuevoPublicacion() {
+        this.setSize(300, 300);
         this.setLayout(new BorderLayout());
-        pnlcentral = new JPanel();
-        pnlpie = new JPanel();
-
-        pnlcentral.setLayout(new GridLayout(10, 2, 5, 5));
-        pnlpie.setLayout(new GridLayout(1, 2, 5, 5));
-        titulo0 = new JLabel("DATOS DE LA  PUBLICACION");
-        cod_Docente = new JLabel("CODIGO DOCENTE ");
-        cod_publicacion= new JLabel("CODIGO DE LA PUBLICACION");
-        tiulo = new JLabel("TITULO DE LA PUBLICACION");
-        editorial= new JLabel("NOMBRE DE LA EDITORIAL");
-        año = new JLabel("AÑO DE PUBLICACION");
-        txtcod_Docente = new JTextField();
-        txtcod_publicacion = new JTextField();
-        txttitulo = new JTextField();
-        txteditorial = new JTextField();
-        txtaño = new JTextField();
-
-        CargarDocente();
-        cmbDocentes = new JComboBox(lstDocentes.toArray());
-        btnLimpiar = new JButton("LIMPIAR");
-        btnAceptar = new JButton("ACEPTAR");
-        this.add(titulo0, BorderLayout.NORTH);
-        pnlcentral.add(cod_Docente);
-        pnlcentral.add(cmbDocentes);
-        pnlcentral.add(cod_publicacion);
+        this.setClosable(true);
+        pnlCentral= new JPanel();
+        pnlPie= new JPanel();
+        pnlCentral.setLayout(new GridLayout(10, 2, 5, 5));
+        pnlPie.setLayout(new GridLayout(1,2,5,5));
         
-        pnlpie.add(btnLimpiar);
-        pnlpie.add(btnAceptar);
+        lblTitulo0 = new JLabel("Datos Producto");
+        
+        lblCodigo = new JLabel("Código:");
+        lbltitulo = new JLabel("Titulo de la Publicacion:");
+        lbleditorial= new JLabel("Editorial:");
+        lblaño= new JLabel("Año de publicacion:");
+        lblDocente  = new JLabel("Docente:");
+       
+
+        txtCodigo = new JTextField(2);
+        txttitulo= new JTextField(2);
+        txteditorial = new JTextField(2);
+        txtaño = new JTextField(2);
+        cargarDocente();
+        
+        cmbDocente = new JComboBox(lstDocente.toArray());
+        btnLimpiar = new JButton("Limpiar");
+        btnAceptar = new JButton("Aceptar");
+        
+        pnlCentral.add(lblCodigo);
+        pnlCentral.add(txtCodigo);
+       
+        pnlCentral.add(lbltitulo);
+        pnlCentral.add(txttitulo);
+        pnlCentral.add(lbleditorial);
+        pnlCentral.add(txteditorial);
+        pnlCentral.add(lblaño);
+        pnlCentral.add(txtaño);
+      
+        pnlCentral.add(lblDocente);
+        pnlCentral.add(cmbDocente);
+        
+                
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     btnAceptarActionListener(e);
                 } catch (Exception ex) {
-                    System.out.print("error " + ex.getMessage());
+                    System.out.println("Error:"+ex.getMessage());
                 }
             }
         });
-        this.add(titulo0, BorderLayout.NORTH);
-        this.add(pnlcentral, BorderLayout.CENTER);
-        this.add(pnlpie, BorderLayout.SOUTH);
-
+        
+        pnlPie.add(btnLimpiar);
+        pnlPie.add(btnAceptar);
+        
+        this.add(lblTitulo0, BorderLayout.NORTH);
+        this.add(pnlCentral, BorderLayout.CENTER);
+        this.add(pnlPie, BorderLayout.SOUTH);        
     }
-
+    
+    
     public static void main(String[] args) {
         FrmNuevoPublicacion frmMenu= new FrmNuevoPublicacion();
         frmMenu.setVisible(true);
-
-    }
-    public void CargarDocente() {
-
-        IDocente curDao = new DocenteImpl();
+    } 
+    
+    
+    public void cargarDocente(){
+        IDocente docenteDao = new DocenteImpl();
         try {
-            lstDocentes = curDao.obtener();
+            lstDocente = docenteDao.obtener();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
-        }
-
+            JOptionPane.showMessageDialog(this,"Error al cargar arreglate!!",
+                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }       
     }
- public void btnAceptarActionListener(ActionEvent e){
+    public void btnAceptarActionListener(ActionEvent e){
+        IPublicacion publicacionDao = new PublicacionImpl();
         Publicacion publicacion = new Publicacion();
-            IPublicacion publicacionDao = new PublicacionImpl();
-          //  docente.setcInteger.parseInt(txtCodigo.getText()));
-            publicacion.setCod_publicacion(Integer.parseInt(txtcod_publicacion.getText()));
-            publicacion.setTitulo(txttitulo.getText());
-            publicacion.setEditorial(txteditorial.getText());
-            publicacion.setAño(txtaño.getText());
-            
-            try {
-                if(publicacionDao.insertar(publicacion)>0 ){
-                JOptionPane.showMessageDialog(this,"Registrado correctamente!!",
-                "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else{
-            JOptionPane.showMessageDialog(this,"Error desconocido: ",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,"Error al guardar: "+ex.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }  
+        publicacion.setCod_publicacion(Integer.parseInt(txtCodigo.getText()));
+        publicacion.setDocente((Docente) cmbDocente.getSelectedItem());
+        publicacion.setTitulo(txttitulo.getText());
+        publicacion.setEditorial(txteditorial.getText());
+        publicacion.setAño(txtaño.getText());
+        
+       
+        try {
+            if(publicacionDao.insertar(publicacion)>0){
+                JOptionPane.showMessageDialog(this,"Guaradado correctamente!!",
+                "Transacción", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this,"Error desconocido!!",
+                "Transacción", JOptionPane.INFORMATION_MESSAGE);
+            }           
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,"Error al guardar!!: " + ex.getMessage(),
+                "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
     
     
