@@ -12,10 +12,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.*;
-/**
- *
- * @author WILMACX
- */
+
 public class FrmDeclaracion extends JInternalFrame{
     JLabel lblTitulo,lblId,lblDescripcion;
     JTextField txtId,txtDescripcion;
