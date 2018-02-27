@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +17,10 @@ import trabajo_hoja_de_vida.rnegocio.dao.*;
 import trabajo_hoja_de_vida.rnegocio.impl.*;
 import javax.swing.*;
 public class FrmNuevoExp_Directiva extends JInternalFrame {
+    
+        ArrayList<Exp_Directiva> lstexp;
+    JComboBox<Exp_Directiva> cmbexp;
+
     JLabel lblTitulo0;
     JLabel lblCodigoExp_D;
     JLabel lblCodigoE;
@@ -36,6 +41,7 @@ public class FrmNuevoExp_Directiva extends JInternalFrame {
     
     JPanel pnlCentral;
     JPanel pnlPie;
+    private final JLabel CodigoExp_D;
     
      public FrmNuevoExp_Directiva() {
         this.setSize(350, 350);
@@ -62,6 +68,11 @@ public class FrmNuevoExp_Directiva extends JInternalFrame {
         txtEntidades = new JTextField(2);
         txtFecha_Inicio = new JTextField(2); 
         txtFecha_Final = new JTextField(2);
+        
+        cargarExp_Directiva();
+        cmbexp=new JComboBox(lstexp.toArray());
+        CodigoExp_D=new JLabel("Exp_Directiva: ");
+        lstexp=new ArrayList<Exp_Directiva>();
         
         btnLimpiar= new JButton("Limpiar");
         btnAceptar= new JButton("Aceptar");
@@ -101,6 +112,14 @@ public class FrmNuevoExp_Directiva extends JInternalFrame {
         FrmNuevoExp_Directiva frmMenu= new FrmNuevoExp_Directiva();
         frmMenu.setVisible(true);
     } 
+        private void cargarExp_Directiva() {
+        IExp_Directiva expDao = new Exp_DirectivaImpl();
+        try {
+            lstExp = (ArrayList<Exp_Directiva>) expDao.obtener();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR Exp_Directiva", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     public void btnAceptarActionListener(ActionEvent e){
         Exp_Directiva expdirectiva = new Exp_Directiva();
             IExp_Directiva expdirectivaDao = new Exp_DirectivaImpl();
