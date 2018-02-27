@@ -19,7 +19,8 @@ public class CursoImpl implements ICurso {
     @Override
     public int insertar(Curso curso) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "insert into curso (descripcion) values (?)";
+        String sql =  "insert into curso  values "
+                + "(?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, curso.getDescripcion()));
         Conexion con = null;
