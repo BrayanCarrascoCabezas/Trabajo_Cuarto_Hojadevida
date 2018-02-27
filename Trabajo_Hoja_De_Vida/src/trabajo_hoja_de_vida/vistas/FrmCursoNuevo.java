@@ -19,40 +19,39 @@ import java.util.List;
 import javax.swing.*;
 /**
  *
- * @author WILMACX
+ * @author FABRICIO CONSTANTE
  */
 public class FrmCursoNuevo extends JInternalFrame{
-    JLabel lblTitulo,lblId,lblDescripcion;
-    JTextField txtId,txtDescripcion;
+    JLabel lblTitulo1,lblCodigo,lblDescripcion;
+    JTextField txtTitulo1,txtCodigo,txtDescripcion;
+    JButton btnLimpiar;
+    JButton btnAceptar;
     
-    JPanel pnlSuperior,pnlCentral,pnlInferior;
-    JButton btnAceptar,btnLimpiar;
-    
+    JPanel pnlCentral;
+    JPanel pnlPie;
     public FrmCursoNuevo(){
-        this.setSize(300,200);
+        this.setSize(200,200);
         this.setLayout(new BorderLayout());
      
-        pnlSuperior= new JPanel();
         pnlCentral= new JPanel();
-        pnlInferior= new JPanel();
-        pnlSuperior.setLayout(new GridLayout(1, 1, 5, 5));
+        pnlPie= new JPanel();
         pnlCentral.setLayout(new GridLayout(2, 2, 5, 5));
-        pnlInferior.setLayout(new GridLayout(1,2,5,5));     
+        pnlPie.setLayout(new GridLayout(1,2,5,5));
         
-        lblTitulo = new JLabel("DATOS DE LA CATEGORÍA");
-                
-        lblId= new JLabel("CODIGO:");
+        lblTitulo1 = new JLabel("DATOS DEL CURSO");
+        
+        lblCodigo= new JLabel("CODIGO:");
         lblDescripcion= new JLabel("DESCRIPCION:");
         
-        txtId = new JTextField(2);
+        txtTitulo1 = new JTextField(2);
+        txtCodigo= new JTextField(2);
         txtDescripcion= new JTextField(2);
-        
-        btnAceptar= new JButton("Aceptar");
+
         btnLimpiar= new JButton("Limpiar");
+        btnAceptar= new JButton("Aceptar");
         
-        pnlSuperior.add(lblTitulo);
-        pnlCentral.add(lblId);
-        pnlCentral.add(txtId);
+        pnlCentral.add(lblCodigo);
+        pnlCentral.add(txtCodigo);
         pnlCentral.add(lblDescripcion);
         pnlCentral.add(txtDescripcion);
         
@@ -66,27 +65,27 @@ public class FrmCursoNuevo extends JInternalFrame{
                 }
             }
         });
-               
-        pnlInferior.add(btnLimpiar);
-        pnlInferior.add(btnAceptar);
+        
+        pnlPie.add(btnLimpiar);
+        pnlPie.add(btnAceptar);
         pnlCentral.setBackground(Color.getHSBColor(100,60,270).brighter());
-        this.add(pnlSuperior, BorderLayout.NORTH);
+        this.add(lblTitulo1, BorderLayout.NORTH);
         this.add(pnlCentral, BorderLayout.CENTER);
-        this.add(pnlInferior, BorderLayout.SOUTH);  
-        this.setClosable(true); 
+        this.add(pnlPie, BorderLayout.SOUTH);  
+        this.setClosable(true);        
+        
     }
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         FrmCursoNuevo frmMenu= new FrmCursoNuevo();
         frmMenu.setVisible(true);
-    } 
-            public void btnAceptarActionListener(ActionEvent e){
+    }  
+    public void btnAceptarActionListener(ActionEvent e){
         
         try {
             
             Curso curso = new Curso();
-            curso.setCodigo(Integer.parseInt(txtId.getText()));
+            curso.setCodigo(Integer.parseInt(txtCodigo.getText()));
             curso.setDescripcion(txtDescripcion.getText());
-
             ICurso cursoDao = new CursoImpl();
             
             if(cursoDao.insertar(curso)>0){
@@ -103,4 +102,6 @@ public class FrmCursoNuevo extends JInternalFrame{
                 "Transacción", JOptionPane.INFORMATION_MESSAGE);
             
         }
-}}
+      
+    }
+}
