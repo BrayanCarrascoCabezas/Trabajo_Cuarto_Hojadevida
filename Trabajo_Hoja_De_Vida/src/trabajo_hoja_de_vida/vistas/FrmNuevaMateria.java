@@ -1,6 +1,6 @@
 
 package trabajo_hoja_de_vida.vistas;
-import trabajo_hoja_de_vida.rnegocio.Impl.*;
+import trabajo_hoja_de_vida.rnegocio.impl.*;
 import trabajo_hoja_de_vida.rnegocio.dao.*;
 import trabajo_hoja_de_vida.rnegocio.entidades.*;
 import java.awt.BorderLayout;
@@ -33,6 +33,7 @@ public class FrmNuevaMateria extends JInternalFrame{
         
         this.setSize(250,160);
         this.setLayout(new BorderLayout());
+        this.setClosable(true);
         pnlCentral= new JPanel();
         pnlPie= new JPanel();
         pnlCentral.setLayout(new GridLayout(2, 2, 5, 5));

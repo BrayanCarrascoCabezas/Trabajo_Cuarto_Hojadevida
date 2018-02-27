@@ -566,7 +566,7 @@ public class FrmMenuPrincipal extends JFrame {
         mnbPrincipal.add(mnCursoSeminario);
         mnbPrincipal.add(mnExp_Directiva);
         mnbPrincipal.add(mnDeclaracion);
-        mnbPrincipal.add(mnCursoMateria);
+        mnbPrincipal.add(mnMateria);
         this.setLayout(new BorderLayout());
         this.add(mnbPrincipal, BorderLayout.NORTH);
         this.add(dkpEscritorio, BorderLayout.CENTER);
