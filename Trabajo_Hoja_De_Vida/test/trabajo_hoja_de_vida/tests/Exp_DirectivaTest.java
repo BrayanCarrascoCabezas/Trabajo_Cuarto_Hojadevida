@@ -1,12 +1,13 @@
 package trabajo_hoja_de_vida.tests;
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 import trabajo_hoja_de_vida.rnegocio.dao.IExp_Directiva;
 import trabajo_hoja_de_vida.rnegocio.entidades.Exp_Directiva;
 import trabajo_hoja_de_vida.rnegocio.impl.Exp_DirectivaImpl;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import java.util.ArrayList;
-import java.util.List;
+import trabajo_hoja_de_vida.accesodatos.*;
 
 public class Exp_DirectivaTest {
      public Exp_DirectivaTest() {
