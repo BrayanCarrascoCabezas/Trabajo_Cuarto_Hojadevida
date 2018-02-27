@@ -22,7 +22,8 @@ public class CursoImpl implements ICurso {
         String sql =  "insert into curso  values "
                 + "(?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, curso.getDescripcion()));
+        lstPar.add(new Parametro(1, curso.getCodigo()));
+        lstPar.add(new Parametro(2, curso.getDescripcion()));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -41,8 +42,8 @@ public class CursoImpl implements ICurso {
         int numFilasAfectadas = 0;
         String sql = "update  curso set descripcion=? where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, curso.getDescripcion()));
-        lstPar.add(new Parametro(2, curso.getCodigo()));
+        lstPar.add(new Parametro(1, curso.getCodigo()));
+        lstPar.add(new Parametro(2, curso.getDescripcion()));
         Conexion con = null;
         try {
             con = new Conexion();
