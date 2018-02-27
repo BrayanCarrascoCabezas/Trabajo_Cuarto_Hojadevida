@@ -411,13 +411,13 @@ public class FrmMenuPrincipal extends JFrame {
                 mniListaExp_DocenteActionPerformed(e);
             }
         });
-        
-        mnCurso.add(mniNuevoExp_Docente);
-        mnCurso.add(mniModificaExp_Docente);
-        mnCurso.add(mniEliminaExp_Docente);
-        mnCurso.addSeparator();
-        mnCurso.add(mniBuscaExp_Docente);
-        mnCurso.add(mniListaExp_Docente);
+//        
+//        mnCurso.add(mniNuevoExp_Docente);
+//        mnCurso.add(mniModificaExp_Docente);
+//        mnCurso.add(mniEliminaExp_Docente);
+//        mnCurso.addSeparator();
+//        mnCurso.add(mniBuscaExp_Docente);
+//        mnCurso.add(mniListaExp_Docente);
            
          //Materia       
          mnMateria= new JMenu("Materia");
@@ -555,6 +555,7 @@ public class FrmMenuPrincipal extends JFrame {
         mnInicio.add(mniSalir);
         
         mnbPrincipal.add(mnInicio);
+        mnbPrincipal.add(mnCurso);
         mnbPrincipal.add(mnDocente);
         mnbPrincipal.add(mnAdicional);
         mnbPrincipal.add(mnArea);
