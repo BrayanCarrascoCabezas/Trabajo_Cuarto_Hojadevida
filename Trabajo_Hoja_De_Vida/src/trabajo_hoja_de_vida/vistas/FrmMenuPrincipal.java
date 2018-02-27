@@ -102,7 +102,19 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaCursoSeminario;
     JMenuItem mniBuscarCursoSeminario;
     JMenuItem mniListaCursoSeminario;
+   
 
+    //Curso Materia 
+    JMenu mnCursoMateria;
+    JMenuItem mniNuevoCursoM;
+    JMenuItem mniModificaCursoM;
+    JMenuItem mniEliminaCursoM;
+    JMenuItem mniBuscarCursoM;
+    JMenuItem mniListaCursoM;
+    
+    
+    
+    
     JDesktopPane dkpEscritorio;
 
     public FrmMenuPrincipal() {
@@ -396,7 +408,36 @@ public class FrmMenuPrincipal extends JFrame {
         mnCurso.add(mniBuscaExp_Docente);
         mnCurso.add(mniListaExp_Docente);
            
+         // Curso materia       
+        mnCursoMateria= new JMenu("Curso materia");
+        mniNuevoCursoM= new JMenuItem("Nuevo");
+        mniNuevoCursoM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoCursoMActionPerformed(e);
+            }
+        });
+        mniModificaCursoM= new JMenuItem("Modifica");
+        mniEliminaCursoM= new JMenuItem("Elimina");
         
+        mniListaCursoM= new JMenuItem("Lista");
+
+        mniListaCursoM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaCursoActionPerformed(e);
+            }
+        });
+        
+        mnCurso.add(mniNuevoCursoM);
+        mnCurso.addSeparator();
+        mnCurso.add(mniModificaCursoM);
+        mnCurso.addSeparator();
+        mnCurso.add(mniEliminaCursoM);
+        mnCurso.addSeparator();
+       
+        mnCurso.addSeparator();
+        mnCurso.add(mniListaCursoM);
         
         
         //EXP_DIRECTIVA
@@ -485,6 +526,20 @@ public class FrmMenuPrincipal extends JFrame {
         this.setExtendedState(MAXIMIZED_BOTH); //Para maximizar
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //Para terminar el programa
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //ExpProfecional
     public void mniNuevoExp_ProfecionalActionPerformed(ActionEvent e){
@@ -634,11 +689,21 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
+    //Curso materia
+        public void mniNuevoCursoMActionPerformed(ActionEvent e){
+            FrmNuevoCurso_Materia frm = new FrmNuevoCurso_Materia();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    public void mniListaCursoMActionPerformed(ActionEvent e)
+    {
+    FrmListaCurso_Materia frm= new FrmListaCurso_Materia();
+    dkpEscritorio.add(frm);
+    frm.setVisible(true);
     
     
     
-    
-    
+    }
     
     /////////////////////////////////////////////////////////////////////
     public void mniSalirActionPerformed(ActionEvent e){
