@@ -104,13 +104,14 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniListaCursoSeminario;
    
 
-    //Curso Materia 
-    JMenu mnCursoMateria;
-    JMenuItem mniNuevoCursoM;
-    JMenuItem mniModificaCursoM;
-    JMenuItem mniEliminaCursoM;
-    JMenuItem mniBuscarCursoM;
-    JMenuItem mniListaCursoM;
+    // Materia 
+     JMenu mnMateria;
+    JMenuItem mniNuevaMateria;
+    JMenuItem mniModificaMateria;
+    JMenuItem mniEliminaMateria;
+    JMenuItem mniBuscaMateria;
+    JMenuItem mniListaMateria;
+    
     
     
 
@@ -418,37 +419,37 @@ public class FrmMenuPrincipal extends JFrame {
         mnCurso.add(mniBuscaExp_Docente);
         mnCurso.add(mniListaExp_Docente);
            
-         // Curso materia       
-        mnCursoMateria= new JMenu("Curso materia");
-        mniNuevoCursoM= new JMenuItem("Nuevo");
-        mniNuevoCursoM.addActionListener(new ActionListener() {
+         //Materia       
+         mnMateria= new JMenu("Materia");
+        mniNuevaMateria= new JMenuItem("Nuevo");
+        mniNuevaMateria.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mniNuevoCursoMActionPerformed(e);
+                mniNuevaMateriaActionPerformed(e);
             }
         });
-        mniModificaCursoM= new JMenuItem("Modifica");
-        mniEliminaCursoM= new JMenuItem("Elimina");
-        
-        mniListaCursoM= new JMenuItem("Lista");
+        mniModificaMateria= new JMenuItem("Modifica");
+        mniEliminaMateria= new JMenuItem("Elimina");
+        mniBuscaMateria= new JMenuItem("Busca");
+        mniListaMateria= new JMenuItem("Lista");
 
-        mniListaCursoM.addActionListener(new ActionListener() {
+        mniListaCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mniListaCursoActionPerformed(e);
             }
         });
         
-        mnCurso.add(mniNuevoCursoM);
-        mnCurso.addSeparator();
-        mnCurso.add(mniModificaCursoM);
-        mnCurso.addSeparator();
-        mnCurso.add(mniEliminaCursoM);
-        mnCurso.addSeparator();
-       
-        mnCurso.addSeparator();
-        mnCurso.add(mniListaCursoM);
-        
+        mnMateria.add(mniNuevaMateria);
+        mnMateria.addSeparator();
+        mnMateria.add(mniModificaMateria);
+        mnMateria.addSeparator();
+        mnMateria.add(mniEliminaMateria);
+        mnMateria.addSeparator();
+        mnMateria.add(mniBuscaMateria);
+        mnMateria.addSeparator();
+        mnMateria.add(mniListaMateria);
+
         
         //EXP_DIRECTIVA
         mnExp_Directiva= new JMenu("EXPERIENCIA_DIRECTIVA");
@@ -734,15 +735,15 @@ public class FrmMenuPrincipal extends JFrame {
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
-    //Curso materia
-        public void mniNuevoCursoMActionPerformed(ActionEvent e){
-            FrmNuevoCurso_Materia frm = new FrmNuevoCurso_Materia();
+    //Materia
+        public void mniNuevaMateriaActionPerformed(ActionEvent e){
+        FrmNuevaMateria frm = new FrmNuevaMateria();
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }
-    public void mniListaCursoMActionPerformed(ActionEvent e)
+    public void mniListaMateriaActionPerformed(ActionEvent e)
     {
-    FrmListaCurso_Materia frm= new FrmListaCurso_Materia();
+    FrmListaMateria frm= new FrmListaMateria();
     dkpEscritorio.add(frm);
     frm.setVisible(true);
     }
