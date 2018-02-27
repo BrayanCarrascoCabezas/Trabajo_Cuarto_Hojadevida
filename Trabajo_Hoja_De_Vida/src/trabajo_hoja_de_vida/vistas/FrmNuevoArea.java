@@ -42,8 +42,8 @@ public class FrmNuevoArea extends JInternalFrame{
         lblCodigo= new JLabel("Código:");
         lblDescripcion= new JLabel("Descripcion:");
         
-        txtCodigo = new JTextField(2);
-        txtDescripcion= new JTextField(2);
+        txtCodigo = new JTextField();
+        txtDescripcion= new JTextField();
         
         
         btnLimpiar= new JButton("Limpiar");
@@ -81,7 +81,7 @@ public class FrmNuevoArea extends JInternalFrame{
         AreaGeneral area = new AreaGeneral();
             IAreaGeneral areaDao = new AreaImpl();
             area.setCodigo(Integer.parseInt(txtCodigo.getText()));
-            area.setDescripcion(txtDescripcion.getText());
+            area.setdescripcion(txtDescripcion.getText());
             
           
             
