@@ -12,10 +12,7 @@ import trabajo_hoja_de_vida.rnegocio.dao.ICurso;
 import trabajo_hoja_de_vida.rnegocio.entidades.Curso;
 import trabajo_hoja_de_vida.rnegocio.impl.CursoImpl;
 
-/**
- *
- * @author FabricioConstante
- */
+
 public class FrmListaDeclaracion extends JInternalFrame{
     JLabel lblTitulo;
     JTable tabla;
