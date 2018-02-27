@@ -15,37 +15,35 @@ import trabajo_hoja_de_vida.rnegocio.impl.*;
 import trabajo_hoja_de_vida.rnegocio.entidades.*;
 import java.util.*;
 public class FrmNuevoResumen   extends JInternalFrame{
-    
-    
  List<Docente> lstDocentes;
     JComboBox<Docente> cmbDocente;
     JLabel titulo0;
     JLabel cod_Docente;
     JLabel descripcion;
-
+    
     JTextField txcod_Docente;
     JTextField txdescripcion;
     JComboBox cmbDocentes;
-
+    
     JButton btnLimpiar;
     JButton btnAceptar;
     JPanel pnlcentral;
     JPanel pnlpie;
-
+    
     public FrmNuevoResumen() {
-
+        this.setTitle("Ingreso de resumen de hoja de viida ");
         this.setSize(640, 400);
         this.setLayout(new BorderLayout());
         pnlcentral = new JPanel();
         pnlpie = new JPanel();
-
-        pnlcentral.setLayout(new GridLayout(10, 2, 5, 5));
+        
+        pnlcentral.setLayout(new GridLayout(10, 1, 5, 5));
         pnlpie.setLayout(new GridLayout(1, 2, 5, 5));
         titulo0 = new JLabel("DATOS DEL RESUMEN");
-
+        
         cod_Docente = new JLabel("CODIGO DOCENTE");
         descripcion = new JLabel("DESCRIPCION");
-
+        
         txcod_Docente = new JTextField();
         txdescripcion = new JTextField();
         
@@ -73,45 +71,45 @@ public class FrmNuevoResumen   extends JInternalFrame{
         this.add(titulo0, BorderLayout.NORTH);
         this.add(pnlcentral, BorderLayout.CENTER);
         this.add(pnlpie, BorderLayout.SOUTH);
-
+        
     }
-
+    
     public static void main(String[] args) {
-
+        
         FrmNuevoResumen frmMenu = new FrmNuevoResumen();
         frmMenu.setVisible(true);
-
+        
     }
-
+    
     public void CargarDocente() {
-
-        IDocente curDao = new DocenteImpl();
+        
+        IDocente docenteDao = new DocenteImpl();
         try {
-            lstDocentes = curDao.obtener();
+            lstDocentes = docenteDao.obtener();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR DOCENTES ", "ERROR"
+                    + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
-
+        
     }
-
+    
     public void btnAceptarActionListener(ActionEvent e) {
+        Resumen resumen = new Resumen();
         IResumen resumenDao = new ResumenImpl();
-
+        resumen.setDocente((Docente) cmbDocente.getSelectedItem());
+        resumen.setDescripcion(txdescripcion.getText());
+        
         try {
-
-            Resumen resum= new Resumen();
-           resum.setDocente((Docente) cmbDocente.getSelectedItem());           
-            resum.setDescripcion(txdescripcion.getText());          
-            if (resumenDao.insertar(resum) > 0) {
-                JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
-
+            if (resumenDao.insertar(resumen) > 0) {
+                JOptionPane.showMessageDialog(this, "Registrado correctamente!!",
+                        "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "ERROR", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error desconocido: ",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
-
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "ERROR !! " + ex.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
-        }
-
+            JOptionPane.showMessageDialog(this, "Error desconocido: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }        
     }
 }

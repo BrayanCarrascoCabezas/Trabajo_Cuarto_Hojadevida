@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package trabajo_hoja_de_vida.rnegocio.impl;
+
 import com.sun.javafx.tk.FocusCause;
 import trabajo_hoja_de_vida.accesodatos.*;
 import trabajo_hoja_de_vida.accesodatos.Parametro;
@@ -32,7 +33,12 @@ public class DocenteImpl implements IDocente {
         lstPar.add(new Parametro(3, docente.getNombres()));
         lstPar.add(new Parametro(4, docente.getApellidos()));
         lstPar.add(new Parametro(5, docente.getDireccion()));
-        lstPar.add(new Parametro(6, docente.getFecha_nac()));
+       lstPar.add(new Parametro(6, docente.getFecha_nac()));
+//        if (docente.getFecha_nac()instanceof java.util.Date) {
+//            listPar.add(new Parametro(6, new java.sql.Date(((java.util.Date) docente.getFecha_nac()).getTime())));
+//        } else {
+//            listPar.add(new Parametro(6, docente.getFecha_nac()));
+//        }
         lstPar.add(new Parametro(7, docente.getEmail()));
         lstPar.add(new Parametro(8, docente.getSexo()));
         lstPar.add(new Parametro(9, docente.getTelefono()));
@@ -86,9 +92,9 @@ public class DocenteImpl implements IDocente {
     @Override
     public int eliminar(Docente docente) throws Exception {
         int numFilasAfectadas = 0;
-         String sql = "DELETE FROM docente  where codigo=?";
+        String sql = "DELETE FROM docente  where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, docente.getCod_docente()));       
+        lstPar.add(new Parametro(1, docente.getCod_docente()));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -122,17 +128,18 @@ public class DocenteImpl implements IDocente {
                 docente.setNombres(rst.getString(3));
                 docente.setApellidos(rst.getString(4));
                 docente.setDireccion(rst.getString(5));
-//                docente.setFecha_nac(rst.getString(6));
+                docente.setFecha_nac(rst.getString(6));
                 docente.setSexo(rst.getString(8));
                 docente.setEmail(rst.getString(7));
                 docente.setTelefono(rst.getString(9));
-                   
+
             }
         } catch (Exception e) {
             throw e;
         } finally {
-            if(con!=null)
-            con.desconectar();
+            if (con != null) {
+                con.desconectar();
+            }
         }
         return docente;
     }
@@ -140,13 +147,13 @@ public class DocenteImpl implements IDocente {
     @Override
     public List<Docente> obtener() throws Exception {
         List<Docente> lista = new ArrayList<>();
-         String sql = "SELECT * FROM docente ";        
+        String sql = "SELECT * FROM docente ";
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, null);
-            Docente docente=null;
+            Docente docente = null;
             while (rst.next()) {
                 docente = new Docente();
                 docente.setCod_docente(rst.getInt(1));
@@ -154,7 +161,7 @@ public class DocenteImpl implements IDocente {
                 docente.setNombres(rst.getString(3));
                 docente.setApellidos(rst.getString(4));
                 docente.setDireccion(rst.getString(5));
-//                docente.setFecha_nac(rst.getString(6));
+                docente.setFecha_nac(rst.getString(6));
                 docente.setSexo(rst.getString(7));
                 docente.setEmail(rst.getString(8));
                 docente.setTelefono(rst.getString(9));
@@ -163,8 +170,9 @@ public class DocenteImpl implements IDocente {
         } catch (Exception e) {
             throw e;
         } finally {
-            if(con!=null)
-            con.desconectar();
+            if (con != null) {
+                con.desconectar();
+            }
         }
         return lista;
     }

@@ -1,35 +1,48 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package trabajo_hoja_de_vida.vistas;
-import trabajo_hoja_de_vida.rnegocio.Impl.*;
-import trabajo_hoja_de_vida.rnegocio.dao.*;
-import trabajo_hoja_de_vida.rnegocio.entidades.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import trabajo_hoja_de_vida.rnegocio.dao.IDocente;
+import trabajo_hoja_de_vida.rnegocio.entidades.Docente;
+import trabajo_hoja_de_vida.rnegocio.impl.DocenteImpl;
+
 /**
  *
- * @author JOSEPH
+ * @author WILCXMAC
  */
-
-public class FrmMateria extends JInternalFrame{
-       JLabel lblTitulo1,lblTitulo2;
-    JLabel lblGenero;
-    JLabel lblTitulo0;
+public class FrmAdicionalNuevo extends JInternalFrame{
     
-    JTextField txtTitulo1,txtTitulo2;
+    JLabel lblTitulo1,lblTitulo2;
+
+    JLabel lblTitulo0;
+   
+    JTextField txtTitulo1;
+        List<Docente> lstAdicional;
+    JComboBox<Docente> cmbAdiconal;
+    
 
     JButton btnLimpiar;
     JButton btnAceptar;
     
     JPanel pnlCentral;
     JPanel pnlPie;
-    public FrmMateria() {
+    public FrmAdicionalNuevo() {
         
         this.setSize(250,160);
         this.setLayout(new BorderLayout());
@@ -38,24 +51,24 @@ public class FrmMateria extends JInternalFrame{
         pnlCentral.setLayout(new GridLayout(2, 2, 5, 5));
         pnlPie.setLayout(new GridLayout(1,2,5,5));
         
-        lblTitulo0 = new JLabel("MATERIA");
+        lblTitulo0 = new JLabel("ADICIONAL");
         
-        lblTitulo1= new JLabel(" CODIGO :");
-        lblTitulo2= new JLabel(" NOMBRE :");
- 
-        
-
+        lblTitulo1= new JLabel(" DOCENTE:");
+        lblTitulo2= new JLabel("DESCRIPCION:");
+       
+         cargarDocentes();
+         cmbAdiconal= new JComboBox(lstAdicional.toArray());
         txtTitulo1 = new JTextField(2);
-        txtTitulo2= new JTextField(2);
+       
 
 
         btnLimpiar= new JButton("Limpiar");
         btnAceptar= new JButton("Aceptar");
         
         pnlCentral.add(lblTitulo1);
-        pnlCentral.add(txtTitulo1);
+        pnlCentral.add(cmbAdiconal);
         pnlCentral.add(lblTitulo2);
-        pnlCentral.add(txtTitulo2);
+        pnlCentral.add(txtTitulo1);
 
   
 
@@ -80,33 +93,24 @@ public class FrmMateria extends JInternalFrame{
         
     }
     public static void main(String[] args) {
-        FrmMateria frmMenu= new FrmMateria();
+        FrmAdicionalNuevo frmMenu= new FrmAdicionalNuevo();
         frmMenu.setVisible(true);
     } 
     
-public void btnAceptarActionListener(ActionEvent e){
-        
-        try {
-            
-            Materia materia = new Materia();
-            materia.setCodigo(Integer.parseInt(txtTitulo1.getText()));
-            materia.setNombre(txtTitulo2.getText());
-
-            IMateria materiaDao = new MateriaImpl();
-            
-            if(materiaDao.insertar(materia)>0){
-                JOptionPane.showMessageDialog(this,"Registro Correcto!!",
-                        "Transacción correcta",JOptionPane.INFORMATION_MESSAGE);
-            }else {
-                JOptionPane.showMessageDialog(this,"Error de Guardado!!",
-                "ERROR", JOptionPane.ERROR_MESSAGE); 
-            }
-            
-            
-        } catch (Exception x) {
-              JOptionPane.showMessageDialog(this,"Proceso incorrecto!!" + x.getMessage(),
+    public void btnAceptarActionListener(ActionEvent e){
+        JOptionPane.showMessageDialog(this,"Proceso correcto!!",
                 "Transacción", JOptionPane.INFORMATION_MESSAGE);
-            
+    }
+    
+            public void cargarDocentes() {
+        try {
+       IDocente estudiante=new DocenteImpl();
+       lstAdicional=estudiante.obtener();
+   
+        } catch (Exception e) {System.out.println("ERROR"+e.getMessage());
         }
-}
+
+  
+    }
+ 
 }

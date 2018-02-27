@@ -16,6 +16,6 @@ public interface IArea_docente {
      public int insertar(Area_docente area_docente) throws Exception;
     public int modificar(Area_docente area_docente) throws Exception;
     public int eliminar(Area_docente area_docente) throws Exception;
-    public Area_docente obtener(int Codigo_docente) throws Exception;
+    public Area_docente obtener(int Codigo) throws Exception;
     public List<Area_docente> obtener() throws Exception;  
 }

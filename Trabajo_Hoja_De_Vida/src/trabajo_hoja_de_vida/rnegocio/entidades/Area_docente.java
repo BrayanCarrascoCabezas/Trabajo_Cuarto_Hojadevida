@@ -5,20 +5,22 @@
  */
 package trabajo_hoja_de_vida.rnegocio.entidades;
 
+import java.awt.geom.Area;
+
 /**
  *
  * @author Segovia
  */
 public class Area_docente {
     private Docente docente;
-    //private Area area; 
+    private AreaGeneral areageneral; 
 
     public Area_docente() {
     }
 
-    public Area_docente(Docente docente/*,Area area*/) {
+    public Area_docente(Docente docente, AreaGeneral areageneral) {
         this.docente = docente;
-      //  this.area = area;
+        this.areageneral = areageneral;
     }
 
     public Docente getDocente() {
@@ -28,13 +30,18 @@ public class Area_docente {
     public void setDocente(Docente docente) {
         this.docente = docente;
     }
-/*
-    public Area getArea() {
-        return area;
+
+    public AreaGeneral getAreageneral() {
+        return areageneral;
     }
 
-    public void setArea(Area area) {
-        this.area = area;
+    public void setAreageneral(AreaGeneral areageneral) {
+        this.areageneral = areageneral;
     }
-  */  
+
+   
+    
+
+    
+   
 }

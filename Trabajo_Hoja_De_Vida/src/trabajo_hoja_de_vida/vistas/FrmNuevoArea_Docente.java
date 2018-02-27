@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package trabajo_hoja_de_vida.vistas;
 
 import java.awt.BorderLayout;
@@ -13,39 +17,42 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import trabajo_hoja_de_vida.rnegocio.dao.IAreaGeneral;
+import trabajo_hoja_de_vida.rnegocio.dao.IArea_docente;
 import trabajo_hoja_de_vida.rnegocio.dao.IDocente;
-import trabajo_hoja_de_vida.rnegocio.dao.IPublicacion;
+import trabajo_hoja_de_vida.rnegocio.entidades.AreaGeneral;
+import trabajo_hoja_de_vida.rnegocio.entidades.Area_docente;
 import trabajo_hoja_de_vida.rnegocio.entidades.Docente;
-import trabajo_hoja_de_vida.rnegocio.entidades.Publicacion;
+import trabajo_hoja_de_vida.rnegocio.impl.AreaImpl;
+import trabajo_hoja_de_vida.rnegocio.impl.Area_docenteImpl;
 import trabajo_hoja_de_vida.rnegocio.impl.DocenteImpl;
-import trabajo_hoja_de_vida.rnegocio.impl.PublicacionImpl;
 
-/**
- *
- * @author Francisco
- */
-public class FrmNuevoPublicacion extends JInternalFrame{
+/*
+      private Docente docente;
+    private AreaGeneral areageneral; 
+    */
+ 
+public class FrmNuevoArea_Docente  extends JInternalFrame{
+   
     List<Docente> lstDocente;
     JComboBox<Docente> cmbDocente;
     
+    List<AreaGeneral> lstAreaGeneral;
+    JComboBox<AreaGeneral> cmbAreaGeneral;
     JLabel lblTitulo0;
-    JLabel lblCodigo;
-    JLabel lbltitulo;
-    JLabel lbleditorial;
-    JLabel lblaño;
     JLabel lblDocente;
-
-    JTextField txtCodigo;
-    JTextField txttitulo;
-    JTextField txteditorial;
-    JTextField txtaño;
+    JLabel lblAreaGeneral;
+        
     
+    JTextField txtDocente;
+    JTextField txtAreaGeneral;
+        
     JButton btnLimpiar;
     JButton btnAceptar;
     
     JPanel pnlCentral;
     JPanel pnlPie;
-    public FrmNuevoPublicacion() {
+    public FrmNuevoArea_Docente () {
         this.setSize(300, 300);
         this.setLayout(new BorderLayout());
         this.setClosable(true);
@@ -54,37 +61,25 @@ public class FrmNuevoPublicacion extends JInternalFrame{
         pnlCentral.setLayout(new GridLayout(10, 2, 5, 5));
         pnlPie.setLayout(new GridLayout(1,2,5,5));
         
-        lblTitulo0 = new JLabel("Datos Producto");
+        lblTitulo0 = new JLabel("Datos Area_Docente");
         
-        lblCodigo = new JLabel("Código:");
-        lbltitulo = new JLabel("Titulo de la Publicacion:");
-        lbleditorial= new JLabel("Editorial:");
-        lblaño= new JLabel("Año de publicacion:");
-        lblDocente  = new JLabel("Docente:");
-       
-
-        txtCodigo = new JTextField(2);
-        txttitulo= new JTextField(2);
-        txteditorial = new JTextField(2);
-        txtaño = new JTextField(2);
+        lblDocente = new JLabel("Id Docente:");
+        lblAreaGeneral = new JLabel("ID Areageneral:");
+        
+        
         cargarDocente();
-        
         cmbDocente = new JComboBox(lstDocente.toArray());
-        btnLimpiar = new JButton("Limpiar");
-        btnAceptar = new JButton("Aceptar");
+        cargarAreaGeneral();
+        cmbAreaGeneral = new JComboBox(lstAreaGeneral.toArray());
         
-        pnlCentral.add(lblCodigo);
-        pnlCentral.add(txtCodigo);
-       
-        pnlCentral.add(lbltitulo);
-        pnlCentral.add(txttitulo);
-        pnlCentral.add(lbleditorial);
-        pnlCentral.add(txteditorial);
-        pnlCentral.add(lblaño);
-        pnlCentral.add(txtaño);
+        btnLimpiar= new JButton("Limpiar");
+        btnAceptar= new JButton("Aceptar");
       
         pnlCentral.add(lblDocente);
         pnlCentral.add(cmbDocente);
+        pnlCentral.add(lblAreaGeneral);
+        pnlCentral.add(cmbAreaGeneral);
+       
         
                 
         btnAceptar.addActionListener(new ActionListener() {
@@ -105,35 +100,38 @@ public class FrmNuevoPublicacion extends JInternalFrame{
         this.add(pnlCentral, BorderLayout.CENTER);
         this.add(pnlPie, BorderLayout.SOUTH);        
     }
-    
-    
     public static void main(String[] args) {
-        FrmNuevoPublicacion frmMenu= new FrmNuevoPublicacion();
+        FrmNuevoArea_Docente  frmMenu= new FrmNuevoArea_Docente ();
         frmMenu.setVisible(true);
     } 
-    
-    
     public void cargarDocente(){
         IDocente docenteDao = new DocenteImpl();
         try {
             lstDocente = docenteDao.obtener();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar arreglate!!",
+            JOptionPane.showMessageDialog(this,"Error al cargar los Proveedores!!",
+                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }       
+    }
+    
+    public void cargarAreaGeneral(){
+        IAreaGeneral areageneralDao = new AreaImpl();
+        try {
+            lstAreaGeneral = areageneralDao.obtener();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error al cargar los FacturaCompra!!",
                 "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }       
     }
     public void btnAceptarActionListener(ActionEvent e){
-        IPublicacion publicacionDao = new PublicacionImpl();
-        Publicacion publicacion = new Publicacion();
-        publicacion.setCod_publicacion(Integer.parseInt(txtCodigo.getText()));
-        publicacion.setDocente((Docente) cmbDocente.getSelectedItem());
-        publicacion.setTitulo(txttitulo.getText());
-        publicacion.setEditorial(txteditorial.getText());
-        publicacion.setAño(txtaño.getText());
+        IArea_docente areadocenteDao = new Area_docenteImpl();
+        Area_docente areadocente = new Area_docente();
+       areadocente.setDocente((Docente) cmbDocente.getSelectedItem());
+       areadocente.setAreageneral((AreaGeneral) cmbAreaGeneral.getSelectedItem());
         
-       
+        
         try {
-            if(publicacionDao.insertar(publicacion)>0){
+            if(areadocenteDao.insertar(areadocente)>0){
                 JOptionPane.showMessageDialog(this,"Guaradado correctamente!!",
                 "Transacción", JOptionPane.INFORMATION_MESSAGE);
             }else{
@@ -146,12 +144,5 @@ public class FrmNuevoPublicacion extends JInternalFrame{
         }
         
     }
+    
 }
-    
-    
-    
-    
-    
-    
-    
-

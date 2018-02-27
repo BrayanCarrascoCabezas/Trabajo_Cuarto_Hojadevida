@@ -33,8 +33,8 @@ public class FrmListaPublicacion extends JInternalFrame {
     }
     public void cargarTabla(){
         modelo = new DefaultTableModel();
-        modelo.addColumn("Codigo de publicacion");
-        modelo.addColumn("Codigo del docente");
+         modelo.addColumn("Codigo de publicacion");
+        modelo.addColumn("Docente");
         modelo.addColumn("Titulo");
         modelo.addColumn("Año de Publicacion");
         modelo.addColumn("Editorial"); 
@@ -47,7 +47,7 @@ public class FrmListaPublicacion extends JInternalFrame {
         }
         
         for(Publicacion est:lista){
-            modelo.addRow(new Object[]{est.getCod_publicacion(),est.getDocente(),est.getTitulo(),est.getAño(),est.getEditorial()});
+            modelo.addRow(new Object[]{est.getCod_publicacion(),est.getDocente(),est.getTitulo(),est.getEditorial(),est.getAño()});
         }
         tabla.setModel(modelo);
     }

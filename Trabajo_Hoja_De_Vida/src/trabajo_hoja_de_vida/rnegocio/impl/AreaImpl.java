@@ -1,55 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabajo_hoja_de_vida.rnegocio.impl;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import trabajo_hoja_de_vida.accesodatos.Conexion;
 import trabajo_hoja_de_vida.accesodatos.Parametro;
 import trabajo_hoja_de_vida.rnegocio.dao.IDocente;
-import trabajo_hoja_de_vida.rnegocio.dao.IResumen;
 import trabajo_hoja_de_vida.rnegocio.entidades.Docente;
-import trabajo_hoja_de_vida.rnegocio.entidades.Resumen;
+import trabajo_hoja_de_vida.rnegocio.entidades.AreaGeneral;
 
+import trabajo_hoja_de_vida.rnegocio.entidades.Publicacion;
+import trabajo_hoja_de_vida.rnegocio.dao.IAreaGeneral;
 
-public class ResumenImpl  implements IResumen{
-    
-    
-  @Override
-    public int insertar(Resumen resumen) throws Exception {
-         int numFilasAfectadas = 0;
-        String sql = "insert into Resumen  values (?,?)";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
-        lstPar.add(new Parametro(2, resumen.getDescripcion()));
-
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return numFilasAfectadas;
-
-    }
+public class AreaImpl implements IAreaGeneral {
 
     @Override
-    public int modificar(Resumen resumen) throws Exception {
+    public int insertar(AreaGeneral areaGeneral) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "UPDATE Resumen"
-                + "   SET cod_docente=?,descripcion=? where cod_docente=?";
+        String sql = "insert into area  values "
+                + "(?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
-        lstPar.add(new Parametro(2, resumen.getDescripcion()));
+        lstPar.add(new Parametro(1, areaGeneral.getCodigo()));
+        lstPar.add(new Parametro(2, areaGeneral.getdescripcion()));
 
         Conexion con = null;
         try {
@@ -67,11 +39,13 @@ public class ResumenImpl  implements IResumen{
     }
 
     @Override
-    public int eliminar(Resumen resumen) throws Exception {
+    public int modificar(AreaGeneral areaGeneral) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "DELETE FROM Resumen  where cod_docente=?";
+        String sql = "UPDATE area"
+                + "   SET =?, codigo=?, descripcion=? where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
+        lstPar.add(new Parametro(1, areaGeneral.getCodigo()));
+        lstPar.add(new Parametro(2, areaGeneral.getdescripcion()));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -88,54 +62,66 @@ public class ResumenImpl  implements IResumen{
     }
 
     @Override
-    public Resumen obtener(int cod_docente) throws Exception {
-
-        Resumen resumen = null;
-        String sql = "SELECT Cod_docente,descripcion FROM Resumen where Cod_docente=?;";
+    public int eliminar(AreaGeneral areaGeneral) throws Exception {
+        int numFilasAfectadas = 0;
+         String sql = "DELETE FROM area  where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
+        lstPar.add(new Parametro(1, areaGeneral.getCodigo()));       
+        Conexion con = null;
+        try {
+            con = new Conexion();
+            con.conectar();
+            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.desconectar();
+            }
+        }
+        return numFilasAfectadas;
+    }
+
+    @Override
+    public AreaGeneral obtener(int codigo) throws Exception {
+        AreaGeneral area = null;
+        String sql = "SELECT codigo, descripcion FROM area where codigo=?;";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, codigo));
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, lstPar);
             while (rst.next()) {
-                resumen = new Resumen();
-
-                IDocente docenteDao = new DocenteImpl();
-                Docente docente = docenteDao.obtener(rst.getInt(1));
-                resumen.setDocente(docente);
-                resumen.setDescripcion(rst.getString(2));
-
+                area = new AreaGeneral();
+                area.setCodigo(rst.getInt(1));
+                area.setDescripcion(rst.getString(2));
             }
         } catch (Exception e) {
             throw e;
         } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+            if(con!=null)
+            con.desconectar();
         }
-        return resumen;
+        return area;
     }
 
     @Override
-    public List<Resumen> obtener() throws Exception {
-       ArrayList<Resumen> lista = new ArrayList<>();
-         String sql = "SELECT * FROM Resumen ";        
+    public ArrayList<AreaGeneral> obtener() throws Exception {
+        ArrayList<AreaGeneral> lista = new ArrayList<>();
+         String sql = "SELECT codigo, descripcion FROM area ";        
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, null);
-           Resumen resumen=null;
+            AreaGeneral area=null;
             while (rst.next()) {
-                resumen= new Resumen();
-                IDocente docenteDao = new DocenteImpl();
-                Docente docente = docenteDao.obtener(rst.getInt(2));
-                resumen.setDocente(docente);
-                resumen.setDescripcion(rst.getString(3));
-                
-                lista.add(resumen);
+                area = new AreaGeneral();
+                area.setCodigo(rst.getInt(1));
+                area.setDescripcion(rst.getString(2));
+                lista.add(area);
             }
         } catch (Exception e) {
             throw e;
@@ -145,4 +131,5 @@ public class ResumenImpl  implements IResumen{
         }
         return lista;
     }
- }
+
+}

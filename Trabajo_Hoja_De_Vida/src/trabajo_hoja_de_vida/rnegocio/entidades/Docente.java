@@ -113,4 +113,8 @@ public class Docente {
         return nombres;
     }
 
+    
+    public  String mostrarcodigo(){
+        return String.valueOf(cod_docente);
+    }
 }
