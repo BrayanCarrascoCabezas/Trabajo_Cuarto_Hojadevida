@@ -20,8 +20,8 @@ public class ResumenImpl  implements IResumen{
     
   @Override
     public int insertar(Resumen resumen) throws Exception {
-        int numFilasAfectadas = 0;
-        String sql = "insert into Resumen  values (?,?,)";
+         int numFilasAfectadas = 0;
+        String sql = "insert into Resumen  values (?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
         lstPar.add(new Parametro(2, resumen.getDescripcion()));
@@ -46,7 +46,7 @@ public class ResumenImpl  implements IResumen{
     public int modificar(Resumen resumen) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "UPDATE Resumen"
-                + "   SET cod_Docente=?,descripcion=? where cod_Docente=?";
+                + "   SET cod_docente=?,descripcion=? where cod_docente=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
         lstPar.add(new Parametro(2, resumen.getDescripcion()));
@@ -69,7 +69,7 @@ public class ResumenImpl  implements IResumen{
     @Override
     public int eliminar(Resumen resumen) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "DELETE FROM Resumen  where cod_Docente=?";
+        String sql = "DELETE FROM Resumen  where cod_docente=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
         Conexion con = null;
@@ -88,10 +88,10 @@ public class ResumenImpl  implements IResumen{
     }
 
     @Override
-    public Resumen obtener(int cod_Docente) throws Exception {
+    public Resumen obtener(int cod_docente) throws Exception {
 
         Resumen resumen = null;
-        String sql = "SELECT Cod_Docente,descripcion FROM Resumen where Cod_Pregrado=?;";
+        String sql = "SELECT Cod_docente,descripcion FROM Resumen where Cod_docente=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, resumen.getDocente().getCod_docente()));
         Conexion con = null;
