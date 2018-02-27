@@ -17,8 +17,7 @@ public class AreaImpl implements IAreaGeneral {
     @Override
     public int insertar(AreaGeneral areaGeneral) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "insert into area  values "
-                + "(?,?)";
+        String sql = "INSERT INTO Area (Codigo,Descripcion) VALUES (?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, areaGeneral.getCodigo()));
         lstPar.add(new Parametro(2, areaGeneral.getdescripcion()));
@@ -41,8 +40,8 @@ public class AreaImpl implements IAreaGeneral {
     @Override
     public int modificar(AreaGeneral areaGeneral) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "UPDATE area"
-                + "   SET =?, codigo=?, descripcion=? where codigo=?";
+        String sql = "UPDATE Area"
+                + "   SET Codigo=?, Descripcion=? where Codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, areaGeneral.getCodigo()));
         lstPar.add(new Parametro(2, areaGeneral.getdescripcion()));
@@ -64,7 +63,7 @@ public class AreaImpl implements IAreaGeneral {
     @Override
     public int eliminar(AreaGeneral areaGeneral) throws Exception {
         int numFilasAfectadas = 0;
-         String sql = "DELETE FROM area  where codigo=?";
+         String sql = "DELETE FROM Area  where Codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, areaGeneral.getCodigo()));       
         Conexion con = null;
@@ -85,7 +84,7 @@ public class AreaImpl implements IAreaGeneral {
     @Override
     public AreaGeneral obtener(int codigo) throws Exception {
         AreaGeneral area = null;
-        String sql = "SELECT codigo, descripcion FROM area where codigo=?;";
+        String sql = "SELECT * FROM Area Where Codigo=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, codigo));
         Conexion con = null;
@@ -96,7 +95,7 @@ public class AreaImpl implements IAreaGeneral {
             while (rst.next()) {
                 area = new AreaGeneral();
                 area.setCodigo(rst.getInt(1));
-                area.setDescripcion(rst.getString(2));
+                area.setdescripcion(rst.getString(2));
             }
         } catch (Exception e) {
             throw e;
@@ -110,7 +109,7 @@ public class AreaImpl implements IAreaGeneral {
     @Override
     public ArrayList<AreaGeneral> obtener() throws Exception {
         ArrayList<AreaGeneral> lista = new ArrayList<>();
-         String sql = "SELECT codigo, descripcion FROM area ";        
+         String sql = "SELECT * FROM Area ";        
         Conexion con = null;
         try {
             con = new Conexion();
@@ -120,7 +119,7 @@ public class AreaImpl implements IAreaGeneral {
             while (rst.next()) {
                 area = new AreaGeneral();
                 area.setCodigo(rst.getInt(1));
-                area.setDescripcion(rst.getString(2));
+                area.setdescripcion(rst.getString(2));
                 lista.add(area);
             }
         } catch (Exception e) {
