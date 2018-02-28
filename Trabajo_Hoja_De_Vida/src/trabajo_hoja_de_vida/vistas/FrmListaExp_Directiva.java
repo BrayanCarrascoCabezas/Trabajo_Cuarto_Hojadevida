@@ -43,8 +43,8 @@ public class FrmListaExp_Directiva extends JInternalFrame{
         
         List<Exp_Directiva>lista= new ArrayList<>();
         try {
-            IExp_Directiva exdiDao = new Exp_DirectivaImpl();
-            lista = exdiDao.obtener();
+            IExp_Directiva expdirectivaDao = new Exp_DirectivaImpl();
+            lista = expdirectivaDao.obtener();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),"Error",
                     JOptionPane.ERROR_MESSAGE);
