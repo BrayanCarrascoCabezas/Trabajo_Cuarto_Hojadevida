@@ -1,118 +1,112 @@
-package trabajo_hoja_de_vida.rnegocio.impl;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import trabajo_hoja_de_vida.accesodatos.Conexion;
-import trabajo_hoja_de_vida.accesodatos.Parametro;
-import trabajo_hoja_de_vida.rnegocio.dao.IExp_Directiva;
-import trabajo_hoja_de_vida.rnegocio.entidades.Exp_Directiva;
+package trabajo_hoja_de_vida.rnegocio.impl;
+import java.util.*;
+import java.sql.*;
+import trabajo_hoja_de_vida.rnegocio.dao.*;
+import trabajo_hoja_de_vida.rnegocio.entidades.*;
+import trabajo_hoja_de_vida.rnegocio.impl.*;
+import trabajo_hoja_de_vida.accesodatos.*;
 
 public class Exp_DirectivaImpl implements IExp_Directiva{
-
+    
     @Override
     public int insertar(Exp_Directiva expdirectiva) throws Exception {
-        int numFilasAfectadas = 0;
-        String sql = "insert into Exp_Directiva  values "
-                + "(?,?,?,?,?,?)";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, expdirectiva.getCodigoExp_D()));
-        lstPar.add(new Parametro(2, expdirectiva.getCodigoE()));
-        lstPar.add(new Parametro(3, expdirectiva.getEmpresa_Institucion()));
-        lstPar.add(new Parametro(4, expdirectiva.getEntidades()));
-        lstPar.add(new Parametro(5, expdirectiva.getFecha_Inicio()));
-        lstPar.add(new Parametro(6, expdirectiva.getFecha_Final()));
-
+        int nFilas = 0;
+        String csql = "INSERT INTO Exp_Directiva (CodigoExp_D, codigoE, Empresa_Institucion, Entidades, Fecha_Inicio,Fecha_Final) VALUES (?,?,?,?,?,?)";
+        ArrayList<Parametro> lstP = new ArrayList<>();
+        lstP.add(new Parametro(1, expdirectiva.getCodigoExp_D()));
+        lstP.add(new Parametro(2, expdirectiva.getExperiencia().getCodigoE()));
+        lstP.add(new Parametro(3, expdirectiva.getEmpresa_Institucion()));
+         lstP.add(new Parametro(4, expdirectiva.getEntidades()));
+        lstP.add(new Parametro(5, expdirectiva.getFecha_Inicio()));
+        lstP.add(new Parametro(6, expdirectiva.getFecha_Final()));
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
-            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
+            nFilas = con.ejecutaComando(csql, lstP);
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error: " + e.getMessage() + " " + e.getLocalizedMessage());
         } finally {
             if (con != null) {
                 con.desconectar();
             }
         }
-        return numFilasAfectadas;
+        return nFilas;
     }
 
     @Override
     public int modificar(Exp_Directiva expdirectiva) throws Exception {
-      int numFilasAfectadas = 0;
-        String sql = "UPDATE expdirectiva"
-                + "   SET CodigoExp_D=?, codigoE=?, Empresa_Institucion=?, Entidades=?, Fecha_Inicio=?, Fecha_Final=? "
-                + " where CodigoExp_D=?";
-        List<Parametro> lstPar = new ArrayList<>();
+        int nFilas=0;
+        String csql="UPDATE Exp_Directiva SET CodigoExp_D=?,  CodigoE=?, Empresa_Institucion=?,Entidades=?, Fecha_Inicio=?, Fecha_Final=? Where CodigoExp_D=?";
+        ArrayList<Parametro> lstPar=new ArrayList<>();
         lstPar.add(new Parametro(1, expdirectiva.getCodigoExp_D()));
-        lstPar.add(new Parametro(2, expdirectiva.getCodigoE()));
+        lstPar.add(new Parametro(2, expdirectiva.getExperiencia().getCodigoE()));
         lstPar.add(new Parametro(3, expdirectiva.getEmpresa_Institucion()));
-        lstPar.add(new Parametro(4, expdirectiva.getEntidades()));
+         lstPar.add(new Parametro(4, expdirectiva.getEntidades()));
         lstPar.add(new Parametro(5, expdirectiva.getFecha_Inicio()));
         lstPar.add(new Parametro(6, expdirectiva.getFecha_Final()));
-
-        Conexion con = null;
+        Conexion con=null;
         try {
-            con = new Conexion();
+            con=new Conexion();
             con.conectar();
-            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
+            nFilas=con.ejecutaComando(csql, lstPar); 
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (con != null) {
+            System.out.println("Error de modificacion: "+e.getMessage());
+        } finally{
+            if(con!=null){
                 con.desconectar();
             }
         }
-        return numFilasAfectadas;
-    }  
+        return nFilas;
+    }
 
     @Override
     public int eliminar(Exp_Directiva expdirectiva) throws Exception {
-        int numFilasAfectadas = 0;
-         String sql = "DELETE FROM expdirectiva  where CodigoExp_D=?";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, expdirectiva.getCodigoExp_D()));       
-        Conexion con = null;
+        int nFilas=0;
+        String csql="DELETE FROM Exp_Directiva Where CodigoExp_D=?";
+        ArrayList<Parametro> lstPar=new ArrayList<>();
+        lstPar.add(new Parametro(1, expdirectiva.getCodigoExp_D()));
+        Conexion con=null;
         try {
-            con = new Conexion();
+            con=new Conexion();
             con.conectar();
-            numFilasAfectadas = con.ejecutaComando(sql, lstPar);
+            nFilas=con.ejecutaComando(csql, lstPar); 
         } catch (Exception e) {
-            throw e;
-        } finally {
-            if (con != null) {
+            System.out.println("Error de Eliminacionn: "+e.getMessage());
+        } finally{
+            if(con!=null){
                 con.desconectar();
             }
         }
-        return numFilasAfectadas;
+        return nFilas;
     }
 
-   @Override
-    public Exp_Directiva obtener(int CodigoExp_D) throws Exception {
+    @Override
+    public Exp_Directiva obtener(int codigo) throws Exception {
         Exp_Directiva expdirectiva = null;
-        String sql = "SELECT * FROM expdirectiva where CodigoExp_D=?;";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, CodigoExp_D));
+        String csql = "SELECT CodigoExp_D, CodigoE, Empresa_Institucion, Entidades,  Fecha_Inicio,  Fecha_Final FROM Exp_Directiva Where CodigoExp_D=?";
+        ArrayList<Parametro> lstPar = new ArrayList<>();
+        IExperiencia expDao=new ExperienciaImpl();
+        Experiencia exp=null;
+        lstPar.add(new Parametro(1, codigo));
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
-            ResultSet rst = con.ejecutaQuery(sql, lstPar);
-
+            ResultSet rst = con.ejecutaQuery(csql, lstPar);
             while (rst.next()) {
-               
-                expdirectiva = new Exp_Directiva();
+                expdirectiva=new Exp_Directiva();
                 expdirectiva.setCodigoExp_D(rst.getInt(1));
-                expdirectiva.setCodigoE(rst.getInt(2));
+                exp=expDao.obtener(rst.getInt(2));
+                expdirectiva.setExperiencia(exp);
                 expdirectiva.setEmpresa_Institucion(rst.getString(3));
                 expdirectiva.setEntidades(rst.getString(4));
                 expdirectiva.setFecha_Inicio(rst.getDate(5));
                 expdirectiva.setFecha_Final(rst.getDate(6));
-
             }
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error: " + e.getMessage() + " " + e.getLocalizedMessage());
         } finally {
             if (con != null) {
                 con.desconectar();
@@ -122,34 +116,35 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
     }
 
     @Override
-    public  List<Exp_Directiva> obtener() throws Exception {
-        List<Exp_Directiva> lista = new ArrayList<>();;
-        String sql = "SELECT * FROM expdirectiva ";
-        Conexion con = null;
+    public ArrayList<Exp_Directiva> obtener() throws Exception {
+        ArrayList<Exp_Directiva> expdirectivas = new ArrayList<>();
+        IExperiencia expDao=new ExperienciaImpl();
+        Experiencia exp=null;;
+        String csql="SELECT tCodigoExp_D, CodigoE, Empresa_Institucion, Entidades, Fecha_Inicio,Fecha_Final from Exp_Directiva";
+        Conexion con=null;
         try {
-            con = new Conexion();
+            con=new Conexion();
             con.conectar();
-            ResultSet rst = con.ejecutaQuery(sql, null);
-            Exp_Directiva expdirectiva = null;
-            while (rst.next()) {
-                expdirectiva = new Exp_Directiva();
+            ResultSet rst=con.ejecutaQuery(csql, null);
+            Exp_Directiva expdirectiva=null;
+            while(rst.next()){
+                expdirectiva=new Exp_Directiva();
                 expdirectiva.setCodigoExp_D(rst.getInt(1));
-                expdirectiva.setCodigoE(rst.getInt(2));
+                exp=expDao.obtener(rst.getInt(2));
+                expdirectiva.setExperiencia(exp);
                 expdirectiva.setEmpresa_Institucion(rst.getString(3));
                 expdirectiva.setEntidades(rst.getString(4));
                 expdirectiva.setFecha_Inicio(rst.getDate(5));
                 expdirectiva.setFecha_Final(rst.getDate(6));
-                
-
-                lista.add(expdirectiva);
+                expdirectivas.add(expdirectiva);
             }
         } catch (Exception e) {
             throw e;
-        } finally {
-            if (con != null) {
+        } finally{
+            if(con!=null){
                 con.desconectar();
             }
         }
-        return lista;
+        return expdirectivas;
     }
 }
