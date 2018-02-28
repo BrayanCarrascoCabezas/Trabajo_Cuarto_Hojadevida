@@ -24,7 +24,7 @@ public class FrmListaExp_Directiva extends JInternalFrame{
         this.setSize(800,600);
     this.setLayout(new BorderLayout());
     this.setClosable(true);
-    lblTitulo =new JLabel("Listado Experiencia Directiva ");
+    lblTitulo =new JLabel("LISTADO EXPERIENCIA DIRECTIVA");
     tabla = new JTable();
     jscTabla= new JScrollPane(tabla); 
     this.add(lblTitulo, BorderLayout.NORTH);
@@ -39,7 +39,7 @@ public class FrmListaExp_Directiva extends JInternalFrame{
         modelo.addColumn("Empresa_Institucion: ");
         modelo.addColumn("Entidades: ");
         modelo.addColumn("Fecha de Inicio: ");
-         modelo.addColumn("Fecha Fin: ");
+        modelo.addColumn("Fecha Fin: ");
         
         List<Exp_Directiva>lista= new ArrayList<>();
         try {
