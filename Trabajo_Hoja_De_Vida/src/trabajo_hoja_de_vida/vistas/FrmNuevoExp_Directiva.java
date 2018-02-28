@@ -33,6 +33,8 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
     JLabel Fecha_Final;
     
     JTextField txtCodigoExp_D;
+    JTextField txtEmpresa_Institucion;
+    JTextField txtEntidades;
     JTextField txtFecha_Inicio;
     JTextField txtFecha_Finalal;
     
@@ -59,7 +61,9 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         cargarExperiencias();
         cmbExp=new JComboBox(lstExp.toArray());
         Empresa_Institucion=new JLabel("Empresa / Institucion: ");
+        txtEmpresa_Institucion=new JTextField("");
         Entidades=new JLabel("Nombre Entidad: ");
+        txtEntidades=new JTextField("");
         Fecha_Inicio=new JLabel("Fecha de Inicio: ");
         txtFecha_Inicio=new JTextField("");
         Fecha_Final=new JLabel("Fecha Fin: ");
