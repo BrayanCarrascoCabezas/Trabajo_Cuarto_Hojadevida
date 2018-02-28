@@ -1,58 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabajo_hoja_de_vida.tests;
 
-import java.util.ArrayList;
-import java.util.List;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.*;
 import org.junit.Test;
-import trabajo_hoja_de_vida.rnegocio.dao.IExp_Directiva;
-import trabajo_hoja_de_vida.rnegocio.entidades.Exp_Directiva;
-import trabajo_hoja_de_vida.rnegocio.impl.Exp_DirectivaImpl;
+import java.util.Date;
+import static org.junit.Assert.*;
+import trabajo_hoja_de_vida.rnegocio.dao.*;
+import trabajo_hoja_de_vida.rnegocio.entidades.*;
+import trabajo_hoja_de_vida.rnegocio.impl.*;
+import trabajo_hoja_de_vida.accesodatos.*;
 
-/**
- *
- * @author Usuario
- */
 public class Exp_DirectivaTest {
-    public Exp_DirectivaTest(){
-    
+
+    public Exp_DirectivaTest() {
     }
     @Test
-    public void testGeneral(){
-        int filas=0;
-        IExp_Directiva expdirectivaDao=new Exp_DirectivaImpl();
-        
-       Exp_Directiva expdirectiva =new Exp_Directiva(1,3,"UNACH","PHD",(8/2/2018),(3/4/2019));
+    public void testGeneral() {
+    IExp_Directiva ECDao = new Exp_DirectivaImpl();
+
+        //////////Test Insertar
+        int filas = 0;
+        Docente doc = new Docente(1, "0604957787-7", "Edwin", "Guaman", "Agua Potable", "1995-10-08",  "m" , "ea@gamil.com", "0989890788");
+        Experiencia exp=new Experiencia(1, doc, 2, "Riobamba", "Docente");
         try {
-            filas=expdirectivaDao.insertar(expdirectiva);
-           System.out.println("Ingreso de " + filas + " Filas Correctas");
-       } catch (Exception e) {
+//            filas = ECDao.insertar(expDoc);
+            System.out.println("Ingreso de " + filas + " Filas Correctas");
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-        assertEquals(filas>0, true);
-        
-            Exp_Directiva expD = new Exp_Directiva();
+        assertTrue(filas > 0);
+    
+    
+    Exp_Directiva eDoc = new Exp_Directiva();
         try {
-            expD  = expdirectivaDao.obtener(1);
-            System.out.println(expD.getCodigoExp_D()+" "+expD.getCodigoE()+" "+expD.getEmpresa_Institucion()+" "+expD.getEntidades()+" "+expD.getFecha_Inicio()+" "+expD.getFecha_Final());
+            eDoc = ECDao.obtener(1);
+            System.out.println(eDoc.getCodigoExp_D()+ "    " + eDoc.getExperiencia().getCodigoE()+"    " +"    "+eDoc.getEntidades()+ "    " + eDoc.getFecha_Inicio()+ "    " + eDoc.getFecha_Final());
         } catch (Exception e) {
         }
-        assertEquals(expD != null, true);
+        assertEquals(eDoc != null, true);
 
-        List<Exp_Directiva> lista=new ArrayList<>();
-        try {
-            lista = expdirectivaDao.obtener();
-            for(Exp_Directiva es:lista){
-                System.out.println(es.getCodigoExp_D()+" "+es.getCodigoE()+" "+es.getEmpresa_Institucion()+" "+es.getEntidades()+" "+es.getFecha_Inicio()+" "+es.getFecha_Final());
+        ///////////LISTADO///////////////////////
+        ArrayList<Exp_Directiva> eDocentes = new ArrayList<>();
+        
+        try { 
+            eDocentes=ECDao.obtener();
+            for (Exp_Directiva expDocente : eDocentes) {          
+                System.out.println(expDocente.getCodigoExp_D()+ "    " + expDocente.getExperiencia().getCodigoE()+"    "+"    " + expDocente.getEmpresa_Institucion()+ "    "+"    " + expDocente.getEntidades()+ "    " + expDocente.getFecha_Inicio()+ "    " + expDocente.getFecha_Final());
             }
         } catch (Exception e) {
+            
             System.out.println("Error: " + e.getMessage());
         }
-        assertTrue(lista.size()>0);
-    } 
+        assertTrue(eDocentes.size() > 0);
+    }
 }
