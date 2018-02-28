@@ -12,6 +12,6 @@ public interface IExp_Directiva {
 
     public Exp_Directiva obtener(int CodigoExp_D) throws Exception;
 
-    public List<Exp_Directiva> obtener() throws Exception;
+    public ArrayList<Exp_Directiva> obtener() throws Exception;
     
 }
