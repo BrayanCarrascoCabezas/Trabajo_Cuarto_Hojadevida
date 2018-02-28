@@ -452,40 +452,33 @@ public class FrmMenuPrincipal extends JFrame {
 
         
         //EXP_DIRECTIVA
-        mnExp_Directiva= new JMenu("EXPERIENCIA_DIRECTIVA");
+        mnExp_Directiva= new JMenu("Exp_Directiva");
         mniNuevoExp_Directiva= new JMenuItem("Nuevo");
         mniNuevoExp_Directiva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mniNuevoExp_DirectivaActionPerformed(e);
-
-            }
-
-            private void mniNuevoExp_DirectivaActionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
-        
         mniModificaExp_Directiva= new JMenuItem("Modifica");
         mniEliminaExp_Directiva= new JMenuItem("Elimina");
         mniBuscaExp_Directiva= new JMenuItem("Busca");
         mniListaExp_Directiva= new JMenuItem("Lista");
+
         mniListaExp_Directiva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mniListaExp_DirectivaActionPerformed(e);
-            }
-
-            private void mniListaExp_DirectivaActionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                mniListaExp_DocenteActionPerformed(e);
             }
         });
-        
         mnExp_Directiva.add(mniNuevoExp_Directiva);
+        mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniModificaExp_Directiva);
+        mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniEliminaExp_Directiva);
         mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniBuscaExp_Directiva);
+        mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniListaExp_Directiva);
         
         
@@ -703,8 +696,8 @@ public class FrmMenuPrincipal extends JFrame {
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }
-    
-    public void mniListaExp_DirectivaActionPerformed(ActionEvent e){
+    public void mniListaExp_DirectivaActionPerformed(ActionEvent e)
+    {
     FrmListaExp_Directiva frm= new FrmListaExp_Directiva();
     dkpEscritorio.add(frm);
     frm.setVisible(true);
