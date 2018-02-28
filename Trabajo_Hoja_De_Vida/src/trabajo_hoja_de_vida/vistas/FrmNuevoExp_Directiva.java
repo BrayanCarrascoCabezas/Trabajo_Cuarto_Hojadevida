@@ -1,13 +1,15 @@
+
 package trabajo_hoja_de_vida.vistas;
+
 import trabajo_hoja_de_vida.rnegocio.entidades.*;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.*;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,140 +18,125 @@ import javax.swing.JTextField;
 import trabajo_hoja_de_vida.rnegocio.dao.*;
 import trabajo_hoja_de_vida.rnegocio.impl.*;
 import javax.swing.*;
-public class FrmNuevoExp_Directiva extends JInternalFrame {
-    
-        ArrayList<Exp_Directiva> lstexp;
-    JComboBox<Exp_Directiva> cmbexp;
+import java.util.*;
 
-    JLabel lblTitulo0;
-    JLabel lblCodigoExp_D;
-    JLabel lblCodigoE;
-    JLabel lblEmpresa_Institucion;
-    JLabel lblEntidades;
-    JLabel lblFecha_Inicio;
-    JLabel lblFecha_Final;
+public class FrmNuevoExp_Directiva extends JInternalFrame{
+    ArrayList<Experiencia> lstExp;
+    JComboBox<Experiencia> cmbExp;
+    
+    JLabel Titulo;
+    JLabel CodigoExp_D;
+    JLabel CodigoE;
+    JLabel Empresa_Institucion;
+    JLabel Entidades;
+    JLabel Fecha_Inicio;
+    JLabel Fecha_Final;
     
     JTextField txtCodigoExp_D;
-    JTextField txtCodigoE;
-    JTextField txtEmpresa_Institucion;
-    JTextField txtEntidades;
     JTextField txtFecha_Inicio;
-    JTextField txtFecha_Final;
+    JTextField txtFecha_Finalal;
     
-    JButton btnLimpiar;
     JButton btnAceptar;
-    
-    JPanel pnlCentral;
+    JButton btnLimpiar;
+    JPanel pnlSup;
+    JPanel pnlCental;
     JPanel pnlPie;
-    private final JLabel CodigoExp_D;
-    
-     public FrmNuevoExp_Directiva() {
-        this.setSize(350, 350);
+
+    public FrmNuevoExp_Directiva() {
+        this.setSize(420,270);
         this.setLayout(new BorderLayout());
-        this.setClosable(true);
-        pnlCentral= new JPanel();
-        pnlPie= new JPanel();
-        pnlCentral.setLayout(new GridLayout(9, 2, 5, 5));
-        pnlPie.setLayout(new GridLayout(1,2,5,5));
-        
-        lblTitulo0 = new JLabel("Datos Exp_Directiva");
-        
-        lblCodigoExp_D= new JLabel("CódigoExp_Directiva:");
-        lblCodigoE = new JLabel("CodigoExperiencia");
-        lblEmpresa_Institucion= new JLabel("Empresa_Institucion:");
-        lblEntidades = new JLabel("Posicion:");
-        lblFecha_Inicio = new JLabel("Fecha Inicio:");
-        lblFecha_Final = new JLabel("Fecha Final:");
-        
-        
-        txtCodigoExp_D = new JTextField(2);
-        txtCodigoE = new JTextField(2);
-        txtEmpresa_Institucion = new JTextField(2);
-        txtEntidades = new JTextField(2);
-        txtFecha_Inicio = new JTextField(2); 
-        txtFecha_Final = new JTextField(2);
-        
-        cargarExp_Directiva();
-        cmbexp=new JComboBox(lstexp.toArray());
-        CodigoExp_D=new JLabel("Exp_Directiva: ");
-        lstexp=new ArrayList<Exp_Directiva>();
-        
-        btnLimpiar= new JButton("Limpiar");
-        btnAceptar= new JButton("Aceptar");
-        
-        pnlCentral.add(lblCodigoExp_D);
-        pnlCentral.add(txtCodigoExp_D);
-        pnlCentral.add(lblCodigoE);
-        pnlCentral.add(txtCodigoE);
-        pnlCentral.add(lblEmpresa_Institucion);
-        pnlCentral.add(txtEmpresa_Institucion);
-        pnlCentral.add(lblEntidades);
-        pnlCentral.add(txtEntidades);
-        pnlCentral.add(lblFecha_Inicio);
-        pnlCentral.add(txtFecha_Inicio);
-        pnlCentral.add(lblFecha_Final);
-        pnlCentral.add(txtFecha_Final);
-    
-        btnAceptar.addActionListener(new ActionListener() {
+        pnlSup=new JPanel(new FlowLayout());
+        Titulo=new JLabel("Experiencia como Directivo");
+        Titulo.setFont(new Font("Arial Blue", 0, 20));
+        pnlSup.add(Titulo);
+        pnlSup.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(pnlSup,BorderLayout.NORTH);
+        pnlCental=new JPanel(new GridLayout(6, 2));
+        CodigoExp_D=new JLabel("Codigo: ");
+        txtCodigoExp_D=new JTextField("");
+        CodigoE=new JLabel("Experiencia: ");
+        lstExp=new ArrayList<Experiencia>();
+        cargarExperiencias();
+        cmbExp=new JComboBox(lstExp.toArray());
+        Empresa_Institucion=new JLabel("Empresa / Institucion: ");
+        Entidades=new JLabel("Nombre Entidad: ");
+        Fecha_Inicio=new JLabel("Fecha de Inicio: ");
+        txtFecha_Inicio=new JTextField("");
+        Fecha_Final=new JLabel("Fecha Fin: ");
+        txtFecha_Finalal=new JTextField("");
+        pnlCental.add(CodigoExp_D);
+        pnlCental.add(txtCodigoExp_D);
+        pnlCental.add(CodigoE);
+        pnlCental.add(cmbExp);
+        pnlCental.add(Empresa_Institucion);
+        pnlCental.add(Entidades);
+        pnlCental.add(Fecha_Inicio);
+        pnlCental.add(txtFecha_Inicio);
+        pnlCental.add(Fecha_Final);
+        pnlCental.add(txtFecha_Finalal);
+        pnlCental.setAlignmentX(CENTER_ALIGNMENT);
+        pnlCental.setAlignmentY(CENTER_ALIGNMENT);
+        pnlPie=new JPanel(new GridLayout(1, 2));
+        btnAceptar=new JButton("Aceptar");
+        btnLimpiar=new JButton("Limpiar");
+        pnlPie.add(btnAceptar);
+        pnlPie.add(btnLimpiar);
+           btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     btnAceptarActionListener(e);
                 } catch (Exception ex) {
-                    System.out.println("Error:"+ex.getMessage());
+                    System.out.print("error " + ex.getMessage());
                 }
             }
         });
-        
-        pnlPie.add(btnLimpiar);
-        pnlPie.add(btnAceptar);
-        
-        this.add(lblTitulo0, BorderLayout.NORTH);
-        this.add(pnlCentral, BorderLayout.CENTER);
-        this.add(pnlPie, BorderLayout.SOUTH);        
+        this.add(pnlSup,BorderLayout.NORTH);
+        this.add(pnlCental,BorderLayout.CENTER);
+        this.add(pnlPie, BorderLayout.SOUTH);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
+    
     public static void main(String[] args) {
-        FrmNuevoExp_Directiva frmMenu= new FrmNuevoExp_Directiva();
-        frmMenu.setVisible(true);
-    } 
-        private void cargarExp_Directiva() {
-        IExp_Directiva expDao = new Exp_DirectivaImpl();
+
+        FrmNuevoExp_Directiva frmExp_Dir = new FrmNuevoExp_Directiva();
+        frmExp_Dir.setVisible(true);
+
+    }
+
+    private void cargarExperiencias() {
+        IExperiencia curDao = new ExperienciaImpl();
         try {
-            lstexp = (ArrayList<Exp_Directiva>) expDao.obtener();
+            lstExp = (ArrayList<Experiencia>) curDao.obtener();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR Exp_Directiva", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    public void btnAceptarActionListener(ActionEvent e){
-        Exp_Directiva expdirectiva = new Exp_Directiva();
-            IExp_Directiva expdirectivaDao = new Exp_DirectivaImpl();
-            expdirectiva.setCodigoExp_D(Integer.parseInt(txtCodigoExp_D.getText()));
-            expdirectiva.setCodigoE(Integer.parseInt(txtCodigoE.getText()));
-            expdirectiva.setEmpresa_Institucion(txtEmpresa_Institucion.getText());
-            expdirectiva.setEntidades(txtEntidades.getText());
-            DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    
+    
+    public void btnAceptarActionListener(ActionEvent e) {
+        IExp_Directiva expDir = new Exp_DirectivaImpl();
+        try {
+            Exp_Directiva nDirectiva = new Exp_Directiva();
+            nDirectiva.setCodigoExp_D(Integer.parseInt(txtCodigoExp_D.getText()));
+            nDirectiva.setExperiencia((Experiencia) cmbExp.getSelectedItem());
+                if (expDir.insertar(nDirectiva) > 0) {
+                    JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "ERROR", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                }
+            DateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
             try {
-                expdirectiva.setFecha_Inicio((Date) formatoFecha.parse(txtFecha_Inicio.getText()));
-                expdirectiva.setFecha_Final((Date) formatoFecha.parse(txtFecha_Final.getText()));
-                
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this,"Error en la fecha!!",
-                "Error", JOptionPane.ERROR_MESSAGE);
+                nDirectiva.setFecha_Inicio((java.sql.Date) formatoFecha.parse(txtFecha_Inicio.getText()));
+                nDirectiva.setFecha_Final((java.sql.Date) formatoFecha.parse(txtFecha_Finalal.getText()));
+            } catch (Exception er) {
+                JOptionPane.showMessageDialog(this, "ERROR DE FECHA!!"+er.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-         
-            
-            try {
-                if(expdirectivaDao.insertar(expdirectiva)>0 ){
-                JOptionPane.showMessageDialog(this,"Registrado correctamente!!",
-                "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else{
-            JOptionPane.showMessageDialog(this,"Error desconocido: ",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,"Error desconocido: "+ex.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }  
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "PROCESO FALLIDO!!"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
+    
 }
