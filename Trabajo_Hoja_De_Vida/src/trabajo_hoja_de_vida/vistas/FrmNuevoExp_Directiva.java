@@ -62,7 +62,7 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         cmbExp=new JComboBox(lstExp.toArray());
         Empresa_Institucion=new JLabel("Empresa / Institucion: ");
         txtEmpresa_Institucion=new JTextField("");
-        Entidades=new JLabel("Nombre Entidad: ");
+        Entidades=new JLabel("Entidad: ");
         txtEntidades=new JTextField("");
         Fecha_Inicio=new JLabel("Fecha de Inicio: ");
         txtFecha_Inicio=new JTextField("");
@@ -73,7 +73,9 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         pnlCental.add(CodigoE);
         pnlCental.add(cmbExp);
         pnlCental.add(Empresa_Institucion);
+        pnlCental.add(txtEmpresa_Institucion);
         pnlCental.add(Entidades);
+        pnlCental.add(txtEntidades);
         pnlCental.add(Fecha_Inicio);
         pnlCental.add(txtFecha_Inicio);
         pnlCental.add(Fecha_Final);
@@ -99,6 +101,7 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         this.add(pnlCental,BorderLayout.CENTER);
         this.add(pnlPie, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setClosable(true);
     }
     
     public static void main(String[] args) {
@@ -109,11 +112,11 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
     }
 
     private void cargarExperiencias() {
-        IExperiencia curDao = new ExperienciaImpl();
+        IExperiencia experienciaDao = new ExperienciaImpl();
         try {
-            lstExp = (ArrayList<Experiencia>) curDao.obtener();
+            lstExp = (ArrayList<Experiencia>) experienciaDao.obtener();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR CURSOS", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al cargar la Experiencia", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
