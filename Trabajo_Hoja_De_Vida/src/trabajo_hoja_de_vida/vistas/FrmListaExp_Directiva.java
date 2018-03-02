@@ -50,7 +50,7 @@ public class FrmListaExp_Directiva extends JInternalFrame{
                     JOptionPane.ERROR_MESSAGE);
         }
         for(Exp_Directiva ec : lista){
-            modelo.addRow(new Object[]{ ec.getCodigoExp_D(),ec.getExperiencia().getCodigoE(),ec.getEmpresa_Institucion(),ec.getEntidades()
+            modelo.addRow(new Object[]{ ec.getCodigoExp_D(),ec.getExperiencia(),ec.getEmpresa_Institucion(),ec.getEntidades()
                     ,ec.getFecha_Inicio(),ec.getFecha_Final().toString()});
         }
         tabla.setModel(modelo);
