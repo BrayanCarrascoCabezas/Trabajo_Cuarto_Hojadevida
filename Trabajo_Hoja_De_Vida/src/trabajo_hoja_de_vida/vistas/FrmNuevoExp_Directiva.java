@@ -19,6 +19,7 @@ import trabajo_hoja_de_vida.rnegocio.dao.*;
 import trabajo_hoja_de_vida.rnegocio.impl.*;
 import javax.swing.*;
 import java.util.*;
+import java.util.Date;
 
 public class FrmNuevoExp_Directiva extends JInternalFrame{
 
