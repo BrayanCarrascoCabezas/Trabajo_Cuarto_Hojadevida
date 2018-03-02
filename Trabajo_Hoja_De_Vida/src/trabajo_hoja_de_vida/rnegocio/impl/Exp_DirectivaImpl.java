@@ -12,10 +12,10 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
     @Override
     public int insertar(Exp_Directiva expdirectiva) throws Exception {
         int nFilas = 0;
-        String csql = "INSERT INTO Exp_Directiva (CodigoExp_D, codigoE, Empresa_Institucion, Entidades, Fecha_Inicio,Fecha_Final) VALUES (?,?,?,?,?,?)";
+        String csql = "INSERT INTO Exp_Directiva (CodigoExp_D, Experiencia, Empresa_Institucion, Entidades, Fecha_Inicio,Fecha_Final) VALUES (?,?,?,?,?,?)";
         ArrayList<Parametro> lstP = new ArrayList<>();
         lstP.add(new Parametro(1, expdirectiva.getCodigoExp_D()));
-        lstP.add(new Parametro(2, expdirectiva.getExperiencia().getCodigoE()));
+        lstP.add(new Parametro(2, expdirectiva.getExperiencia()));
         lstP.add(new Parametro(3, expdirectiva.getEmpresa_Institucion()));
          lstP.add(new Parametro(4, expdirectiva.getEntidades()));
         lstP.add(new Parametro(5, expdirectiva.getFecha_Inicio()));
@@ -38,10 +38,10 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
     @Override
     public int modificar(Exp_Directiva expdirectiva) throws Exception {
         int nFilas=0;
-        String csql="UPDATE Exp_Directiva SET CodigoExp_D=?,  CodigoE=?, Empresa_Institucion=?,Entidades=?, Fecha_Inicio=?, Fecha_Final=? Where CodigoExp_D=?";
+        String csql="UPDATE Exp_Directiva SET CodigoExp_D=?,  Experiencia=?, Empresa_Institucion=?,Entidades=?, Fecha_Inicio=?, Fecha_Final=? Where CodigoExp_D=?";
         ArrayList<Parametro> lstPar=new ArrayList<>();
         lstPar.add(new Parametro(1, expdirectiva.getCodigoExp_D()));
-        lstPar.add(new Parametro(2, expdirectiva.getExperiencia().getCodigoE()));
+        lstPar.add(new Parametro(2, expdirectiva.getExperiencia()));
         lstPar.add(new Parametro(3, expdirectiva.getEmpresa_Institucion()));
          lstPar.add(new Parametro(4, expdirectiva.getEntidades()));
         lstPar.add(new Parametro(5, expdirectiva.getFecha_Inicio()));
@@ -85,7 +85,7 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
     @Override
     public Exp_Directiva obtener(int codigo) throws Exception {
         Exp_Directiva expdirectiva = null;
-        String csql = "SELECT CodigoExp_D, CodigoE, Empresa_Institucion, Entidades,  Fecha_Inicio,  Fecha_Final FROM Exp_Directiva Where CodigoExp_D=?";
+        String csql = "SELECT CodigoExp_D, Experiencia, Empresa_Institucion, Entidades,  Fecha_Inicio,  Fecha_Final FROM Exp_Directiva Where CodigoExp_D=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         IExperiencia expDao=new ExperienciaImpl();
         Experiencia exp=null;
@@ -98,8 +98,7 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
             while (rst.next()) {
                 expdirectiva=new Exp_Directiva();
                 expdirectiva.setCodigoExp_D(rst.getInt(1));
-                exp=expDao.obtener(rst.getInt(2));
-                expdirectiva.setExperiencia(exp);
+                expdirectiva.setExperiencia(rst.getString(2));
                 expdirectiva.setEmpresa_Institucion(rst.getString(3));
                 expdirectiva.setEntidades(rst.getString(4));
                 expdirectiva.setFecha_Inicio(rst.getDate(5));
@@ -120,7 +119,7 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
         ArrayList<Exp_Directiva> expdirectivas = new ArrayList<>();
         IExperiencia expDao=new ExperienciaImpl();
         Experiencia exp=null;;
-        String csql="SELECT tCodigoExp_D, CodigoE, Empresa_Institucion, Entidades, Fecha_Inicio,Fecha_Final from Exp_Directiva";
+        String csql="SELECT tCodigoExp_D, Experiencia, Empresa_Institucion, Entidades, Fecha_Inicio,Fecha_Final from Exp_Directiva";
         Conexion con=null;
         try {
             con=new Conexion();
@@ -130,8 +129,7 @@ public class Exp_DirectivaImpl implements IExp_Directiva{
             while(rst.next()){
                 expdirectiva=new Exp_Directiva();
                 expdirectiva.setCodigoExp_D(rst.getInt(1));
-                exp=expDao.obtener(rst.getInt(2));
-                expdirectiva.setExperiencia(exp);
+                expdirectiva.setExperiencia(rst.getString(2));
                 expdirectiva.setEmpresa_Institucion(rst.getString(3));
                 expdirectiva.setEntidades(rst.getString(4));
                 expdirectiva.setFecha_Inicio(rst.getDate(5));
