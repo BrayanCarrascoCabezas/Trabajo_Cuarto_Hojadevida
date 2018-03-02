@@ -1,7 +1,7 @@
 
 package trabajo_hoja_de_vida.rnegocio.entidades;
 
-import java.sql.Date;
+import java.util.Date;
 public class Exp_Directiva {
     private int CodigoExp_D;  
     private String Experiencia ;
