@@ -130,7 +130,11 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         try {
             Exp_Directiva nDirectiva = new Exp_Directiva();
             nDirectiva.setCodigoExp_D(Integer.parseInt(txtCodigoExp_D.getText()));
+            
             nDirectiva.setExperiencia(cmbExperiencia.getSelectedIndex()==1 ? "a" : "c");
+            nDirectiva.setEmpresa_Institucion(txtEmpresa_Institucion.getText());
+            nDirectiva.setEntidades(txtEntidades.getText());
+//            nDirectiva.set(txtEntidades.getText());
 //            nDirectiva.setExperiencia((Experiencia) cmbExp.getSelectedItem());
                 if (expDir.insertar(nDirectiva) > 0) {
                     JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
@@ -140,8 +144,9 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
                 }
             DateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
             try {
-                nDirectiva.setFecha_Inicio((java.sql.Date) formatoFecha.parse(txtFecha_Inicio.getText()));
-                nDirectiva.setFecha_Final((java.sql.Date) formatoFecha.parse(txtFecha_Finalal.getText()));
+                nDirectiva.setFecha_Inicio(formatoFecha.parse(txtFecha_Inicio.getText()));
+                nDirectiva.setFecha_Inicio(formatoFecha.parse(txtFecha_Finalal.getText()));
+                
             } catch (Exception er) {
                 JOptionPane.showMessageDialog(this, "ERROR DE FECHA!!"+er.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
