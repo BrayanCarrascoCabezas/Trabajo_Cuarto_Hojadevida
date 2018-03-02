@@ -472,13 +472,13 @@ public class FrmMenuPrincipal extends JFrame {
             }
         });
         mnExp_Directiva.add(mniNuevoExp_Directiva);
-        mnExp_Directiva.addSeparator();
+//        mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniModificaExp_Directiva);
-        mnExp_Directiva.addSeparator();
+//        mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniEliminaExp_Directiva);
         mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniBuscaExp_Directiva);
-        mnExp_Directiva.addSeparator();
+//        mnExp_Directiva.addSeparator();
         mnExp_Directiva.add(mniListaExp_Directiva);
         
         
