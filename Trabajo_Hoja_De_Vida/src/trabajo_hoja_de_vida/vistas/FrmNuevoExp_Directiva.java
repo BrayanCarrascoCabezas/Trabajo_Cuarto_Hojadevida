@@ -21,8 +21,7 @@ import javax.swing.*;
 import java.util.*;
 
 public class FrmNuevoExp_Directiva extends JInternalFrame{
-    ArrayList<Experiencia> lstExp;
-    JComboBox<Experiencia> cmbExp;
+
     
     JLabel Titulo;
     JLabel CodigoExp_D;
@@ -37,6 +36,8 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
     JTextField txtEntidades;
     JTextField txtFecha_Inicio;
     JTextField txtFecha_Finalal;
+    
+    JComboBox cmbExperiencia;
     
     JButton btnAceptar;
     JButton btnLimpiar;
@@ -57,9 +58,10 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         CodigoExp_D=new JLabel("Codigo: ");
         txtCodigoExp_D=new JTextField("");
         CodigoE=new JLabel("Experiencia: ");
-        lstExp=new ArrayList<Experiencia>();
-        cargarExperiencias();
-        cmbExp=new JComboBox(lstExp.toArray());
+           cmbExperiencia= new JComboBox(new String[]{"año titulacion","curso capacitacion"});
+//        lstExp=new ArrayList<Experiencia>();
+//        cargarExperiencias();
+//        cmbExp=new JComboBox(lstExp.toArray());
         Empresa_Institucion=new JLabel("Empresa / Institucion: ");
         txtEmpresa_Institucion=new JTextField("");
         Entidades=new JLabel("Entidad: ");
@@ -71,7 +73,8 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         pnlCental.add(CodigoExp_D);
         pnlCental.add(txtCodigoExp_D);
         pnlCental.add(CodigoE);
-        pnlCental.add(cmbExp);
+        pnlCental.add(cmbExperiencia);
+//        pnlCental.add(cmbExp);
         pnlCental.add(Empresa_Institucion);
         pnlCental.add(txtEmpresa_Institucion);
         pnlCental.add(Entidades);
@@ -111,14 +114,14 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
 
     }
 
-    private void cargarExperiencias() {
-        IExperiencia experienciaDao = new ExperienciaImpl();
-        try {
-            lstExp = (ArrayList<Experiencia>) experienciaDao.obtener();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar la Experiencia", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
+//    private void cargarExperiencias() {
+//        IExperiencia experienciaDao = new ExperienciaImpl();
+//        try {
+//            lstExp = (ArrayList<Experiencia>) experienciaDao.obtener();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Error al cargar la Experiencia", "ERROR" + e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+//        }
+//    }
     
     
     public void btnAceptarActionListener(ActionEvent e) {
@@ -126,7 +129,8 @@ public class FrmNuevoExp_Directiva extends JInternalFrame{
         try {
             Exp_Directiva nDirectiva = new Exp_Directiva();
             nDirectiva.setCodigoExp_D(Integer.parseInt(txtCodigoExp_D.getText()));
-            nDirectiva.setExperiencia((Experiencia) cmbExp.getSelectedItem());
+            nDirectiva.setExperiencia(cmbExperiencia.getSelectedIndex()==1 ? "a" : "c");
+//            nDirectiva.setExperiencia((Experiencia) cmbExp.getSelectedItem());
                 if (expDir.insertar(nDirectiva) > 0) {
                     JOptionPane.showMessageDialog(this, "PROCESO CORRECTO!!", "Transaction", JOptionPane.INFORMATION_MESSAGE);
 
