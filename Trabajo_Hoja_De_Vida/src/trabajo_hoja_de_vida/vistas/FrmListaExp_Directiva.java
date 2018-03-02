@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import trabajo_hoja_de_vida.rnegocio.dao.*;
 import trabajo_hoja_de_vida.rnegocio.entidades.*;
 import trabajo_hoja_de_vida.rnegocio.impl.*;
+import java.util.Date;
 
 public class FrmListaExp_Directiva extends JInternalFrame{
     JLabel lblTitulo;
