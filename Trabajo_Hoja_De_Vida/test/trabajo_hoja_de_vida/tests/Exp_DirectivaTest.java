@@ -34,7 +34,7 @@ public class Exp_DirectivaTest {
     Exp_Directiva eDoc = new Exp_Directiva();
         try {
             eDoc = ECDao.obtener(1);
-            System.out.println(eDoc.getCodigoExp_D()+ "    " + eDoc.getExperiencia().getCodigoE()+"    " +"    "+eDoc.getEntidades()+ "    " + eDoc.getFecha_Inicio()+ "    " + eDoc.getFecha_Final());
+            System.out.println(eDoc.getCodigoExp_D()+ "    " + eDoc.getExperiencia()+"    " +"    "+eDoc.getEntidades()+ "    " + eDoc.getFecha_Inicio()+ "    " + eDoc.getFecha_Final());
         } catch (Exception e) {
         }
         assertEquals(eDoc != null, true);
@@ -45,7 +45,7 @@ public class Exp_DirectivaTest {
         try { 
             eDocentes=ECDao.obtener();
             for (Exp_Directiva expDocente : eDocentes) {          
-                System.out.println(expDocente.getCodigoExp_D()+ "    " + expDocente.getExperiencia().getCodigoE()+"    "+"    " + expDocente.getEmpresa_Institucion()+ "    "+"    " + expDocente.getEntidades()+ "    " + expDocente.getFecha_Inicio()+ "    " + expDocente.getFecha_Final());
+                System.out.println(expDocente.getCodigoExp_D()+ "    " + expDocente.getExperiencia()+"    "+"    " + expDocente.getEmpresa_Institucion()+ "    "+"    " + expDocente.getEntidades()+ "    " + expDocente.getFecha_Inicio()+ "    " + expDocente.getFecha_Final());
             }
         } catch (Exception e) {
             
